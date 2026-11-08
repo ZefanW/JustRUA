@@ -110,18 +110,6 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .film-in video{display:block;width:100%;height:auto;max-height:84vh;border-radius:12px;background:#fbfbfc}
 .film-x{position:absolute;top:-42px;right:0;width:32px;height:32px;display:grid;place-items:center;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);font:400 20px/1 var(--f-sans);cursor:pointer}
 
-.hero .authors{max-width:48em}
-.hero .names{max-width:none;text-wrap:balance}
-.hero .affils{color:var(--ink-2)}
-.author-notes{display:flex;flex-wrap:wrap;gap:4px 20px;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
-.hero-resources .links{gap:8px}
-.hero-meta{display:flex;align-items:center;flex-wrap:wrap;gap:6px 18px;margin-top:8px}
-.hero-meta .links-note,.hero-meta .lang-sw{margin:0;text-align:left}
-@media (max-width:480px){
-  .hero-resources .links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-width:360px}
-  .hero-resources .chip{justify-content:center}
-}
-
 /* Section shell */
 .sec-h{font-size:clamp(26px,2.8vw,34px);line-height:1.12;letter-spacing:-.022em;font-weight:700;margin:0 0 8px}
 .sec-sub{font-size:16px;line-height:1.5;color:var(--ink-2);max-width:var(--measure);margin:0 0 20px}
@@ -917,12 +905,30 @@ section.sec + section.sec{margin-top:128px}
       <h1><span class="just">Just</span>RUA</h1>
       <p class="subtitle">A Controlled Study of GPT-6 Robot-Use Agents</p>
     </div>
-    <div class="authors" aria-label="Authors and affiliation">
-      <p class="names"><span>Zefan Wang<sup>*</sup></span>, <span>Yufan Dang<sup>*</sup></span>, <span>Xuanwei Shi<sup>*</sup></span>, <span>Chuan Gao<sup>*</sup></span>, <span>Cheng Yin</span>, <span>SikYuen Tam</span>, <span>Hanyu Liu</span>, <span>Yasheng Wang</span>, <span>Yaxi Lu</span>, <span>Yi Jiang</span>, <span>Songyang Zhang</span>, <span>Yuan Yao<sup>†</sup></span></p>
-      <p class="affils">Tsinghua University</p>
-      <p class="author-notes"><span>* Equal contribution</span><span>† Corresponding author</span></p>
+    <div class="logos" aria-label="Affiliations">
+      <img src="media/logos/tsinghua.png" alt="Tsinghua University" width="268" height="84" class="lg-thu">
+      <img src="media/logos/modelbest.png" alt="ModelBest" width="324" height="56" class="lg-mb">
+      <img src="media/logos/tencent.png" alt="Tencent" width="418" height="56" class="lg-tc">
     </div>
-    <div class="hero-resources">
+    <div class="hero-main">
+      <div>
+        <p class="abstract">GPT-6 Astra can drive a robot arm directly through a fixed harness, and scores on RoboDojo have risen quickly since. Reported systems bring many improvements that may help, but they may start from different harnesses, use different test subsets and change several parts of the design at once, which can make it hard to tell which choices produce most of the gains. We take these designs apart and study them in one framework. JustRUA starts from the official L3 harness and keeps what matters most. It has no learned policy, no self-improvement loop and no task-specific tuning.</p>
+      </div>
+      <ol class="tks" aria-label="Key takeaways">
+        <li class="tk" tabindex="0" data-go="sec-harness"><span class="n">01</span><b>A lean harness goes a long way.</b><span class="more" aria-hidden="true">+</span>
+          <span class="tk-pop">The official harness keeps only the last two observations and lets each motion run to the end before the model looks again. Keeping the full episode history and stopping each motion after 20 control steps lift the evaluation-set score from 29.7 to 38.0. Relative targets, named skills and model-chosen step counts all fail to beat plain absolute targets.</span></li>
+        <li class="tk" tabindex="0" data-go="sec-exp"><span class="n">02</span><b>Reusing experience is not a free lunch.</b><span class="more" aria-hidden="true">+</span>
+          <span class="tk-pop">Demonstrations and a self-written skill library change how the model acts, yet neither clearly beats the default on the evaluation set, and each makes an episode more expensive. Of everything we tried, experience carries the highest risk of gaming the benchmark. Five rounds of self-improvement, with each task practised once, brought no visible gain, while systems that report gains practise each task many more times.</span></li>
+        <li class="tk" tabindex="0" data-go="sec-geo"><span class="n">03</span><b>Scene geometry helps most.</b><span class="more" aria-hidden="true">+</span>
+          <span class="tk-pop">Depth images cut empty grasps from 41 to 16 over the same 42 episodes, even when Depth Pro predicts the depth from RGB alone and is off by tens of centimetres. The gain needs no privileged information. With code that solves 3D coordinates from pixels and no decision cap, the evaluation-set score reaches 50.3.</span></li>
+        <li class="tk" tabindex="0" data-go="sec-err"><span class="n">04</span><b>Remaining failures are mostly long-tail.</b><span class="more" aria-hidden="true">+</span>
+          <span class="tk-pop">We reviewed every first-round task where our best configuration scores below 50. The causes are plans that do not suit the arm, unplanned knocks, slipping grasps and a few prompt or scoring issues, and most are specific to one task. Revising the prompts lifts the first round from 54.0 to 55.6. The rest would need trial and error on each task, which comes close to tuning on the test tasks themselves.</span></li>
+      </ol>
+      <div class="hero-side">
+      <button type="button" class="film" id="film" aria-label="Play the JustRUA film">
+        <video src="media/hero/justrua-film-v2.mp4" poster="media/hero/justrua-film-v2.jpg" width="1280" height="720" muted autoplay loop playsinline preload="metadata" aria-hidden="true"></video>
+        <span class="film-cta"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="7.25"/><path d="M7.5 6.2v5.6L11.8 9z" fill="currentColor" stroke="none"/></svg>Watch the film <em>1:32</em></span>
+      </button>
         <div class="links">
           <span class="chip soon" aria-disabled="true">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 1.75h5.5L12.5 4.75V14.25H4z"/><path d="M9.25 1.75v3.25h3.25M6 8h4.5M6 10.75h4.5"/></svg>
@@ -941,30 +947,8 @@ section.sec + section.sec{margin-top:128px}
             BibTeX
           </a>
         </div>
-      <div class="hero-meta">
         <p class="links-note">Paper coming soon.</p>
-      </div>
-    </div>
-    <div class="hero-main">
-      <div>
-        <p class="abstract">GPT-6 Astra can drive a robot arm directly through a fixed harness, and scores on RoboDojo have risen quickly since. Reported systems bring many improvements that may help, but they may start from different harnesses, use different test subsets and change several parts of the design at once, which can make it hard to tell which choices produce most of the gains. We take these designs apart and study them in one framework. JustRUA starts from the official L3 harness and keeps what matters most. It has no learned policy, no self-improvement loop and no task-specific tuning. With this lean design, JustRUA scores 50.3 on our fixed 111-episode RoboDojo evaluation set, up from 29.7 for the official L3 harness, showing the value of a few targeted changes.</p>
-      </div>
-      <ol class="tks" aria-label="Key takeaways">
-        <li class="tk" tabindex="0" data-go="sec-harness"><span class="n">01</span><b>A lean harness goes a long way.</b><span class="more" aria-hidden="true">+</span>
-          <span class="tk-pop">The official harness keeps only the last two observations and lets each motion run to the end before the model looks again. Keeping the full episode history and stopping each motion after 20 control steps lift the evaluation-set score from 29.7 to 38.0. Relative targets, named skills and model-chosen step counts all fail to beat plain absolute targets.</span></li>
-        <li class="tk" tabindex="0" data-go="sec-exp"><span class="n">02</span><b>Reusing experience is not a free lunch.</b><span class="more" aria-hidden="true">+</span>
-          <span class="tk-pop">Demonstrations and a self-written skill library change how the model acts, yet neither clearly beats the default on the evaluation set, and each makes an episode more expensive. Of everything we tried, experience carries the highest risk of gaming the benchmark. Five rounds of self-improvement, with each task practised once, brought no visible gain, while systems that report gains practise each task many more times.</span></li>
-        <li class="tk" tabindex="0" data-go="sec-geo"><span class="n">03</span><b>Scene geometry helps most.</b><span class="more" aria-hidden="true">+</span>
-          <span class="tk-pop">Depth images cut empty grasps from 41 to 16 over the same 42 episodes, even when Depth Pro predicts the depth from RGB alone and is off by tens of centimetres. The gain needs no privileged information. With code that solves 3D coordinates from pixels and no decision cap, the evaluation-set score reaches 50.3.</span></li>
-        <li class="tk" tabindex="0" data-go="sec-err"><span class="n">04</span><b>Remaining failures are mostly long-tail.</b><span class="more" aria-hidden="true">+</span>
-          <span class="tk-pop">We reviewed every first-round task where our best configuration scores below 50. The causes are plans that do not suit the arm, unplanned knocks, slipping grasps and a few prompt or scoring issues, and most are specific to one task. Revising the prompts lifts the first round from 54.0 to 55.6. The rest would need trial and error on each task, which comes close to tuning on the test tasks themselves.</span></li>
-      </ol>
-      <div class="hero-side">
-      <button type="button" class="film" id="film" aria-label="Play the JustRUA film">
-        <video src="media/hero/justrua-film-v2.mp4" poster="media/hero/justrua-film-v2.jpg" width="1280" height="720" muted autoplay loop playsinline preload="metadata" aria-hidden="true"></video>
-        <span class="film-cta"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="7.25"/><path d="M7.5 6.2v5.6L11.8 9z" fill="currentColor" stroke="none"/></svg>Watch the film <em>1:32</em></span>
-      </button>
-
+        <p class="lang-sw"><b>EN</b> · <a href="zh/" lang="zh-CN">中文</a></p>
       </div>
     </div>
   </div>
