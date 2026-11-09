@@ -44,11 +44,11 @@ body.final .draft-only{display:none!important}
 .mnav a.active{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule)}
 
 /* Header */
-.hero{position:relative;overflow:hidden}
+.hero{position:relative;overflow-x:clip;overflow-y:visible}
 .hero-fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;
   -webkit-mask-image:linear-gradient(to right,rgba(0,0,0,.28) 0%,rgba(0,0,0,.5) 35%,#000 62%);
   mask-image:linear-gradient(to right,rgba(0,0,0,.28) 0%,rgba(0,0,0,.5) 35%,#000 62%)}
-.hero .wrap{position:relative;z-index:1;display:grid;gap:18px;padding-block:44px 32px}
+.hero .wrap{position:relative;z-index:5;display:grid;gap:18px;padding-block:44px 32px}
 h1{margin:0 0 10px;line-height:.95;letter-spacing:-.035em;font-size:clamp(52px,6.4vw,78px);font-weight:700;color:var(--ink)}
 h1 .just{color:var(--steel-2)}
 .subtitle{font-size:clamp(18px,1.8vw,22px);line-height:1.35;font-weight:500;color:var(--ink);max-width:46em;margin:0}
@@ -62,7 +62,23 @@ h1 .just{color:var(--steel-2)}
 .logos .lg-mb{height:22px}
 .logos .lg-tc{height:19px}
 .logo-slot{width:120px;height:36px;border:1px dashed var(--rule-2);border-radius:8px;display:grid;place-items:center;font:500 11px/1 var(--f-mono);color:var(--ink-3)}
-.hero-main{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.82fr) minmax(0,1fr);gap:32px;align-items:start;margin-top:8px}
+.hero-main{display:grid;grid-template-columns:minmax(0,1fr) max-content;grid-template-areas:"ab tk" "ln tk";column-gap:72px;align-items:start;margin-top:10px}
+.hero-main .abstract{grid-area:ab;margin:0}
+.hero-main .tks{grid-area:tk;align-self:center;gap:8px}
+.hero-links{grid-area:ln;margin-top:22px}
+.chip.film-btn{background:var(--ink);border-color:var(--ink);color:#fff}
+a.chip.film-btn:hover{background:var(--steel);border-color:var(--steel);color:#fff}
+.chip.film-btn svg{width:16px;height:16px}
+.chip.film-btn em{font:400 11.5px/1 var(--f-mono);font-style:normal;color:rgba(255,255,255,.62)}
+.chip .emo{font-size:15px;line-height:1;width:16px;text-align:center}
+.byline{display:grid;gap:5px;margin-top:16px;max-width:560px}
+.by-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px}
+.by-names{font-size:12px;line-height:1.55;color:var(--ink-2)}
+.by-names span{white-space:nowrap}
+.by-names sup,.by-notes sup{font-size:.8em;color:var(--ink-2);margin-left:1px}
+.by-notes{display:flex;flex-wrap:wrap;gap:0 14px;font-size:11px;line-height:1.5;color:var(--ink-3)}
+.by-notes sup{margin:0 2px 0 0}
+.by-logo{display:block;height:34px;width:auto}
 .hero-side{min-width:0}
 .hero-side .links{margin-top:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
 .hero-side .chip{justify-content:center}
@@ -81,13 +97,12 @@ h1 .just{color:var(--steel-2)}
 @media (prefers-reduced-motion: reduce){.tks.hint .more{animation:none}}
 .tk:hover,.tk:focus-visible,.tk.open{background:var(--surface);box-shadow:inset 0 0 0 1px var(--rule-2);z-index:7}
 .tk:hover .more,.tk:focus-visible .more,.tk.open .more{transform:rotate(45deg);background:var(--steel);color:#fff}
-.tk-pop{position:absolute;left:calc(100% + 12px);top:0;width:min(300px,30vw);z-index:8;background:var(--surface);border:1px solid var(--rule-2);border-radius:10px;box-shadow:0 10px 28px rgba(20,28,40,.12);padding:12px 14px;font-size:13.5px;line-height:1.5;color:var(--ink-2);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s;pointer-events:none}
+.tk-pop{position:absolute;left:0;right:0;top:calc(100% + 6px);width:auto;z-index:8;background:var(--surface);border:1px solid var(--rule-2);border-radius:10px;box-shadow:0 10px 28px rgba(20,28,40,.12);padding:12px 14px;font-size:13.5px;line-height:1.5;color:var(--ink-2);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s;pointer-events:none}
 .tk:hover .tk-pop,.tk:focus-visible .tk-pop,.tk.open .tk-pop{opacity:1;visibility:visible;transform:none}
-.tks .tk:last-child .tk-pop{top:auto;bottom:0}
 @media (max-width:1099px){
-  .hero-main{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
-  .hero-main .hero-side{grid-column:2;grid-row:1 / span 2}
-  .hero-main .tks{grid-column:1;grid-row:2}
+  .hero-main{column-gap:36px}
+  .hero-links{gap:6px}
+  .hero-links .chip{padding:0 10px;font-size:13px}
 }
 .abstract{font-size:16.5px;line-height:1.6;color:var(--ink-2);margin:0 0 18px}
 .links{display:flex;flex-wrap:wrap;gap:8px}
@@ -104,6 +119,19 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .film-cta svg{width:16px;height:16px;color:var(--steel)}
 .film-cta em{font:400 11.5px/1 var(--f-mono);font-style:normal;color:var(--ink-3)}
 .film:hover .film-cta,.film:focus-visible .film-cta{background:#fff}
+.film-top{scroll-margin-top:72px}
+.film-top .wrap{padding-top:28px}
+.ft-frame{max-width:980px;margin:0 auto;aspect-ratio:16/9;border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:var(--surface)}
+.ft-frame video{display:block;width:100%;height:100%;object-fit:cover;background:var(--surface)}
+.ft-bar{max-width:980px;margin:10px auto 0;display:flex;align-items:center;justify-content:space-between;gap:12px;font:400 12px/1 var(--f-mono);color:var(--ink-3)}
+.ft-bar em{font-style:normal;margin-left:4px}
+.ft-x{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border:1px solid var(--rule-2);border-radius:999px;background:var(--surface);font:500 12px/1 var(--f-mono);color:var(--ink-2);cursor:pointer}
+.ft-x span{font-size:15px}
+.ft-x:hover{border-color:var(--steel);color:var(--steel)}
+.film-up{display:inline-flex;align-items:center;gap:6px;margin-bottom:10px;padding:7px 12px 7px 9px;border:1px solid var(--rule-2);border-radius:999px;background:rgba(255,255,255,.94);font:500 13px/1 var(--f-sans);color:var(--ink);text-decoration:none}
+.film-up svg{width:14px;height:14px;color:var(--steel)}
+.film-up em{font:400 11.5px/1 var(--f-mono);font-style:normal;color:var(--ink-3)}
+.film-up:hover{color:var(--steel);border-color:var(--steel)}
 .film-box{position:fixed;inset:0;z-index:90;background:rgba(20,24,32,.8);display:flex;align-items:center;justify-content:center;padding:56px 20px 24px}
 .film-box[hidden]{display:none}
 .film-in{position:relative;width:min(1200px,100%)}
@@ -526,6 +554,13 @@ pre.code{margin:10px 0 0;font:400 11.5px/1.55 var(--f-mono);background:#f6f7f9;b
 /* Citation */
 .bib{position:relative;background:var(--surface);border:1px solid var(--rule);border-radius:12px}
 .bib pre{margin:0;padding:18px 20px;overflow-x:auto;font:400 13px/1.6 var(--f-mono);color:var(--ink)}
+.refs{list-style:none;margin:0;padding:0}
+.refs li{padding:7px 0 7px 1.4em;text-indent:-1.4em;font-size:14px;line-height:1.55;color:var(--ink-2)}
+.refs a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-2);text-underline-offset:3px}
+.refs a:hover{text-decoration-color:var(--steel)}
+.toc a.toc-top{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:6px 11px;border:1px solid var(--rule-2);border-radius:999px;background:var(--surface);font:500 12px/1 var(--f-mono);color:var(--ink-2);text-decoration:none}
+.toc a.toc-top svg{width:13px;height:13px}
+.toc a.toc-top:hover{border-color:var(--steel);color:var(--steel)}
 .copy{position:absolute;top:10px;right:10px;font:500 12px/1 var(--f-mono);border:1px solid var(--rule-2);background:var(--bg);color:var(--ink);padding:7px 10px;border-radius:6px;cursor:pointer}
 .copy:hover{border-color:var(--steel)}
 
@@ -545,8 +580,8 @@ footer .wrap{padding-block:22px;font-size:13px;color:var(--ink-3)}
 @media (max-width:899px){
   .f-grid,.rd,.pb,.fw-wrap,.halves{grid-template-columns:minmax(0,1fr)}
   .hero .wrap{padding-block:36px 24px}
-  .hero-main{grid-template-columns:minmax(0,1fr);gap:24px}
-  .hero-main .hero-side,.hero-main .tks{grid-column:auto;grid-row:auto}
+  .hero-main{grid-template-columns:minmax(0,1fr);grid-template-areas:"ab" "ln" "tk";column-gap:0}
+  .hero-main .tks{margin-top:22px}
   .tk-pop{left:0;right:0;top:calc(100% + 6px);width:auto}
   .tabpanel{grid-template-columns:minmax(0,1fr);gap:20px;padding:22px}
   .clips{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -557,6 +592,8 @@ footer .wrap{padding-block:22px;font-size:13px;color:var(--ink-3)}
 }
 @media (max-width:560px){
   body{font-size:16px}
+  .tk{grid-template-columns:22px minmax(0,1fr) 22px;padding:9px 6px}
+  .tk b{font-size:min(15px,3.8vw)}
   .fix-row{grid-template-columns:minmax(0,1fr);gap:6px}
   .fix-head{display:none}
   .err-list li{grid-template-columns:minmax(0,1fr);gap:2px}
@@ -651,6 +688,9 @@ article.content :is(.pair,.ptab,.stbl-card){max-width:none!important}
 .iface{display:flex;flex-direction:column;gap:10px}
 .mlen.top{align-items:stretch}
 .kf{display:block;width:100%;height:auto;border-radius:6px;background:var(--rule)}
+.kf-wrap{position:relative}
+.kf-n{position:absolute;inset:0;margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);pointer-events:none}
+.kf-n li{align-self:start;justify-self:start;margin:5px;min-width:19px;height:17px;padding:0 4px;border-radius:4px;background:rgba(18,22,30,.66);color:#fff;font:500 10.5px/17px var(--f-mono);text-align:center}
 .mlen.top .iface.demo-x{height:auto;min-height:0}
 .mlen.top .demo-x .iface-stack{overflow:visible;padding-right:0}
 .demo-x .iface-pane{gap:8px}
@@ -878,7 +918,7 @@ section.sec + section.sec{margin-top:128px}
 .seg button{position:relative}
 .seg .prog{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--steel);pointer-events:none}
 .seg button[aria-pressed="true"] .prog{background:rgba(255,255,255,.7)}
-.lang-sw{margin:6px 0 0;text-align:center;font:500 12px var(--f-mono);color:var(--ink-3)}
+.lang-sw{flex-basis:100%;margin:4px 0 0;font:500 12px/1.4 var(--f-mono);color:var(--ink-3)}
 .lang-sw b{font-weight:500;color:var(--ink-2)}
 .lang-sw a{color:var(--steel);text-decoration:none}
 .lang-sw a:hover{text-decoration:underline}
@@ -894,9 +934,17 @@ section.sec + section.sec{margin-top:128px}
     <a href="#sec-geo" data-spy="sec-geo">Geometry</a>
     <a href="#sec-err" data-spy="sec-err">Errors</a>
     <a href="#sec-eval" data-spy="sec-eval">Evaluation</a>
+    <a href="#refs" data-spy="refs">References</a>
     <a href="#cite" data-spy="cite">Citation</a>
   </div>
 </nav>
+
+<section class="film-top" id="film-top" aria-label="Project film" hidden>
+  <div class="wrap">
+    <div class="ft-frame"><video id="ft-video" src="media/hero/justrua-film-v4.mp4" poster="media/hero/justrua-film-v2.jpg" width="1280" height="720" controls playsinline preload="none"></video></div>
+    <div class="ft-bar"><span>Project film <em>1:32</em></span><button type="button" class="ft-x" id="ft-close">Close <span aria-hidden="true">&times;</span></button></div>
+  </div>
+</section>
 
 <header class="hero" id="overview">
   <canvas class="hero-fx" id="hero-fx" aria-hidden="true"></canvas>
@@ -904,56 +952,34 @@ section.sec + section.sec{margin-top:128px}
     <div>
       <h1><span class="just">Just</span>RUA</h1>
       <p class="subtitle">A Controlled Study of GPT-6 Robot-Use Agents</p>
-    </div>
-    <div class="logos" aria-label="Affiliations">
-      <img src="media/logos/tsinghua.png" alt="Tsinghua University" width="268" height="84" class="lg-thu">
-      <img src="media/logos/modelbest.png" alt="ModelBest" width="324" height="56" class="lg-mb">
-      <img src="media/logos/tencent.png" alt="Tencent" width="418" height="56" class="lg-tc">
+      <div class="byline">
+        <p class="by-names"><span>Zefan Wang<sup>*†</sup></span>, <span>Yufan Dang<sup>*</sup></span>, <span>Xuanwei Shi<sup>*</sup></span>, <span>Chuan Gao<sup>*</sup></span>, <span>Cheng Yin</span>, <span>SikYuen Tam</span>, <span>Hanyu Liu</span>, <span>Yasheng Wang</span>, <span>Yaxi Lu</span>, <span>Yi Jiang</span>, <span>Songyang Zhang</span>, <span>Xin Cong</span>, <span>Yuan Yao<sup>‡</sup></span></p>
+        <div class="by-foot"><p class="by-notes"><span><sup>*</sup>Core contributor</span><span><sup>†</sup>Project lead</span><span><sup>‡</sup>Corresponding author</span></p><img class="by-logo" src="media/logos/tsinghua.png" alt="Tsinghua University" width="268" height="84"></div>
+      </div>
     </div>
     <div class="hero-main">
-      <div>
-        <p class="abstract">GPT-6 Astra can drive a robot arm directly through a fixed harness, and scores on RoboDojo have risen quickly since. Reported systems bring many improvements that may help, but they may start from different harnesses, use different test subsets and change several parts of the design at once, which can make it hard to tell which choices produce most of the gains. We take these designs apart and study them in one framework. JustRUA starts from the official L3 harness and keeps what matters most. It has no learned policy, no self-improvement loop and no task-specific tuning.</p>
-      </div>
-      <ol class="tks" aria-label="Key takeaways">
-        <li class="tk" tabindex="0" data-go="sec-harness"><span class="n">01</span><b>A lean harness goes a long way.</b><span class="more" aria-hidden="true">+</span>
-          <span class="tk-pop">The official harness keeps only the last two observations and lets each motion run to the end before the model looks again. Keeping the full episode history and stopping each motion after 20 control steps lift the evaluation-set score from 29.7 to 38.0. Relative targets, named skills and model-chosen step counts all fail to beat plain absolute targets.</span></li>
-        <li class="tk" tabindex="0" data-go="sec-exp"><span class="n">02</span><b>Reusing experience is not a free lunch.</b><span class="more" aria-hidden="true">+</span>
-          <span class="tk-pop">Demonstrations and a self-written skill library change how the model acts, yet neither clearly beats the default on the evaluation set, and each makes an episode more expensive. Of everything we tried, experience carries the highest risk of gaming the benchmark. Five rounds of self-improvement, with each task practised once, brought no visible gain, while systems that report gains practise each task many more times.</span></li>
-        <li class="tk" tabindex="0" data-go="sec-geo"><span class="n">03</span><b>Scene geometry helps most.</b><span class="more" aria-hidden="true">+</span>
-          <span class="tk-pop">Depth images cut empty grasps from 41 to 16 over the same 42 episodes, even when Depth Pro predicts the depth from RGB alone and is off by tens of centimetres. The gain needs no privileged information. With code that solves 3D coordinates from pixels and no decision cap, the evaluation-set score reaches 50.3.</span></li>
-        <li class="tk" tabindex="0" data-go="sec-err"><span class="n">04</span><b>Remaining failures are mostly long-tail.</b><span class="more" aria-hidden="true">+</span>
-          <span class="tk-pop">We reviewed every first-round task where our best configuration scores below 50. The causes are plans that do not suit the arm, unplanned knocks, slipping grasps and a few prompt or scoring issues, and most are specific to one task. Revising the prompts lifts the first round from 54.0 to 55.6. The rest would need trial and error on each task, which comes close to tuning on the test tasks themselves.</span></li>
-      </ol>
-      <div class="hero-side">
-      <button type="button" class="film" id="film" aria-label="Play the JustRUA film">
-        <video src="media/hero/justrua-film-v2.mp4" poster="media/hero/justrua-film-v2.jpg" width="1280" height="720" muted autoplay loop playsinline preload="metadata" aria-hidden="true"></video>
-        <span class="film-cta"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="7.25"/><path d="M7.5 6.2v5.6L11.8 9z" fill="currentColor" stroke="none"/></svg>Watch the film <em>1:32</em></span>
-      </button>
-        <div class="links">
-          <span class="chip soon" aria-disabled="true">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 1.75h5.5L12.5 4.75V14.25H4z"/><path d="M9.25 1.75v3.25h3.25M6 8h4.5M6 10.75h4.5"/></svg>
-            Paper
-          </span>
-          <a class="chip" href="https://github.com/ZefanW/JustRUA" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5.5 4.5 2 8l3.5 3.5M10.5 4.5 14 8l-3.5 3.5"/></svg>
-            Code
-          </a>
-          <a class="chip" href="https://huggingface.co/spaces/ZefanW/robodojo-replay-explorer" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><ellipse cx="8" cy="3.75" rx="5" ry="1.75"/><path d="M3 3.75v8.5c0 .97 2.24 1.75 5 1.75s5-.78 5-1.75v-8.5M3 8c0 .97 2.24 1.75 5 1.75S13 8.97 13 8"/></svg>
-            Replays
-          </a>
-          <a class="chip" href="#cite">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 3.5h3.5v4H4.5c0 2 .75 3 2 3.75M9.5 3.5H13v4h-2c0 2 .75 3 2 3.75"/></svg>
-            BibTeX
-          </a>
-        </div>
-        <p class="links-note">Paper coming soon.</p>
+      <p class="abstract">GPT-6 Astra can drive a robot arm directly through a fixed harness, and scores on RoboDojo have risen quickly since. Reported systems bring many improvements that may help, but they may start from different harnesses, use different test subsets and change several parts of the design at once, which can make it hard to tell which choices produce most of the gains. We take these designs apart and study them in one framework. JustRUA starts from the official L3 harness and keeps only what matters most. With no learned policy, no self-improvement loop and no task-specific tuning, this minimal harness raises its score on the RoboDojo simulation benchmark from 29.7 to 50.3.</p>
+      <div class="links hero-links">
+        <a class="chip film-btn" href="#film-top" id="film-open"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="7.25"/><path d="M7.5 6.2v5.6L11.8 9z" fill="currentColor" stroke="none"/></svg>Project film <em>1:32</em></a>
+        <span class="chip soon" aria-disabled="true" title="Coming soon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 1.75h5.5L12.5 4.75V14.25H4z"/><path d="M9.25 1.75v3.25h3.25M6 8h4.5M6 10.75h4.5"/></svg>Paper<span class="soon-t">soon</span></span>
+        <a class="chip" href="https://github.com/ZefanW/JustRUA" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5.5 4.5 2 8l3.5 3.5M10.5 4.5 14 8l-3.5 3.5"/></svg>Code</a>
+        <a class="chip" href="https://huggingface.co/spaces/ZefanW/robodojo-replay-explorer" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><ellipse cx="8" cy="3.75" rx="5" ry="1.75"/><path d="M3 3.75v8.5c0 .97 2.24 1.75 5 1.75s5-.78 5-1.75v-8.5M3 8c0 .97 2.24 1.75 5 1.75S13 8.97 13 8"/></svg>Replays</a>
+        <a class="chip" href="#cite"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 3.5h3.5v4H4.5c0 2 .75 3 2 3.75M9.5 3.5H13v4h-2c0 2 .75 3 2 3.75"/></svg>BibTeX</a>
         <p class="lang-sw"><b>EN</b> · <a href="zh/" lang="zh-CN">中文</a></p>
       </div>
+      <ol class="tks" aria-label="Key takeaways">
+      <li class="tk" tabindex="0" data-go="sec-harness"><span class="n">01</span><b>A lean harness goes a long way.</b><span class="more" aria-hidden="true">+</span>
+        <span class="tk-pop">The official harness keeps only the last two observations and lets each motion run to the end before the model looks again. Keeping the full episode history and stopping each motion after 20 control steps lift the evaluation-set score from 29.7 to 38.0. Relative targets, named skills and model-chosen step counts all fail to beat plain absolute targets.</span></li>
+      <li class="tk" tabindex="0" data-go="sec-exp"><span class="n">02</span><b>Reusing experience is not a free lunch.</b><span class="more" aria-hidden="true">+</span>
+        <span class="tk-pop">Demonstrations and a self-written skill library change how the model acts, yet neither clearly beats the default on the evaluation set, and each makes an episode more expensive. Of everything we tried, experience carries the highest risk of gaming the benchmark. Five rounds of self-improvement, with each task practised once, brought no visible gain, while systems that report gains practise each task many more times.</span></li>
+      <li class="tk" tabindex="0" data-go="sec-geo"><span class="n">03</span><b>Scene geometry helps most.</b><span class="more" aria-hidden="true">+</span>
+        <span class="tk-pop">Depth images cut empty grasps from 41 to 16 over the same 42 episodes, even when Depth Pro predicts the depth from RGB alone and is off by tens of centimetres. The gain needs no privileged information. With code that solves 3D coordinates from pixels and no decision cap, the evaluation-set score reaches 50.3.</span></li>
+      <li class="tk" tabindex="0" data-go="sec-err"><span class="n">04</span><b>Remaining failures are mostly long-tail.</b><span class="more" aria-hidden="true">+</span>
+        <span class="tk-pop">We reviewed every first-round task where our best configuration scores below 50. The causes are plans that do not suit the arm, unplanned knocks, slipping grasps and a few prompt or scoring issues, and most are specific to one task. Revising the prompts lifts the first round from 54.0 to 55.6. The rest would need trial and error on each task, which comes close to tuning on the test tasks themselves.</span></li>
+      </ol>
     </div>
   </div>
 </header>
-<div class="film-box" id="film-box" role="dialog" aria-label="JustRUA film" hidden><div class="film-in"><video width="1280" height="720" controls playsinline preload="none"></video><button type="button" class="film-x" aria-label="Close">&times;</button></div></div>
 
 <section class="gains" id="gains">
   <div class="wrap">
@@ -1218,8 +1244,11 @@ section.sec + section.sec{margin-top:128px}
             </div>
             <div class="iface-stack">
               <div class="iface-pane on" data-k="visual">
-                <p>What the model sees before its first decision in make_kong, the 16 keyframes of the source episode, head camera, in order.</p>
-                <img class="kf" src="media/exp/kong-r1-keyframes.jpg" alt="Sixteen keyframes of the make_kong demonstration, from the opponent's discard to the final kong" width="1298" height="978" loading="lazy">
+                <p>What the model sees before its first decision in make_kong, the 16 keyframes of the source episode, head camera, numbered in order.</p>
+                <div class="kf-wrap">
+                  <img class="kf" src="media/exp/kong-r1-keyframes.jpg" alt="Sixteen keyframes of the make_kong demonstration, from the opponent's discard to the final kong" width="1298" height="978" loading="lazy">
+                  <ol class="kf-n" aria-hidden="true"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li></ol>
+                </div>
                 <p class="tbl-note" style="margin:0">Three tasks also include the author's wrist-camera views. No action trace or robot state is attached.</p>
               </div>
               <div class="iface-pane" data-k="text" aria-hidden="true">
@@ -1263,7 +1292,7 @@ right: pose=[-0.001,-0.208,0.7759,0.0,0.0,0.0]; opening=1
           </div>
         </div>
         <div class="kong-row">
-          <p class="f-sub"><span class="run">A better plan is not enough.</span> With either demonstration the model passed objects through the table more often, 15 and 13 times against 9 in the first round, and dropped fewer. In make_kong, without a demonstration it never hands the tile to the other arm, as the error analysis shows. With either demonstration it does what the demonstration did. One arm flips the tile and sets it down at the table centre, and the other carries it to the end of the row. The text trajectory carries this handover only as coordinates, and the model still found it. Both runs then lose the tiles on the final push into the row and score 0. Fixes of this kind are lost to failures elsewhere, so the overall score barely moves.</p>
+          <p class="f-sub"><span class="run">A better plan is not enough.</span> With either demonstration the model passed objects through the table more often, 15 and 13 times against 9 in the first round, and dropped fewer. In make_kong, without a demonstration it never hands the tile to the other arm, as the error analysis shows. With either demonstration it copies the handover in the demonstration. One arm flips the tile and sets it down at the table centre, and the other carries it to the end of the row. The text trajectory carries this handover only as coordinates, and the model still found it. Neither run copies the last step, where the demonstration grips the tile upright to push it into the row, and both lose the tiles on that push and score 0. Fixes of this kind are lost to failures elsewhere, so the overall score barely moves.</p>
           <div class="clips2" id="kong-clips"></div>
         </div>
       </div>
@@ -1618,13 +1647,42 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       </div>
     </section>
 
+    <section class="sec" id="refs">
+      <h2 class="sec-h">References</h2>
+      <ol class="refs">
+        <li>Michael Ahn, Anthony Brohan, Noah Brown, et al. <a href="https://arxiv.org/abs/2204.01691" target="_blank" rel="noopener">Do As I Can, Not As I Say: Grounding Language in Robotic Affordances</a>. CoRL, 2022.</li>
+        <li>Aleksei Bochkovskii, Amaël Delaunoy, Hugo Germain, et al. <a href="https://arxiv.org/abs/2410.02073" target="_blank" rel="noopener">Depth Pro: Sharp Monocular Metric Depth in Less Than a Second</a>. ICLR, 2025.</li>
+        <li>Tianxing Chen, Yue Chen, Zixuan Li, et al. <a href="https://arxiv.org/abs/2607.04434" target="_blank" rel="noopener">RoboDojo: A Unified Sim-and-Real Benchmark for Comprehensive Evaluation of Generalist Robot Manipulation Policies</a>. arXiv:2607.04434, 2026.</li>
+        <li>Galbot Team, Xuchuan Chen, Xiaoqian Cheng, et al. <a href="https://arxiv.org/abs/2609.38537" target="_blank" rel="noopener">Systematically Exploring the Capabilities of GPT-6 Astra as Embodied Policies</a>. arXiv:2609.38537, 2026.</li>
+        <li>Shijia Ge, Alex Zhou, Jianshu Zeng, et al. <a href="https://arxiv.org/abs/2609.39018" target="_blank" rel="noopener">Make Code as Policy Great Again: Frontier Agents Write, Call, and Evolve Robot Tools</a>. arXiv:2609.39018, 2026.</li>
+        <li>Meng-Hao Guo, Zhe-Han Mo, Jia-Jun Wang, et al. <a href="https://arxiv.org/abs/2609.22966" target="_blank" rel="noopener">Transferring the Intelligence of VLMs to Robotic Control</a>. arXiv:2609.22966, 2026.</li>
+        <li>Runhan Huang, Xiangcheng Zhang, Haoyu Chen, et al. <a href="https://arxiv.org/abs/2610.22496" target="_blank" rel="noopener">Scaling Online Exploration for Robot Agents</a>. arXiv:2610.22496, 2026.</li>
+        <li>Sungsu Kim, Vineet Bhat, Prashanth Krishnamurthy, et al. <a href="https://arxiv.org/abs/2610.24016" target="_blank" rel="noopener">CLARO: Clutter Aware Robot Orchestrator for Open-Vocabulary Grasping using VLM Agents</a>. arXiv:2610.24016, 2026.</li>
+        <li>Wenyi Li, Yizhe Chi, Youjie Zheng, et al. <a href="https://arxiv.org/abs/2610.18867" target="_blank" rel="noopener">EmbodiedEvo: Self-Evolving Coding Agent for Physical Intelligence</a>. arXiv:2610.18867, 2026.</li>
+        <li>Zekai Li, Jiayi Yu, Jinlu Zhang, et al. <a href="https://arxiv.org/abs/2610.26848" target="_blank" rel="noopener">Where is Physical RSI Capability From? An Observational Scaling Law of LLM-as-Policy</a>. arXiv:2610.26848, 2026.</li>
+        <li>Jacky Liang, Wenlong Huang, Fei Xia, et al. <a href="https://arxiv.org/abs/2209.07753" target="_blank" rel="noopener">Code as Policies: Language Model Programs for Embodied Control</a>. ICRA, 2023.</li>
+        <li>Adithyavairavan Murali, Balakumar Sundaralingam, Yu-Wei Chao, et al. <a href="https://arxiv.org/abs/2507.13097" target="_blank" rel="noopener">GraspGen: A Diffusion-based Framework for 6-DOF Grasping with On-Generator Training</a>. arXiv:2507.13097, 2025.</li>
+        <li>OpenAI. <a href="https://openai.com/codex/" target="_blank" rel="noopener">Codex</a>. Software, 2026.</li>
+        <li>OpenSenseNova. <a href="https://github.com/OpenSenseNova/SenseNova-RoboRSI" target="_blank" rel="noopener">SenseNova-RoboRSI: Recursive Self-Improvement for Embodied Agents</a>. Code, 2026.</li>
+        <li>Bince Qu, Wei Chen, Bo Zhang. <a href="https://arxiv.org/abs/2610.14018" target="_blank" rel="noopener">RoboHarness: A Simple Harness Outperforms VLA and World Actions Models</a>. arXiv:2610.14018, 2026.</li>
+        <li>SenseNova and Joint Research Team, Zhongang Cai, Ziang Cao, Tailai Chen, et al. <a href="https://arxiv.org/abs/2610.22471" target="_blank" rel="noopener">Has GPT-6-Astra Achieved Embodied Intelligence?</a> arXiv:2610.22471, 2026.</li>
+        <li>Balakumar Sundaralingam, Siva Kumar Sastry Hari, Adam Fishman, et al. <a href="https://arxiv.org/abs/2310.17274" target="_blank" rel="noopener">cuRobo: Parallelized Collision-Free Minimum-Jerk Robot Motion Generation</a>. arXiv:2310.17274, 2023.</li>
+        <li>XPolicyLab maintainers. <a href="https://github.com/XPolicyLab/XPolicyLab/pull/151#issuecomment-6106209632" target="_blank" rel="noopener">Review comment on simulator depth for agent entries, pull request #151</a>. GitHub, 2026.</li>
+        <li>Jenai Xuning Yang, Ashna Khetan, Shun Zhang. <a href="https://research.nvidia.com/labs/srl/projects/astranomy/" target="_blank" rel="noopener">Astranomy: An Empirical Study of GPT-6 Astra as a Native Robot Policy</a>. CoRL Late-Breaking Results, 2026.</li>
+        <li>Yuanbo Yang, Siyi Chen, Jun Gao, Hao Zhang. <a href="https://github.com/hao-ai-lab/ORA" target="_blank" rel="noopener">ORA: Open Robot-Use Agents</a>. Code and blog post, 2026.</li>
+        <li>Wenbo Zhang, Kaixuan Wang, Yutao Ouyang, et al. <a href="https://arxiv.org/abs/2609.24170" target="_blank" rel="noopener">An Unexpected Robot Policy: Early Evaluations of GPT-6 Astra on RoboDojo and Beyond</a>. arXiv:2609.24170, 2026.</li>
+        <li>Tony Z. Zhao, Vikash Kumar, Sergey Levine, Chelsea Finn. <a href="https://arxiv.org/abs/2304.13705" target="_blank" rel="noopener">Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware</a>. RSS, 2023.</li>
+        <li>Youwei Zhou, Bohan Hou, Yankai Fu, et al. <a href="https://arxiv.org/abs/2610.28259" target="_blank" rel="noopener">Large Multimodal Models for Direct Robot Control: GPT-6 as a Beginning</a>. arXiv:2610.28259, 2026.</li>
+      </ol>
+    </section>
+
     <section class="sec" id="cite">
       <h2 class="sec-h">Citation</h2>
       <div class="bib">
         <button type="button" class="copy" id="copy-bib">Copy</button>
         <pre id="bibtex">@misc{justrua2026,
   title  = {JustRUA: A Controlled Study of GPT-6 Robot-Use Agents},
-  author = {Zefan Wang and Yufan Dang and Xuanwei Shi and Chuan Gao and Cheng Yin and SikYuen Tam and Hanyu Liu and Yasheng Wang and Yaxi Lu and Yi Jiang and Songyang Zhang and Yuan Yao},
+  author = {Zefan Wang and Yufan Dang and Xuanwei Shi and Chuan Gao and Cheng Yin and SikYuen Tam and Hanyu Liu and Yasheng Wang and Yaxi Lu and Yi Jiang and Songyang Zhang and Xin Cong and Yuan Yao},
   year   = {2026}
 }</pre>
       </div>
@@ -1657,8 +1715,10 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       <li><a href="#sec-eval" data-spy="sec-eval">Notes on evaluation</a></li>
       <li><a class="sub" href="#f-rounds" data-spy="f-rounds">Round-to-round variation</a></li>
       <li><a class="sub" href="#f-four" data-spy="f-four">Tasks run on four layouts</a></li>
+      <li><a href="#refs" data-spy="refs">References</a></li>
       <li><a href="#cite" data-spy="cite">Citation</a></li>
     </ol>
+    <a class="toc-top" href="#overview"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 13V3.5M4 7.25 8 3.25l4 4"/></svg>Back to top</a>
   </aside>
 </div>
 
@@ -1809,7 +1869,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
   document.body.classList.add("final");
 
   /* ---------- Contents highlight ---------- */
-  const spyIds=["overview","gains","framework","proxy","behaviour","sec-harness","f-harness","f-action","f-effort","sec-exp","f-exp","f-loop","sec-geo","f-readings","f-depth","f-hints","f-code","sec-err","f-cls","f-fix","sec-eval","f-rounds","f-four","cite"];
+  const spyIds=["overview","gains","framework","proxy","behaviour","sec-harness","f-harness","f-action","f-effort","sec-exp","f-exp","f-loop","sec-geo","f-readings","f-depth","f-hints","f-code","sec-err","f-cls","f-fix","sec-eval","f-rounds","f-four","refs","cite"];
   const spyEls=spyIds.map(id=>document.getElementById(id)).filter(Boolean);
   const parentOf={proxy:"framework",behaviour:"framework","f-harness":"sec-harness","f-action":"sec-harness","f-effort":"sec-harness","f-exp":"sec-exp","f-loop":"sec-exp","f-depth":"sec-geo","f-hints":"sec-geo","f-readings":"sec-geo","f-code":"sec-geo","f-cls":"sec-err","f-fix":"sec-err","f-rounds":"sec-eval","f-four":"sec-eval"};
   const links=$$("[data-spy]");
@@ -2204,7 +2264,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       let L={x:Math.cos(th)*.6, y:.78, z:-Math.sin(th)*.6}; const m=Math.hypot(L.x,L.y,L.z); L={x:L.x/m,y:L.y/m,z:L.z/m};
       const st=plan(t), built=build(st,t);
       grid(); marksDraw();
-      const d=paint(st,built,L); halftone(d); chainDraw(st.lt);
+      const d=paint(st,built,L); halftone(d);
       const tp=overlay(st,built.poses,dt);
       drawPanel(d,st.ph,tp.a>0?tp:null);
       driftBits(dt);
@@ -2216,12 +2276,22 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       draw(now/1000,dt);
     }
     const T0=still?CYCLE+2.9:null;
-    setup(); draw(T0??performance.now()/1000,0);
-    if(!still){
-      new IntersectionObserver(es=>{ visible=es[0].isIntersecting; if(visible&&!raf){ lastT=0; raf=requestAnimationFrame(loop); } }).observe(hero);
-      document.addEventListener("visibilitychange",()=>{ if(document.hidden){ cancelAnimationFrame(raf); raf=0; } else if(visible&&!raf){ lastT=0; raf=requestAnimationFrame(loop); } });
-    }
-    let rt; window.addEventListener("resize",()=>{ clearTimeout(rt); rt=setTimeout(()=>{ setup(); draw(T0??performance.now()/1000,0); },150); });
+    /* size from the hero as it is now; redo when it changes (late fonts, a hidden frame, restored scroll) */
+    let sw=0,sh=0;
+    const fit=()=>{ const r=hero.getBoundingClientRect(); if(r.width<1||r.height<1) return false;
+      const w=Math.round(r.width), h=Math.round(r.height); if(w!==sw||h!==sh){ sw=w; sh=h; setup(); } return true; };
+    const paintNow=()=>{ if(fit()) draw(T0??performance.now()/1000,0); };
+    const inView=()=>{ const r=hero.getBoundingClientRect(), vh=window.innerHeight||document.documentElement.clientHeight; return r.width>0&&r.bottom>0&&r.top<vh; };
+    const kick=()=>{ visible=inView(); if(!visible) return; if(still){ paintNow(); return; }
+      if(!raf&&!document.hidden){ paintNow(); lastT=0; raf=requestAnimationFrame(loop); } };
+    paintNow();
+    if(window.IntersectionObserver) new IntersectionObserver(kick).observe(hero);
+    let sq=0; window.addEventListener("scroll",()=>{ if(!sq) sq=requestAnimationFrame(()=>{ sq=0; kick(); }); },{passive:true});
+    document.addEventListener("visibilitychange",()=>{ if(document.hidden){ cancelAnimationFrame(raf); raf=0; } else kick(); });
+    window.addEventListener("pageshow",kick);
+    if(window.ResizeObserver) new ResizeObserver(()=>{ if(sw) paintNow(); else kick(); }).observe(hero);
+    let rt; window.addEventListener("resize",()=>{ clearTimeout(rt); rt=setTimeout(()=>{ sw=0; paintNow(); kick(); },150); });
+    kick();
   })();
 
   /* ---------- Findings widgets ---------- */
@@ -2588,14 +2658,19 @@ draw();addEventListener("resize",draw);addEventListener("load",draw);[big,tgt].f
 if(window.ResizeObserver)new ResizeObserver(draw).observe(box);})();
 </script>
 <script>
-(()=>{const f=document.getElementById("film"),box=document.getElementById("film-box");if(!f||!box)return;
-const hv=f.querySelector("video"),v=box.querySelector("video"),src=hv.getAttribute("src");
-if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){hv.removeAttribute("autoplay");hv.pause();}
-const play=x=>{const p=x.play();if(p&&p.catch)p.catch(()=>{});};
-const open=()=>{if(!v.getAttribute("src"))v.setAttribute("src",src);box.hidden=false;try{v.currentTime=0;}catch(e){}play(v);hv.pause();box.querySelector(".film-x").focus();};
-const close=()=>{v.pause();box.hidden=true;if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)play(hv);f.focus();};
-f.addEventListener("click",open);
-box.addEventListener("click",e=>{if(e.target===box||e.target.closest(".film-x"))close();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!box.hidden)close();});})();
+(()=>{const sec=document.getElementById("film-top"),v=document.getElementById("ft-video"),btn=document.getElementById("film-open"),x=document.getElementById("ft-close"),hero=document.getElementById("overview");if(!sec||!v||!btn||!hero)return;
+const rm=window.matchMedia("(prefers-reduced-motion: reduce)").matches,play=()=>{const p=v.play();if(p&&p.catch)p.catch(()=>{});};
+let raf=0;
+const jump=y=>window.scrollTo({top:y,behavior:"instant"});
+const glide=(to,ms,done)=>{cancelAnimationFrame(raf);const from=window.scrollY,d=to-from;if(rm||Math.abs(d)<2){jump(to);if(done)done();return;}
+  const t0=performance.now(),step=now=>{const u=Math.min(1,(now-t0)/ms),e=u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;jump(from+d*e);if(u<1)raf=requestAnimationFrame(step);else if(done)done();};raf=requestAnimationFrame(step);};
+const keep=fn=>{const a=hero.getBoundingClientRect().top;fn();const b=hero.getBoundingClientRect().top;if(b!==a)jump(Math.max(0,window.scrollY+b-a));};
+btn.addEventListener("click",e=>{e.preventDefault();
+  if(sec.hidden){keep(()=>{sec.hidden=false;});v.muted=false;v.volume=.8;try{v.currentTime=0;}catch(_){}}
+  if(v.paused)play();
+  glide(sec.getBoundingClientRect().top+window.scrollY,800);});
+const close=()=>{v.pause();glide(hero.getBoundingClientRect().top+window.scrollY,650,()=>{keep(()=>{sec.hidden=true;});btn.focus({preventScroll:true});});};
+if(x)x.addEventListener("click",close);
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!sec.hidden)close();});})();
 </script>
 </body></html>
