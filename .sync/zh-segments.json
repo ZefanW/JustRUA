@@ -79,7 +79,7 @@
   "Arm hits an object": "机械臂撞到物体",
   "Behaviour over the same 42 first-round episodes.": "同样 42 个首轮回合中的行为。",
   "World-frame targets for the grasp point of either arm. Unnamed dimensions keep their observed value. Orientation is measured from a fixed straight-down grasp rather than added to the current one, and a gripper command runs after the arm motion.": "任一机械臂抓取点在世界坐标系下的目标。未指定的维度保持观测值。朝向从一个固定的竖直向下抓取姿态起算，而不是叠加在当前姿态上；夹爪指令在机械臂运动之后执行。",
-  "<span class=\"tg-c\">Tools</span><span class=\"tg-d\"><span class=\"tl\"><code>move_eef(targets, note)</code><small>left_x / y / z in metres, left_pitch / roll / yaw_deg, left_gripper from 0 closed to 1 open, and the same for right. Both arms can move in one call.</small></span><span class=\"tl\"><code>give_up()</code><small>Ends an episode the model judges unrecoverable.</small></span></span>": "<span class=\"tg-c\">工具</span><span class=\"tg-d\"><span class=\"tl\"><code>move_eef(targets, note)</code><small>left_x / y / z 以米为单位，left_pitch / roll / yaw_deg，left_gripper 从 0（闭合）到 1（张开），右臂同理。两只机械臂可以在一次调用中同时移动。</small></span><span class=\"tl\"><code>give_up()</code><small>结束模型判断为无法挽回的回合。</small></span></span>",
+  "<span class=\"tg-c\">Tools</span><span class=\"tg-d\"><span class=\"tl\"><code>move_eef(targets, note)</code><small>left_x / y / z in metres, left_pitch / roll / yaw_deg, left_gripper from 0 closed to 1 open, and the same for right. Both arms can move in one call.</small></span><span class=\"tl\"><code>give_up()</code><small>Ends an episode the model judges unrecoverable.</small></span></span>": "<span class=\"tg-c\">工具</span><span class=\"tg-d\"><span class=\"tl\"><code>move_eef(targets, note)</code><small>left_x / y / z 以米为单位，left_pitch / roll / yaw_deg，left_gripper 从 0（闭合）到 1（张开），右臂同理。两只机械臂可以在一次调用中同时移动。</small></span><span class=\"tl\"><code>give_up()</code><small>模型判断回合已无法挽回时结束回合。</small></span></span>",
   "Increments from the full-precision pose measured at this decision, along and about fixed world axes. Missing increments are zero. Rotations apply about x, then y, then z, and keep the grasp point in place. Observations and recipes still report absolute positions.": "相对于本次决策时实测的全精度位姿的增量，沿固定的世界坐标轴平移、绕其旋转。缺省的增量为零。旋转依次绕 x、y、z 轴进行，并保持抓取点不动。观测和任务说明仍然报告绝对位置。",
   "<span class=\"tg-c\">Tools</span><span class=\"tg-d\"><span class=\"tl\"><code>move_eef_relative(targets, note)</code><small>left_dx / dy / dz in metres, left_drotation_x / y / z_deg, and left_gripper, which stays absolute.</small></span><span class=\"tl\"><code>give_up()</code><small>Unchanged.</small></span></span>": "<span class=\"tg-c\">工具</span><span class=\"tg-d\"><span class=\"tl\"><code>move_eef_relative(targets, note)</code><small>left_dx / dy / dz 以米为单位，left_drotation_x / y / z_deg，以及仍为绝对值的 left_gripper。</small></span><span class=\"tl\"><code>give_up()</code><small>不变。</small></span></span>",
   "Each call names the object it acts on, a label that records intent and does not steer motion, and expands into stages. Every stage runs through the original planner for at most 20 control steps, and the next stage starts only after the arm arrives within 1 cm and 5°.": "每次调用都要指明作用的物体，这个标签只记录意图，不影响运动；调用会展开为若干阶段。每个阶段都经由原有的规划器执行至多 20 个控制步，机械臂到达目标 1 cm 和 5° 以内后，下一阶段才开始。",
@@ -132,7 +132,7 @@
   "<span class=\"lp-l\">Library</span><span class=\"tg-t\"><code class=\"\">grasp</code><code class=\"\">transport</code><code class=\"\">place</code><code class=\"\">push</code><code class=\"nw\">insert</code></span>": "<span class=\"lp-l\">库</span><span class=\"tg-t\"><code class=\"\">grasp</code><code class=\"\">transport</code><code class=\"\">place</code><code class=\"\">push</code><code class=\"nw\">insert</code></span>",
   "<span class=\"lp-l\">Group 2 &middot; 1 success</span>": "<span class=\"lp-l\">第 2 组 &middot; 1 次成功</span>",
   "<span class=\"tg-c\">Seen</span><span class=\"lp-tx\">Rising straight up after letting go pulled the tube into a lean in <code>insert_tubes</code> and caught the handle in <code>hang_mugs</code>. In <code>pour_balls_into_vase</code> repeated turns moved the lip off the vase and spilled the balls.</span>": "<span class=\"tg-c\">观察</span><span class=\"lp-tx\">松开后直接竖直抬起，在 <code>insert_tubes</code> 中把试管带歪，在 <code>hang_mugs</code> 中勾住了杯柄。在 <code>pour_balls_into_vase</code> 中，反复转动让倾倒口偏离了花瓶，球洒了出来。</span>",
-  "<span class=\"tg-c\">Changed for round 3</span><span class=\"lp-tx\">place can back away in a chosen direction before rising. A new pivot turns a held object while one point on it, such as a lip or a tip, stays where it is.</span>": "<span class=\"tg-c\">第 3 轮的改动</span><span class=\"lp-tx\">place 可以先沿选定方向后撤再抬起。新增的 pivot 让手中物体转动，同时保持物体上的某一点不动，比如倾倒口或尖端。</span>",
+  "<span class=\"tg-c\">Changed for round 3</span><span class=\"lp-tx\">place can back away in a chosen direction before rising. A new pivot turns a held object while one point on it, such as a lip or a tip, stays where it is.</span>": "<span class=\"tg-c\">第 3 轮的改动</span><span class=\"lp-tx\">place 可以先沿选定方向后撤再抬起。新增的 pivot 让手中物体转动，同时让物体上的某一点保持不动，比如杯口或尖端。</span>",
   "<span class=\"lp-l\">Library</span><span class=\"tg-t\"><code class=\"\">grasp</code><code class=\"\">transport</code><code class=\"\">place</code><code class=\"\">push</code><code class=\"\">insert</code><code class=\"nw\">pivot</code></span>": "<span class=\"lp-l\">库</span><span class=\"tg-t\"><code class=\"\">grasp</code><code class=\"\">transport</code><code class=\"\">place</code><code class=\"\">push</code><code class=\"\">insert</code><code class=\"nw\">pivot</code></span>",
   "<span class=\"lp-l\">Group 3 &middot; 1 success</span>": "<span class=\"lp-l\">第 3 组 &middot; 1 次成功</span>",
   "<span class=\"tg-c\">Seen</span><span class=\"lp-tx\">In <code>play_Xylophone</code> and <code>swap_blocks</code> the model counted presses that never registered.</span>": "<span class=\"tg-c\">观察</span><span class=\"lp-tx\">在 <code>play_Xylophone</code> 和 <code>swap_blocks</code> 中，模型把并未生效的按压也计了数。</span>",
@@ -321,13 +321,77 @@
   "What the model sees before its first decision in make_kong, the 16 keyframes of the source episode, head camera, numbered in order.": "make_kong 中模型在第一次决策前看到的内容：源回合的 16 张关键帧，来自头部相机，已按顺序编号。",
   "<span class=\"run\">A better plan is not enough.</span> With either demonstration the model passed objects through the table more often, 15 and 13 times against 9 in the first round, and dropped fewer. In make_kong, without a demonstration it never hands the tile to the other arm, as the error analysis shows. With either demonstration it copies the handover in the demonstration. One arm flips the tile and sets it down at the table centre, and the other carries it to the end of the row. The text trajectory carries this handover only as coordinates, and the model still found it. Neither run copies the last step, where the demonstration grips the tile upright to push it into the row, and both lose the tiles on that push and score 0. Fixes of this kind are lost to failures elsewhere, so the overall score barely moves.": "<span class=\"run\">计划更好还不够。</span>有了任一种示范，模型都更常借桌面中转来传递物体，分别为 15 次和 13 次，首轮只有 9 次，掉落也更少。错误分析里可以看到，在 make_kong 中，没有示范时模型从不把牌交给另一只机械臂。有了示范，它会照着示范里的交接来做：一只机械臂把牌翻过来放到桌子中央，另一只再把它送到这一排的末端。文本轨迹里这次交接只体现为坐标，模型仍然看出来了。示范的最后一步是把牌竖着夹住推进这一排，两次运行都没有照做，都在这一推时弄丢了牌，得分为 0。这类改进会被其他环节的失败抵消，所以总分几乎没变。",
   "References": "参考文献",
-  "Back to top": "回到顶部"
+  "Back to top": "回到顶部",
+  "GPT-6 Astra can drive a robot arm directly through a fixed harness, and scores on RoboDojo have risen quickly since. Reported systems differ in harness and test subset and often change several designs at once, so it is hard to tell which choices produce the gains. We take these designs apart and test them in one framework. JustRUA starts from the official L3 harness and keeps only what matters most. With no learned policy, self-improvement loop or task-specific tuning, it raises the score on the RoboDojo simulation benchmark from 29.7 to 50.3.": "GPT-6 Astra 可以通过一套固定的 harness 直接控制机械臂，此后 RoboDojo 上的分数涨得很快。已有系统所用的 harness 和测试子集各不相同，而且常常同时改动好几处设计，很难看出提升到底来自哪些选择。我们把这些设计拆开，放在同一个框架里测试。JustRUA 从官方 L3 harness 出发，只保留最关键的部分。它没有学习得到的策略，没有自我改进循环，也不针对任务调参，就把 RoboDojo 仿真基准上的得分从 29.7 提高到 50.3。",
+  "<span class=\"n\">01</span><b>A lean harness goes a long way.</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>Keeping the full episode history and stopping each motion after 20 control steps lift the score from 29.7 to 38.0. Relative targets, named skills and model-chosen step counts do not beat plain absolute targets.</span></span>": "<span class=\"n\">01</span><b>简洁的 harness 方案已经能做很多</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>保留完整的回合历史，并让每段运动在 20 个控制步后停下，得分就从 29.7 提高到 38.0。相对目标、命名技能和让模型自己选步数，都没有比简单的绝对目标更好。</span></span>",
+  "<span class=\"n\">02</span><b>Reusing experience is not a free lunch.</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>Demonstrations and a self-written skill library change how the model acts, but neither clearly beats the default, and both make an episode more expensive. They also carry the highest risk of gaming the benchmark.</span></span>": "<span class=\"n\">02</span><b>复用经验并非免费午餐</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>示范和模型自己写的技能库会改变模型的做法，但都没有明显好过默认配置，每个回合的花费也更高。它们还最容易变成针对基准刷分。</span></span>",
+  "<span class=\"n\">03</span><b>Scene geometry helps most.</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>Depth images cut empty grasps from 41 to 16, even when Depth Pro predicts the depth from RGB alone and is off by tens of centimetres. With code that solves 3D coordinates from pixels and no decision cap, the score reaches 50.3.</span></span>": "<span class=\"n\">03</span><b>场景几何帮助最大</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>深度图把空抓从 41 次降到 16 次，即使深度是 Depth Pro 只用 RGB 预测出来的，误差有几十厘米，也是如此。再加上从像素解算 3D 坐标的代码并取消决策上限，得分达到 50.3。</span></span>",
+  "<span class=\"n\">04</span><b>Remaining failures are mostly long-tail.</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>Most failures left in our best configuration are specific to one task, such as plans that do not suit the arm, unplanned knocks and slipping grasps. Fixing them would take trial and error on each task, which comes close to tuning on the test tasks.</span></span>": "<span class=\"n\">04</span><b>余下的失败大多是长尾场景</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>最佳配置剩下的失败大多只出现在单个任务上，比如规划不适合机械臂、计划外的碰撞和抓取打滑。要修好它们，得在每个任务上反复试错，这已接近在测试任务上调参。</span></span>",
+  "We test the designs that recent systems add and keep what matters most.": "我们测试近期系统加入的各项设计，只保留最关键的部分。",
+  "<span class=\"lg-item main\"><i class=\"lg-pill\"></i><span>Evaluation set, all 42 tasks, 111 episodes<sup>1</sup><em class=\"lg-claim\">A reliable, low-cost estimate of the full 2,100-episode evaluation</em></span></span> <span class=\"lg-item minor\"><i class=\"lg-ring\"></i>First round, 42 episodes</span> <span class=\"lg-item minor\"><i class=\"lg-cost\"></i>Cost per first-round episode, lower bound</span>": "<span class=\"lg-item main\"><i class=\"lg-pill\"></i><span>评测集，全部 42 个任务，111 个回合<sup>1</sup><em class=\"lg-claim\">以较低成本可靠地估计完整的 2,100 回合评测</em></span></span> <span class=\"lg-item minor\"><i class=\"lg-ring\"></i>首轮，42 个回合</span> <span class=\"lg-item minor\"><i class=\"lg-cost\"></i>每个首轮回合的成本，下界</span>",
+  "<span class=\"dt-key\" role=\"columnheader\"><span class=\"vh\">Design tested. </span><span aria-hidden=\"true\"><i class=\"lg-sq\"></i>Kept in JustRUA</span><span aria-hidden=\"true\"><i class=\"lg-sq drop\"></i>Tried, not kept</span></span><span class=\"dt-sc\" role=\"columnheader\">Score</span>": "<span class=\"dt-key\" role=\"columnheader\"><span class=\"vh\">测试过的设计。</span><span aria-hidden=\"true\"><i class=\"lg-sq\"></i>JustRUA 保留</span><span aria-hidden=\"true\"><i class=\"lg-sq drop\"></i>尝试过，未保留</span></span><span class=\"dt-sc\" role=\"columnheader\">得分</span>",
+  "<b role=\"rowheader\">Harness</b><span>Full history helps</span>": "<b role=\"rowheader\">Harness</b><span>完整历史有帮助</span>",
+  "<span role=\"cell\"><i></i>Full history<sup>2</sup></span><span role=\"cell\">34.7</span>": "<span role=\"cell\"><i></i>完整历史<sup>2</sup></span><span role=\"cell\">34.7</span>",
+  "<b role=\"rowheader\">Action</b><span>Short motions help</span>": "<b role=\"rowheader\">动作</b><span>短运动有帮助</span>",
+  "<span role=\"cell\"><i></i>Model-set step count</span><span role=\"cell\">37.9</span>": "<span role=\"cell\"><i></i>模型自定步数</span><span role=\"cell\">37.9</span>",
+  "<span role=\"cell\"><i></i>Relative targets</span><span role=\"cell\">33.9</span>": "<span role=\"cell\"><i></i>相对目标</span><span role=\"cell\">33.9</span>",
+  "<span role=\"cell\"><i></i>Semantic operations</span><span role=\"cell\">34.6</span>": "<span role=\"cell\"><i></i>语义操作</span><span role=\"cell\">34.6</span>",
+  "<b role=\"rowheader\">Reusing experience<sup>3</sup></b><span>No clear gain</span>": "<b role=\"rowheader\">经验复用<sup>3</sup></b><span>没有明显提升</span>",
+  "<span role=\"cell\"><i></i>Visual demonstration<sup>§</sup></span><span role=\"cell\">39.9</span>": "<span role=\"cell\"><i></i>视觉示范<sup>§</sup></span><span role=\"cell\">39.9</span>",
+  "<span role=\"cell\"><i></i>Self-built library</span><span role=\"cell\">37.0</span>": "<span role=\"cell\"><i></i>自建技能库</span><span role=\"cell\">37.0</span>",
+  "<b role=\"rowheader\">Scene geometry</b><span>Helps most, except affordances</span>": "<b role=\"rowheader\">场景几何</b><span>帮助最大，可供性除外</span>",
+  "<span role=\"cell\"><i></i>Compact readings</span><span role=\"cell\">39.8</span>": "<span role=\"cell\"><i></i>紧凑读数</span><span role=\"cell\">39.8</span>",
+  "<b>Figure 1.</b> The table lists every design we tested, by axis, and the chart the designs JustRUA keeps, in the order added. Each score is one evaluation-set run, the ring its first-round subset. Cost is a lower bound that assumes all cacheable input hits the cache.": "<b>图 1.</b> 左侧表格按维度列出我们测试过的所有设计，右侧图表按加入顺序画出 JustRUA 保留的设计。每个得分是一次评测集运行，圆环是其中首轮子集的得分。成本按所有可缓存输入都命中缓存来算，所以是下界。",
+  "<span><sup>1</sup> Four layouts for the 23 most uncertain tasks and one for the rest, with a score SD of 2.6. The official L3 harness scores 29.7 on it and 29.0 on all 2,100 episodes.</span><span><sup>2</sup> The official loop moved into a Codex session that keeps every image of the episode.</span><span><sup>3</sup> Gaming risk. Reusing experience draws on the tasks being scored, so none of it is kept, whatever the score. Designs marked § game it most directly, using an expert demonstration of the very task being scored.</span><span><sup>4</sup> The model may also run code, with web search off. The decision cap is lifted, and the official action limit still applies.</span>": "<span><sup>1</sup> 23 个最不确定的任务各取四个布局，其余任务各取一个，得分标准差为 2.6。官方 L3 harness 在这个集合上得 29.7 分，在全部 2,100 个回合上得 29.0 分。</span><span><sup>2</sup> 把官方循环搬进一个 Codex 会话，保留回合中的每张图像。</span><span><sup>3</sup> 刷分风险。经验复用用到的正是要评分的任务，所以无论得分多少，这类设计一律不保留。标 § 的设计刷分最直接，它用的是被评分任务本身的专家示范。</span><span><sup>4</sup> 模型还可以运行代码，网页搜索保持关闭。决策上限取消，官方的动作次数限制仍然有效。</span>",
+  "Instead of reproducing each reported system, we take the designs apart and test them on one testbed and one benchmark, changing as little as we can between runs.": "我们没有逐个复现已报道的系统，而是把设计拆开，在同一个测试平台、同一个基准上测试，并尽量减少每次运行之间的改动。",
+  "Blue outlines mark what JustRUA changes. Select a dashed area to see what we varied.": "蓝色边框标出 JustRUA 改动的部分。点击虚线区域可以查看我们改变了什么。",
+  "The 23 most uncertain tasks, those that succeed only some of the time, get four layouts each and the rest keep one, for 111 episodes. Layouts are fixed in advance (<a href=\"#sec-eval\">Notes on evaluation</a>).": "23 个最不确定的任务，也就是只有时成功的任务，各取四个布局，其余任务各取一个，共 111 个回合。布局事先固定（见<a href=\"#sec-eval\">评测说明</a>）。",
+  "Left, each task's score SD across eight rounds. Right, bootstrap SD of the overall score at medium effort, lower for the evaluation set than for every task run three times.": "左图是每个任务在八轮中的得分标准差。右图是中等推理强度下总分的 bootstrap 标准差，评测集比每个任务各跑三次的方案更低。",
+  "Every first-round episode is reviewed from video, and behaviours the score misses are counted as lower bounds.": "每个首轮回合都对照视频复查，得分体现不出的行为按下界计数。",
+  "The first evaluation of GPT-6 Astra on RoboDojo found it weak on precision tasks, scoring 12.7 on Precision under the official L3 harness (<a class=\"cite\" href=\"https://arxiv.org/abs/2609.24170\" target=\"_blank\" rel=\"noopener\">RoboProbe</a>), and Galbot saw a similar gap between its decisions and physical control (<a class=\"cite\" href=\"https://arxiv.org/abs/2609.38537\" target=\"_blank\" rel=\"noopener\">Galbot</a>). Yet a few reasonable fixes to the harness and the action loop brought its Precision score to the level of the strongest vision-language-action models of the time (25.0 on our evaluation set, against 24.8 for DM0.5). Much of the weakness seemed to lie in the harness rather than the model.": "对 GPT-6 Astra 在 RoboDojo 上的首次评测发现，它在精度类任务上表现较弱，官方 L3 harness 下的精度得分只有 12.7（<a class=\"cite\" href=\"https://arxiv.org/abs/2609.24170\" target=\"_blank\" rel=\"noopener\">RoboProbe</a>），Galbot 也看到它的决策和物理控制之间有类似的落差（<a class=\"cite\" href=\"https://arxiv.org/abs/2609.38537\" target=\"_blank\" rel=\"noopener\">Galbot</a>）。但对 harness 和动作循环做几处合理的修正后，它的精度得分就追上了当时最强的视觉-语言-动作模型（在我们的评测集上为 25.0，DM0.5 为 24.8）。看来这部分短板很大程度上出在 harness，而不是模型本身。",
+  "The official L3 harness (L3 Inspect EEF, RoboProbe) calls the model API directly and keeps images from the last two observations only. We run the same loop in a <a class=\"cite\" href=\"https://openai.com/codex/\" target=\"_blank\" rel=\"noopener\">Codex</a> session<sup>*</sup> that keeps every image, with Codex's own tools off. Codex alone lowered the first-round score, so we credit the gain to the two together. All comparisons keep the default cap of 100 decisions per episode, which only the final JustRUA lifts.": "官方 L3 harness（即 RoboProbe 中的 L3 Inspect EEF）直接调用模型 API，只保留最近两次观测的图像。我们在一个 <a class=\"cite\" href=\"https://openai.com/codex/\" target=\"_blank\" rel=\"noopener\">Codex</a> 会话<sup>*</sup>里运行同样的循环，保留每张图像，并关闭 Codex 自带的工具。单独换成 Codex 反而让首轮得分下降，所以我们把提升归功于两者的组合。所有对比都沿用每回合 100 次决策的默认上限，只有最终的 JustRUA 取消了它。",
+  "<span class=\"run\">Motion length.</span> In the official loop a whole motion runs before the model sees anything, so an unstable <a class=\"cite\" href=\"https://arxiv.org/abs/2310.17274\" target=\"_blank\" rel=\"noopener\">CuRobo</a> plan can carry the arm far. We stop each motion after 20 control steps. Letting the model choose 3 to 32 steps, as in action chunking (<a class=\"cite\" href=\"https://arxiv.org/abs/2304.13705\" target=\"_blank\" rel=\"noopener\">ACT</a>, <a class=\"cite\" href=\"https://research.nvidia.com/labs/srl/projects/astranomy/\" target=\"_blank\" rel=\"noopener\">Astranomy</a>), did no better, so JustRUA keeps the fixed cap.": "<span class=\"run\">运动时长。</span>官方循环里，一整段运动执行完模型才能看到画面，所以一条不稳定的 <a class=\"cite\" href=\"https://arxiv.org/abs/2310.17274\" target=\"_blank\" rel=\"noopener\">CuRobo</a> 规划可能把机械臂带出很远。我们让每段运动在 20 个控制步后停下。像动作分块那样让模型在 3 到 32 步之间自己选（<a class=\"cite\" href=\"https://arxiv.org/abs/2304.13705\" target=\"_blank\" rel=\"noopener\">ACT</a>、<a class=\"cite\" href=\"https://research.nvidia.com/labs/srl/projects/astranomy/\" target=\"_blank\" rel=\"noopener\">Astranomy</a>），效果并没有更好，所以 JustRUA 保留固定上限。",
+  "All three keep the full episode history.": "三种设置都保留完整的回合历史。",
+  "<span class=\"run\">Alternative interfaces.</span> Two alternatives from recent systems did not beat absolute targets. Relative targets, offsets from the measured pose as in <a class=\"cite\" href=\"https://arxiv.org/abs/2609.22966\" target=\"_blank\" rel=\"noopener\">RoboDawn</a>, scored lower, as <a class=\"cite\" href=\"https://research.nvidia.com/labs/srl/projects/astranomy/\" target=\"_blank\" rel=\"noopener\">Astranomy</a> also found, and the arm struck objects almost three times as often. Every coordinate the model reads is in the world frame, so an offset likely asks for one more subtraction before each move.": "<span class=\"run\">其他动作接口。</span>近期系统用到的两种替代方案都没有胜过绝对目标。相对目标即相对于实测位姿的偏移，<a class=\"cite\" href=\"https://arxiv.org/abs/2609.22966\" target=\"_blank\" rel=\"noopener\">RoboDawn</a> 用的就是这种方式。它的得分更低，<a class=\"cite\" href=\"https://research.nvidia.com/labs/srl/projects/astranomy/\" target=\"_blank\" rel=\"noopener\">Astranomy</a> 也有同样的发现，而且机械臂撞到物体的次数接近原来的三倍。模型读到的坐标全都在世界坐标系下，所以用偏移量可能意味着每次移动前都要多做一次减法。",
+  "Semantic operations replace raw targets with named skills, as in <a class=\"cite\" href=\"https://arxiv.org/abs/2204.01691\" target=\"_blank\" rel=\"noopener\">SayCan</a> and <a class=\"cite\" href=\"https://arxiv.org/abs/2209.07753\" target=\"_blank\" rel=\"noopener\">Code as Policies</a>. Ours are built on move_eef and add no new control code or learned policy. They changed what the model did more than how well it did. It moved its camera more than three times as often and dropped more of what it held, and the score did not rise.": "语义操作用命名技能代替原始目标，<a class=\"cite\" href=\"https://arxiv.org/abs/2204.01691\" target=\"_blank\" rel=\"noopener\">SayCan</a> 和 <a class=\"cite\" href=\"https://arxiv.org/abs/2209.07753\" target=\"_blank\" rel=\"noopener\">Code as Policies</a> 都是这种做法。我们的语义操作构建在 move_eef 之上，没有新增控制代码或学习得到的策略。它们改变的更多是模型做了什么，而不是做得多好。模型调整相机的次数是原来的三倍多，手里的东西也掉得更多，得分没有提高。",
+  "<span class=\"t-l\">Decisions used per episode</span><span class=\"t-v\"><s>63.2</s> → <b>52.7</b></span><span class=\"t-s\">In the 31 episodes both versions complete, 50.2 to 40.0.</span>": "<span class=\"t-l\">每回合所用决策数</span><span class=\"t-v\"><s>63.2</s> → <b>52.7</b></span><span class=\"t-s\">在两个版本都完成的 31 个回合中，从 50.2 降到 40.0。</span>",
+  "Experience from other episodes is the core of recursive self-improvement, and of everything we tried it carries the greatest risk of gaming the benchmark, since it draws on the tasks being scored. We tested it because it is widely used. No form clearly beat the default.": "来自其他回合的经验是递归自我改进的核心。在我们试过的所有做法里，它也最容易变成针对基准刷分，因为它用到的正是要评分的任务。我们测试它，是因为这种做法用得很广。结果没有哪种形式明显胜过默认配置。",
+  "Demonstrations in context are a common way to help GPT-6 Astra (<a class=\"cite\" href=\"https://arxiv.org/abs/2610.22471\" target=\"_blank\" rel=\"noopener\">SenseNova</a>). Both versions draw on one expert-curated successful episode per task from <a class=\"cite\" href=\"https://arxiv.org/abs/2609.22966\" target=\"_blank\" rel=\"noopener\">RoboDawn</a>, inserted once before the first decision. The visual demo shows its 16 keyframes, and the text trajectory gives the same episode stage by stage, as poses, commands and outcomes in our coordinates.": "在上下文里放示范，是帮助 GPT-6 Astra 的常见做法（<a class=\"cite\" href=\"https://arxiv.org/abs/2610.22471\" target=\"_blank\" rel=\"noopener\">SenseNova</a>）。两个版本都取自 <a class=\"cite\" href=\"https://arxiv.org/abs/2609.22966\" target=\"_blank\" rel=\"noopener\">RoboDawn</a> 中每个任务一条经专家筛选的成功回合，在第一次决策前插入一次。视觉示范展示它的 16 张关键帧，文本轨迹则把同一个回合按阶段写出来，用我们的坐标给出位姿、指令和结果。",
+  "The 16 keyframes the model sees before its first decision in make_kong, head camera.": "make_kong 中模型在第一次决策前看到的 16 张关键帧，来自头部相机。",
+  "Five of the 40 stages of the same episode. The handover appears only as coordinates.": "同一回合 40 个阶段中的五个。交接只以坐标的形式出现。",
+  "<span class=\"run\">A better plan is not enough.</span> With either demonstration the model passed objects through the table more often and dropped fewer. In make_kong it copies the demonstrated handover, which it never does without one, even when the text trajectory gives the handover only as coordinates. Neither run copies the last step, gripping the tile upright to push it into the row, and both lose the tiles there and score 0. Fixes of this kind are lost to failures elsewhere, so the overall score barely moves.": "<span class=\"run\">计划更好还不够。</span>有了任一种示范，模型都更常借桌面中转来传递物体，掉落也更少。在 make_kong 中，它会照着示范完成交接，没有示范时它从不这样做，即使文本轨迹只用坐标给出这次交接也一样。示范的最后一步是把牌竖着夹住推进这一排，两次运行都没有照做，都在这里弄丢了牌，得分为 0。这类改进会被其他环节的失败抵消，所以总分几乎没变。",
+  "Several RoboDojo entries improve themselves by writing their own skills (<a class=\"cite\" href=\"https://arxiv.org/abs/2610.18867\" target=\"_blank\" rel=\"noopener\">EmbodiedEvo</a>, <a class=\"cite\" href=\"https://github.com/OpenSenseNova/SenseNova-RoboRSI\" target=\"_blank\" rel=\"noopener\">SenseNova-RoboRSI</a>). Here a Codex agent writes extra operations on top of move_eef, with a guide on when to use them, starting from the RoboDawn demonstrations. The 42 tasks are split into five groups. Each round the model runs the library on one group, and the agent reviews the scores, logs and videos and revises it. Nothing is edited by hand, and nothing is stored or looked up by task.": "有几个 RoboDojo 参赛系统会自己编写技能来改进自身（<a class=\"cite\" href=\"https://arxiv.org/abs/2610.18867\" target=\"_blank\" rel=\"noopener\">EmbodiedEvo</a>、<a class=\"cite\" href=\"https://github.com/OpenSenseNova/SenseNova-RoboRSI\" target=\"_blank\" rel=\"noopener\">SenseNova-RoboRSI</a>）。在这里，一个 Codex 智能体从 RoboDawn 示范出发，在 move_eef 之上编写额外的操作，并附上何时使用它们的指南。42 个任务分成五组。每一轮模型在其中一组上运行这个库，智能体再查看得分、日志和视频，修订这个库。整个过程没有人工修改，也不按任务存储或查找任何内容。",
+  "<span class=\"tg-c\">Changed for round 2</span><span class=\"lp-tx\">place and grasp can pause before letting go or closing. A new insert pushes a held tip into a hole once it is within 2 mm and 1° of the entry.</span>": "<span class=\"tg-c\">第 2 轮的改动</span><span class=\"lp-tx\">place 和 grasp 可以在松开或闭合之前停一下。新增的 insert 在手中物体的尖端到达入口 2 mm 和 1° 以内时，把它推进孔里。</span>",
+  "<span class=\"tg-c\">Changed for round 4</span><span class=\"lp-tx\">The guide separates attempted presses from confirmed ones. A new tap presses once and returns, within 2 mm and 1° of the target.</span>": "<span class=\"tg-c\">第 4 轮的改动</span><span class=\"lp-tx\">指南要求把尝试过的按压和已确认的按压分开记录。新增的 tap 在到达目标 2 mm 和 1° 以内时按压一次后返回。</span>",
+  "Scores are per task, from 0 to 1. Each round runs a different group, so this is not a learning curve. Problems and changes paraphrase the library's own records.": "得分按任务计，范围 0 到 1。每一轮运行的是不同的任务组，所以这不是学习曲线。问题和改动是对库自身记录的转述。",
+  "The library changed how the model grasped, with fewer empty grasps and no arm-to-arm collisions in the first round. With each task practised once, it scored slightly higher than the loop's own runs on the tasks it had seen and stayed level with the default on the evaluation set. Systems that report clear gains practise each task many more times (<a class=\"cite\" href=\"https://arxiv.org/abs/2610.18867\" target=\"_blank\" rel=\"noopener\">EmbodiedEvo</a>, <a class=\"cite\" href=\"https://arxiv.org/abs/2610.26848\" target=\"_blank\" rel=\"noopener\">PhysRSI-eval</a>). The loop helps, but slowly.": "这个库改变了模型的抓取方式，首轮中空抓更少，也没有出现双臂互撞。每个任务只练一次的情况下，它在见过的任务上比循环自己的运行略高，在评测集上和默认配置持平。报告有明显提升的系统，每个任务练习的次数要多得多（<a class=\"cite\" href=\"https://arxiv.org/abs/2610.18867\" target=\"_blank\" rel=\"noopener\">EmbodiedEvo</a>、<a class=\"cite\" href=\"https://arxiv.org/abs/2610.26848\" target=\"_blank\" rel=\"noopener\">PhysRSI-eval</a>）。自我改进循环有用，但见效慢。",
+  "Recent agent systems give the model depth, point clouds and affordances from dedicated models. GPT-6 needs less. Its own grip readings, depth predicted from RGB and a little code that turns pixels into 3D coordinates carry most of the gain without simulator ground truth, while precomputed affordances did not help.": "近期的智能体系统会用专门的模型给模型提供深度、点云和可供性。GPT-6 用不着这么多。它自己的夹爪读数、从 RGB 预测的深度，加上一小段把像素换算成 3D 坐标的代码，在不用模拟器真值的情况下就拿到了大部分提升，而预先算好的可供性没有帮助。",
+  "Robot readings are each gripper's basic sensor values, finger positions and forces, contact force and wrist load, with no privileged information such as the true pose of an object.": "机器人读数是每个夹爪的基本传感器数值，包括手指位置和受力、接触力和腕部负载，不含物体真实位姿这类特权信息。",
+  "They help most in grasping. The default interface reports only the jaw opening the model asked for, while the readings give the opening the fingers actually reached and the force at each fingertip.": "读数在抓取时帮助最大。默认接口只报告模型要求的夹爪开度，而读数给出手指实际到达的开度和每个指尖的受力。",
+  "The fingers stopped at 0.44, not the commanded 0.24, and press on both sides, so the tube is held.": "手指停在 0.44，而不是指令要求的 0.24，并且两侧都在施力，说明管子已经夹住了。",
+  "How the readings are written matters too. As full JSON they crowded the context and pushed many episodes into compaction, so JustRUA writes them in a short text format.": "读数的写法同样重要。写成完整 JSON 时，读数挤占了上下文，让许多回合进入了上下文压缩，所以 JustRUA 用一种简短的文本格式来写。",
+  "Many recent agent systems use depth to place objects in 3D (<a class=\"cite\" href=\"https://arxiv.org/abs/2610.14018\" target=\"_blank\" rel=\"noopener\">RoboHarness</a>, <a class=\"cite\" href=\"https://arxiv.org/abs/2610.28259\" target=\"_blank\" rel=\"noopener\">GPT-GEAR</a>, <a class=\"cite\" href=\"https://arxiv.org/abs/2610.22496\" target=\"_blank\" rel=\"noopener\">RAX</a>), but the RoboDojo leaderboard does not accept simulator depth for agent entries, <a class=\"cite\" href=\"https://github.com/XPolicyLab/XPolicyLab/pull/151#issuecomment-6106209632\" target=\"_blank\" rel=\"noopener\">as a maintainer stated in review</a>. We test both simulator depth and depth that <a class=\"cite\" href=\"https://arxiv.org/abs/2410.02073\" target=\"_blank\" rel=\"noopener\">Depth Pro</a> predicts from RGB alone.": "许多近期的智能体系统用深度在 3D 空间里定位物体（<a class=\"cite\" href=\"https://arxiv.org/abs/2610.14018\" target=\"_blank\" rel=\"noopener\">RoboHarness</a>、<a class=\"cite\" href=\"https://arxiv.org/abs/2610.28259\" target=\"_blank\" rel=\"noopener\">GPT-GEAR</a>、<a class=\"cite\" href=\"https://arxiv.org/abs/2610.22496\" target=\"_blank\" rel=\"noopener\">RAX</a>），但 RoboDojo 排行榜不接受智能体参赛项使用模拟器深度，<a class=\"cite\" href=\"https://github.com/XPolicyLab/XPolicyLab/pull/151#issuecomment-6106209632\" target=\"_blank\" rel=\"noopener\">维护者在评审中明确说过这一点</a>。我们同时测试了模拟器深度和 <a class=\"cite\" href=\"https://arxiv.org/abs/2410.02073\" target=\"_blank\" rel=\"noopener\">Depth Pro</a> 只用 RGB 预测的深度。",
+  "The predicted distances are far off, by tens of centimetres even with the true focal length. Scaling each frame to the robot's geometry helps, but the scale drifts between frames and cannot be fitted for the wrist cameras, so JustRUA passes the raw predictions on.": "预测出的距离偏差很大，即使给了真实焦距也差几十厘米。按机器人几何逐帧缩放有所改善，但缩放比例在帧与帧之间漂移，腕部相机也无法拟合，所以 JustRUA 直接传入原始预测。",
+  "Even so, predicted depth improves manipulation almost as much as simulator depth, with as few empty grasps and fewer failed fine placements, though drops did not fall. The prediction gets the order of depths right, and that seems to be enough.": "即便如此，预测深度对操作的改善几乎和模拟器深度一样大，空抓同样少，精细放置失败更少，只是掉落没有减少。预测把深度的前后顺序弄对了，这似乎就已足够。",
+  "Depth shows where surfaces are, but not where an object can be held or which arm can reach it. That knowledge is an affordance. Recent agent systems compute affordances with dedicated models (<a class=\"cite\" href=\"https://arxiv.org/abs/2610.24016\" target=\"_blank\" rel=\"noopener\">CLARO</a>, <a class=\"cite\" href=\"https://github.com/hao-ai-lab/ORA\" target=\"_blank\" rel=\"noopener\">ORA</a>), and since many episodes go wrong at the grasp, we tested giving them to the model directly.": "深度能告诉模型表面在哪里，但不能告诉它物体可以从哪里抓、哪只机械臂够得着。这类知识就是可供性。近期的智能体系统用专门的模型计算可供性（<a class=\"cite\" href=\"https://arxiv.org/abs/2610.24016\" target=\"_blank\" rel=\"noopener\">CLARO</a>、<a class=\"cite\" href=\"https://github.com/hao-ai-lab/ORA\" target=\"_blank\" rel=\"noopener\">ORA</a>），而许多回合正是在抓取时出错，所以我们测试了直接把可供性交给模型。",
+  "For each camera view, <a class=\"cite\" href=\"https://arxiv.org/abs/2507.13097\" target=\"_blank\" rel=\"noopener\">GraspGen</a> proposes up to eight grasp poses per object and inverse kinematics marks which surfaces each arm can reach. Both are drawn onto the image, and the text lists the grasp poses. The hard part is presentation, since anything added to an observation either takes more space or crowds what is already there.": "对每个相机视角，<a class=\"cite\" href=\"https://arxiv.org/abs/2507.13097\" target=\"_blank\" rel=\"noopener\">GraspGen</a> 为每个物体给出最多八个抓取位姿，逆运动学则标出每只机械臂能够到哪些表面。两者都画在图像上，文本里再列出抓取位姿。难点在于怎么呈现，因为往观测里加任何东西，要么占更多篇幅，要么挤占原有内容。",
+  "None of the four versions grasped more reliably or scored higher than depth images from the same source. Affordances could matter in few moments, since handovers stayed rare and grasp candidates only matter when a grasp starts, while their cost comes with every observation. We left them out of JustRUA.": "与同一来源的深度图相比，四个版本都没有抓得更稳，得分也没有更高。可供性能起作用的时刻很少：交接仍然少见，抓取候选只在开始抓取时才有用，而它们的成本却伴随每一次观测。我们没有把可供性放进 JustRUA。",
+  "In the last step the model may also write and run code in its session<sup class=\"fnm\">1</sup>, as in <a class=\"cite\" href=\"https://arxiv.org/abs/2209.07753\" target=\"_blank\" rel=\"noopener\">Code as Policies</a> and <a class=\"cite\" href=\"https://arxiv.org/abs/2609.39018\" target=\"_blank\" rel=\"noopener\">URAI</a>, and the 100-decision cap is lifted.": "在最后一步，模型还可以在会话里编写并运行代码<sup class=\"fnm\">1</sup>，<a class=\"cite\" href=\"https://arxiv.org/abs/2209.07753\" target=\"_blank\" rel=\"noopener\">Code as Policies</a> 和 <a class=\"cite\" href=\"https://arxiv.org/abs/2609.39018\" target=\"_blank\" rel=\"noopener\">URAI</a> 也是这样做的，同时取消 100 次决策的上限。",
+  "Almost every run uses code to solve for coordinates, casting rays from pixels through the camera calibration and triangulating a point seen by two cameras or meeting a known surface height. The code never reads the depth images. Code thus acts as one more source of scene geometry, which is why it sits on this axis.": "几乎每次运行都用代码解算坐标：根据相机标定从像素发出射线，再用两个相机看到的同一点做三角测量，或者与已知高度的表面求交。代码从不读取深度图。因此代码相当于又一个场景几何的来源，这也是它归在这一维度下的原因。",
+  "In insert_tubes the model locates the tubes and the holes of the rack from pixels and places all three tubes.": "在 insert_tubes 中，模型从像素定位管子和试管架上的孔，放好了全部三根管子。",
+  "The player pauses where the code runs and skips the stretches between. Distances compare the code's output with the commands that followed, not with true object positions. Code and output as the model ran them.": "播放器在代码运行处暂停，并跳过中间的片段。距离比较的是代码输出与随后发出的指令，而不是物体的真实位置。代码和输出都是模型实际运行时的原样。",
+  "With our best configuration, 21 of the 42 first-round tasks score below 50. We sorted every such episode by cause, to see whether further gains need one general fix or work on each task. Most failures turn out to be specific to one task.": "在最佳配置下，42 个首轮任务中有 21 个得分低于 50。我们把每个这样的回合按原因分类，看进一步的提升需要一个通用的修正，还是要逐个任务下功夫。结果发现，大多数失败只出现在单个任务上。",
+  "Each of the first three causes points to a general fix, but each needs knowledge that is costly to supply.": "前三类原因各自指向一种通用的修正，但每一种都需要代价不小的额外知识。",
+  "Revising the task prompts fixes the prompt and scoring cases and raises the first round from 54.0 to 55.6. The rest would need trial and error on each task, close to tuning on the test tasks.": "修改任务提示词能解决提示词和评分方面的问题，把首轮得分从 54.0 提高到 55.6。其余问题需要逐个任务反复试错，接近在测试任务上调参。",
+  "The official evaluation scores each task over 50 episodes, since one layout's score is spiky. We run far fewer, and rounds differ in difficulty, so every configuration here runs on the same fixed layouts, in the first round and on the evaluation set alike.": "官方评测每个任务跑 50 个回合，因为单个布局的得分波动很大。我们跑的回合少得多，而且各轮难度不同，所以这里的每种配置都在同一组固定布局上运行，首轮和评测集都是如此。",
+  "Low and medium effort rise and fall together across eight rounds (correlation 0.84), though we have not separated layout difficulty from run-to-run randomness. The first round alone tends to run high, above the eight-round mean in all three settings below.": "低、中两档推理强度在八轮中同涨同跌（相关系数 0.84），不过我们没有把布局难度和每次运行的随机性分开。单看首轮往往偏高，下面三种设置的首轮得分都高于八轮均值。",
+  "These 23 tasks run on four layouts each. On each, a partial result scores at most 50, and the default testbed both succeeded and failed within eight rounds.": "这 23 个任务各在四个布局上运行。每个布局上，部分完成最多得 50 分，而默认测试平台在八轮中既成功过也失败过。",
+  "swap_T is a typical case. It scores 100 only when the two T blocks swap places within 20 mm and 3° and both arms are back at rest, and 0 otherwise. Both settings scored 0 in the first round and succeeded in four of the eight rounds.": "swap_T 是一个典型例子。只有当两个 T 形块在 20 mm 和 3° 以内互换位置，且两只机械臂都回到静止位置时，它才得 100 分，否则得 0 分。两种设置在首轮都得 0 分，而在八轮中各成功了四轮。"
  },
  "attr": {
   "Sections": "章节",
   "Tsinghua University": "清华大学",
   "Key takeaways": "主要结论",
-  "Evaluation-set score of each configuration, with first-round scores marked. Harness: official L3 29.7, full history 34.7. Action: model-set step count 37.9, 20-step cap 38.0, relative targets 33.9, semantic operations 34.6. Reusing experience: visual demonstration 39.9, text trajectory 35.2, self-built library 37.0. Scene geometry: affordances drawn 36.7, compact readings 39.8, predicted depth 42.4, affordance panel 42.1, coordinate solving 50.3.": "各配置的评测集得分，并标出首轮得分。Harness：官方 L3 29.7，完整历史 34.7。动作：模型自定步数 37.9，20 步上限 38.0，相对目标 33.9，语义操作 34.6。经验复用：视觉示范 39.9，文本轨迹 35.2，自建库 37.0。场景几何：绘制可供性 36.7，紧凑读数 39.8，预测深度 42.4，可供性面板 42.1，坐标解算 50.3。",
   "Choose a part of the study": "选择研究的一个部分",
   "The testbed loop. GPT-6 Astra in a Codex session sends a command, the planner plans it, at most 20 control steps run in the RoboDojo simulator, and an observation returns to the model. Experience from other episodes feeds the model, and each run is scored on the evaluation set with a behaviour review.": "测试平台的循环。Codex 会话中的 GPT-6 Astra 发出指令，规划器进行规划，至多 20 个控制步在 RoboDojo 模拟器中执行，观测再返回给模型。来自其他回合的经验输入模型，每次运行都在评测集上评分，并经过行为复查。",
   "Reusing experience": "经验复用",
@@ -362,7 +426,9 @@
   "Score of the default testbed in each of eight rounds. Low effort 35.9, 35.9, 26.5, 37.4, 27.1, 29.6, 36.2, 47.5. Medium effort 42.4, 37.5, 30.6, 41.3, 23.1, 33.3, 36.0, 43.3.": "默认测试平台在八轮中各轮的得分。低强度 35.9、35.9、26.5、37.4、27.1、29.6、36.2、47.5。中强度 42.4、37.5、30.6、41.3、23.1、33.3、36.0、43.3。",
   "Contents": "目录",
   "Project film": "项目影片",
-  "Coming soon": "即将发布"
+  "Coming soon": "即将发布",
+  "Evaluation-set score of each design JustRUA keeps, in the order it was added, with the cost per first-round episode above. Official L3 harness 29.7, full history 34.7, 20-step cap 38.0, compact readings 39.8, predicted depth 42.4, coordinate solving 50.3.": "JustRUA 保留的各项设计按加入顺序给出的评测集得分，上方是每个首轮回合的成本。官方 L3 harness 29.7，完整历史 34.7，20 步上限 38.0，紧凑读数 39.8，预测深度 42.4，坐标解算 50.3。",
+  "Every design tested, grouped by the part of the system it changes, with its evaluation-set score": "测试过的所有设计，按改动的系统部分分组，并附评测集得分"
  },
  "json": {
   "decision 0 &middot; 0.0 s &middot; the simulator waits while the code runs": "第 0 次决策 &middot; 0.0 s &middot; 代码运行时模拟器暂停",
@@ -483,10 +549,6 @@
    "l:[\"紧凑\",\"读数\"]"
   ],
   [
-   "l:[\"Depth,\",\"predicted\"]",
-   "l:[\"预测\",\"深度\"]"
-  ],
-  [
    "l:[\"Affordance\",\"panel\"]",
    "l:[\"可供性\",\"面板\"]"
   ],
@@ -587,28 +649,12 @@
    "\"模型还可以在会话中运行代码，主要用它根据像素和相机标定计算目标坐标。建立在预测深度输入之上。\""
   ],
   [
-   "v==null?\"pending\"",
-   "v==null?\"待定\""
-  ],
-  [
-   ">pending<",
-   ">待定<"
-  ],
-  [
    "<span>Cost<br>$/ep</span>",
    "<span>成本<br>$/回合</span>"
   ],
   [
-   "{kept:\"Kept in JustRUA\",drop:\"Tried, not kept\"}",
-   "{kept:\"JustRUA 保留\",drop:\"尝试过，未保留\"}"
-  ],
-  [
    "Evaluation set ${fmt(d.p)} · First round ${fmt(d.f)}",
    "评测集 ${fmt(d.p)} · 首轮 ${fmt(d.f)}"
-  ],
-  [
-   "<br>Cost $${d.c.toFixed(2)} per first-round episode",
-   "<br>每个首轮回合成本 $${d.c.toFixed(2)}"
   ],
   [
    "[\"Empty grasps\",41,17,16],[\"Fine placement failures\",18,15,7],[\"Drops\",31,33,28],[\"Arm-to-arm collisions\",5,2,2]",
@@ -697,10 +743,6 @@
   [
    "[\"d\",\"High effort\",\"Reasoning effort above the default\"]",
    "[\"d\",\"高强度\",\"推理强度高于默认\"]"
-  ],
-  [
-   "n:\"Action\",w:\"How a decision turns into motion, the command format and how long each motion runs before the model looks again.\"",
-   "n:\"动作\",w:\"一次决策如何转化为运动，包括指令格式，以及每段运动在模型再次观察前执行多久。\""
   ],
   [
    "\"Each motion stops after 20 control steps\"",
@@ -905,6 +947,98 @@
   [
    "\"Copy\"",
    "\"复制\""
+  ],
+  [
+   "l:[\"Predicted\",\"depth\"]",
+   "l:[\"预测\",\"深度\"]"
+  ],
+  [
+   "\"Hover over\":\"Tap\"} a row or a bar for details.",
+   "\"悬停\":\"点按\"}任一行或柱子可查看详情。"
+  ],
+  [
+   "\"Tried, not kept\":\"Kept in JustRUA\"",
+   "\"尝试过，未保留\":\"JustRUA 保留\""
+  ],
+  [
+   "` · $${d.c.toFixed(2)} per first-round episode`",
+   "` · 每个首轮回合 $${d.c.toFixed(2)}`"
+  ],
+  [
+   "n:\"Action\",w:\"The command format and how long each motion runs before the model looks again.\"",
+   "n:\"动作\",w:\"指令格式，以及每段运动执行多久模型才再看一次。\""
+  ],
+  [
+   "<track id=\"ft-cc\" kind=\"captions\" srclang=\"en\" label=\"English\" default>",
+   "<track id=\"ft-cc\" kind=\"captions\" srclang=\"zh\" label=\"中文\" default>"
+  ],
+  [
+   "\nIntroducing JustRUA.\n",
+   "\nJustRUA 来了。\n"
+  ],
+  [
+   "\nGPT-6 Astra can drive robot arms directly.\n",
+   "\nGPT-6 Astra 可以直接控制机械臂。\n"
+  ],
+  [
+   "\nIt reads the cameras and the arm state, and sends targets to a motion planner.\n",
+   "\n它读取相机画面和机械臂状态，把目标发给运动规划器。\n"
+  ],
+  [
+   "\nScores on RoboDojo have risen fast, but reported systems differ in many ways at once.\n",
+   "\nRoboDojo 上的分数涨得很快，但已有系统之间同时存在许多差异。\n"
+  ],
+  [
+   "\nSo we take the designs apart and test them in one framework.\n",
+   "\n所以我们把这些设计拆开，放在同一个框架里测试。\n"
+  ],
+  [
+   "\nOne testbed, one benchmark.\n",
+   "\n同一个测试平台，同一个基准。\n"
+  ],
+  [
+   "\nWe vary the harness, the actions, reused experience and scene geometry, and evaluate every run on the same episodes.\n",
+   "\n我们改变 harness、动作、经验复用和场景几何，每次运行都在同样的回合上评测。\n"
+  ],
+  [
+   "\nFirst, a lean harness goes a long way.\n",
+   "\n第一，简洁的 harness 方案已经能做很多。\n"
+  ],
+  [
+   "\nKeeping the full history and stopping each motion after 20 control steps lifts the score from 29.7 to 38.0.\n",
+   "\n保留完整历史，并让每段运动在 20 个控制步后停下，得分就从 29.7 提高到 38.0。\n"
+  ],
+  [
+   "\nSecond, reusing experience is not a free lunch.\n",
+   "\n第二，复用经验并非免费午餐。\n"
+  ],
+  [
+   "\nDemonstrations and a self-written skill library change how the model acts, but none clearly beats the default, and each one costs more.\n",
+   "\n示范和模型自己写的技能库会改变模型的做法，但都没有明显好过默认配置，花费也都更高。\n"
+  ],
+  [
+   "\nThird, scene geometry helps most.\n",
+   "\n第三，场景几何帮助最大。\n"
+  ],
+  [
+   "\nEven depth predicted from RGB alone cuts empty grasps from 41 to 16.\n",
+   "\n即使是只用 RGB 预测的深度，也能把空抓从 41 次降到 16 次。\n"
+  ],
+  [
+   "\nWith code that solves 3D points from pixels and no decision cap, the score reaches 50.3.\n",
+   "\n再加上从像素解算 3D 点的代码并取消决策上限，得分达到 50.3。\n"
+  ],
+  [
+   "\nFinally, the remaining failures are mostly long-tail.\n",
+   "\n最后，余下的失败大多是长尾场景。\n"
+  ],
+  [
+   "\nMost of them are specific to one task.\n",
+   "\n它们大多只出现在单个任务上。\n"
+  ],
+  [
+   "\nNo learned policy. No self-improvement loop. No task-specific tuning.\n",
+   "\n没有学习得到的策略，没有自我改进循环，也不针对任务调参。\n"
   ]
  ]
 }

@@ -64,7 +64,7 @@ h1 .just{color:var(--steel-2)}
 .logo-slot{width:120px;height:36px;border:1px dashed var(--rule-2);border-radius:8px;display:grid;place-items:center;font:500 11px/1 var(--f-mono);color:var(--ink-3)}
 .hero-main{display:grid;grid-template-columns:minmax(0,1fr) max-content;grid-template-areas:"ab tk" "ln tk";column-gap:72px;align-items:start;margin-top:10px}
 .hero-main .abstract{grid-area:ab;margin:0}
-.hero-main .tks{grid-area:tk;align-self:center;gap:8px}
+.hero-main .tks{grid-area:tk;align-self:start;align-content:start;gap:8px}
 .hero-links{grid-area:ln;margin-top:22px}
 .chip.film-btn{background:var(--ink);border-color:var(--ink);color:#fff}
 a.chip.film-btn:hover{background:var(--steel);border-color:var(--steel);color:#fff}
@@ -85,7 +85,8 @@ a.chip.film-btn:hover{background:var(--steel);border-color:var(--steel);color:#f
 .tks{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 .hero-main .links{gap:6px}
 .hero-main .chip{padding:0 11px;font-size:13.5px}
-.tk{position:relative;display:grid;grid-template-columns:24px minmax(0,1fr) 22px;gap:6px;align-items:center;padding:9px 10px;border-radius:10px;cursor:pointer;outline:none;transition:background .15s,box-shadow .15s}
+.tk{position:relative;display:grid;grid-template-columns:24px minmax(0,1fr) 22px;grid-template-rows:auto 0fr;column-gap:6px;row-gap:0;align-items:center;padding:9px 10px;border-radius:10px;cursor:pointer;outline:none;transition:background .15s,box-shadow .15s,grid-template-rows .26s ease}
+.tk.open{grid-template-rows:auto 1fr}
 .tk .n{font:500 11px/1 var(--f-mono);color:var(--steel-2)}
 .tk b{font-size:16px;line-height:1.35;font-weight:650;color:var(--ink);letter-spacing:-.005em}
 .tk .more{width:22px;height:22px;border-radius:50%;background:var(--steel-soft);color:var(--steel);font:500 17px/22px var(--f-sans);text-align:center;transition:transform .2s,background .2s,color .2s}
@@ -95,10 +96,13 @@ a.chip.film-btn:hover{background:var(--steel);border-color:var(--steel);color:#f
 .tks.hint .tk:nth-child(3) .more{animation-delay:.3s}
 .tks.hint .tk:nth-child(4) .more{animation-delay:.45s}
 @media (prefers-reduced-motion: reduce){.tks.hint .more{animation:none}}
-.tk:hover,.tk:focus-visible,.tk.open{background:var(--surface);box-shadow:inset 0 0 0 1px var(--rule-2);z-index:7}
-.tk:hover .more,.tk:focus-visible .more,.tk.open .more{transform:rotate(45deg);background:var(--steel);color:#fff}
-.tk-pop{position:absolute;left:0;right:0;top:calc(100% + 6px);width:auto;z-index:8;background:var(--surface);border:1px solid var(--rule-2);border-radius:10px;box-shadow:0 10px 28px rgba(20,28,40,.12);padding:12px 14px;font-size:13.5px;line-height:1.5;color:var(--ink-2);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s;pointer-events:none}
-.tk:hover .tk-pop,.tk:focus-visible .tk-pop,.tk.open .tk-pop{opacity:1;visibility:visible;transform:none}
+.tk:hover,.tk.open{background:var(--surface);box-shadow:inset 0 0 0 1px var(--rule-2)}
+.tk:focus-visible{box-shadow:inset 0 0 0 2px var(--steel-2)}
+.tk.open .more{transform:rotate(45deg);background:var(--steel);color:#fff}
+.tk-pop{grid-column:2 / 4;align-self:stretch;min-height:0;overflow:hidden;contain:inline-size;font-size:13.5px;line-height:1.5;color:var(--ink-2);opacity:0;transition:opacity .2s ease}
+.tk-pop > span{display:block;padding:6px 4px 3px 0}
+.tk.open .tk-pop{opacity:1}
+@media (prefers-reduced-motion: reduce){.tk,.tk-pop{transition:none}}
 @media (max-width:1099px){
   .hero-main{column-gap:36px}
   .hero-links{gap:6px}
@@ -128,6 +132,7 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .ft-x{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border:1px solid var(--rule-2);border-radius:999px;background:var(--surface);font:500 12px/1 var(--f-mono);color:var(--ink-2);cursor:pointer}
 .ft-x span{font-size:15px}
 .ft-x:hover{border-color:var(--steel);color:var(--steel)}
+#ft-video::cue{font:500 17px/1.4 var(--f-sans);color:#fff;background:rgba(18,22,30,.62)}
 .film-up{display:inline-flex;align-items:center;gap:6px;margin-bottom:10px;padding:7px 12px 7px 9px;border:1px solid var(--rule-2);border-radius:999px;background:rgba(255,255,255,.94);font:500 13px/1 var(--f-sans);color:var(--ink);text-decoration:none}
 .film-up svg{width:14px;height:14px;color:var(--steel)}
 .film-up em{font:400 11.5px/1 var(--f-mono);font-style:normal;color:var(--ink-3)}
@@ -155,7 +160,7 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .lg-key span{display:inline-flex;align-items:center;gap:7px}
 .lg-pill{position:relative;width:34px;height:16px;border-radius:8px;background:var(--ink-2)}
 .lg-pill::after{content:"";position:absolute;right:2px;top:2px;width:7px;height:7px;border-radius:50%;background:#fff;border:2.5px solid var(--ink-2)}
-.lg-ring{width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid var(--amber)}
+.lg-ring{width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid #a7b8d2}
 .lg-cost{position:relative;width:24px;height:10px}
 .lg-cost::before{content:"";position:absolute;left:0;right:0;top:4px;border-top:1.5px dashed var(--cost)}
 .lg-cost::after{content:"";position:absolute;left:8px;top:1px;width:6px;height:6px;transform:rotate(45deg);background:#fff;border:1.5px solid var(--cost)}
@@ -173,13 +178,13 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .lg-sq.pend{background:#f3e8d6;border:1px solid #e3d0b0}
 .wf-panel{background:var(--surface);border:1px solid var(--rule);border-radius:16px;padding:22px 20px 18px}
 .wf-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.wf{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);min-width:900px}
+.wf{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);--ph:260px}
 .wf-axis,.wf-g{display:flex;flex-direction:column}
 .wf-headsp,.wf-head{height:44px}
-.wf-plotax,.wf-plot{height:300px;position:relative;margin-bottom:9px}
+.wf-plotax,.wf-plot{height:var(--ph);position:relative;margin-bottom:9px}
 .wf-plotax span{position:absolute;right:12px;transform:translateY(50%);font:400 11px/1 var(--f-mono);color:var(--ink-3)}
 .wf-groups{display:flex;gap:16px;min-width:0;position:relative;padding-right:26px}
-.wf-gridlines{position:absolute;left:0;right:26px;top:142px;height:300px;pointer-events:none;z-index:0}
+.wf-gridlines{position:absolute;left:0;right:26px;top:142px;height:var(--ph);pointer-events:none;z-index:0}
 .wf-g{position:relative}
 .wf-gridlines i{position:absolute;left:0;right:0;border-top:1px dashed var(--rule-2)}
 .wf-gridlines i.base{border-top:1px solid var(--rule-2)}
@@ -196,7 +201,7 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .track.kept{background:#e3e9f2}
 .fill.drop{background:var(--dropped)}
 .knob{position:absolute;left:40%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:#fff;border:3px solid var(--k,var(--dropped));transform:translateY(50%);z-index:1}
-.ring{position:absolute;left:40%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#fff;border:2px solid var(--amber);transform:translateY(50%);z-index:2}
+.ring{position:absolute;left:40%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#fff;border:2px solid #a7b8d2;transform:translateY(50%);z-index:2}
 .val{position:absolute;left:calc(40% + 13px);transform:translateY(50%);font:400 11.5px/1 var(--f-mono);color:var(--ink-3);white-space:nowrap;z-index:3;font-variant-numeric:tabular-nums}
 .val.kept{color:var(--ink);font-weight:500}
 .val.pend{left:-12%;right:-12%;text-align:center;transform:none;margin-bottom:12px;font-style:italic;font-family:var(--f-sans);font-size:11px;color:#a8875a}
@@ -216,6 +221,67 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .wf-caption{margin-top:16px;padding-top:14px;border-top:1px solid var(--rule);font-size:13.5px;line-height:1.6;color:var(--ink-2)}
 .wf-caption b{color:var(--ink);font-weight:600}
 .wf-fn{margin-top:8px;display:flex;flex-wrap:wrap;gap:2px 22px;font-size:12.5px;line-height:1.5;color:var(--ink-3)}
+
+/* Figure 1: tested designs on the left, kept designs charted on the right */
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.f1{position:relative;display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);grid-template-areas:"dt ch";column-gap:30px;align-items:start}
+.f1-tab{grid-area:dt;padding-right:30px;border-right:1px solid var(--rule)}
+.f1-ch{grid-area:ch;min-width:0}
+.wf-detail{margin-top:10px;padding:10px 4px 0 44px;border-top:1px solid var(--rule);font-size:13px;line-height:1.5;color:var(--ink-2)}
+.wf-detail .wd-hint{margin:0;color:var(--ink-3);font-size:12.5px}
+.wd-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
+.wd-head b{font-size:14px;color:var(--ink)}
+.wd-head .st{font:500 10.5px/1.3 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--steel)}
+.wd-head .st.drop{color:var(--ink-3)}
+.wd-d{margin:3px 0 0}
+.wd-n{margin:4px 0 0;font:400 12px/1.5 var(--f-mono);color:var(--ink)}
+.wf-detail.inline{margin:2px 0 6px;padding:8px 10px;border:0;border-radius:8px;background:#fff;box-shadow:inset 0 0 0 1px var(--rule-2)}
+@media (max-width:560px){.wf-detail{padding-left:30px}}
+.dt{display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.3}
+.dt-top{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:0 10px 2px}
+.dt-key{display:inline-flex;flex-wrap:wrap;gap:4px 14px;font:400 12px/1.2 var(--f-sans);color:var(--ink-2)}
+.dt-key > span[aria-hidden]{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.dt-key .lg-sq{width:9px;height:9px;border-radius:2px}
+.dt-sc{font:400 11px/1.2 var(--f-mono);color:var(--ink-3)}
+.dt-g{background:#f6f7f9;border-radius:10px;padding:8px 6px 6px}
+.dt-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 10px;padding:0 4px 5px}
+.dt-h b{font-size:13px;font-weight:650;color:var(--ink)}
+.dt-h b sup{font-weight:400;color:var(--ink-3)}
+.dt-h span{font-size:11.5px;color:var(--steel)}
+.dt-r{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:3px 4px;border-radius:6px;color:var(--ink-3);outline:none;cursor:default}
+.dt-r > span:first-child{display:flex;align-items:center;white-space:nowrap;min-width:0}
+.dt-r i{flex:none;width:9px;height:9px;border-radius:2px;background:var(--dropped);margin-right:9px}
+.dt-r > span:last-child{font:400 12.5px/1.3 var(--f-mono);font-variant-numeric:tabular-nums}
+.dt-r.k{color:var(--ink);font-weight:600}
+.dt-r.k > span:last-child{font-weight:500}
+.dt-r.k i{background:var(--steel)}
+.dt-r sup{font-weight:400;color:var(--ink-3)}
+.dt-r.hover{background:#fff;box-shadow:inset 0 0 0 1px var(--rule-2)}
+.dt-r:focus-visible{box-shadow:inset 0 0 0 2px var(--steel-2)}
+.dt-g.risk{background:transparent;box-shadow:inset 0 0 0 1px var(--rule)}
+.dt-g.risk .dt-h b{color:var(--ink-3)}
+.dt-g.risk .dt-h span{color:var(--ink-3)}
+.dt-g.risk .dt-r{color:#b4b9c3}
+.dt-g.risk .dt-r i{background:#dde0e6}
+.dt-g.risk .dt-r sup{color:#c0563e}
+.dt-note{margin:4px 4px 0;padding-top:5px;border-top:1px solid var(--rule);font-size:11.5px;line-height:1.45;color:var(--ink-3)}
+.dt-note sup{color:#c0563e}
+@media (max-width:1099px){.f1{grid-template-columns:minmax(0,300px) minmax(0,1fr);column-gap:22px}.f1-tab{padding-right:22px}.dt-key{gap:4px 10px;font-size:11.5px}}
+@media (max-width:899px){
+  .f1{grid-template-columns:minmax(0,1fr);grid-template-areas:"ch" "dt";row-gap:20px}
+  .f1-tab{padding-right:0;border-right:0;border-top:1px solid var(--rule);padding-top:12px}
+}
+@media (max-width:560px){
+  .wf{grid-template-columns:30px minmax(0,1fr);--ph:240px}
+  .wf-groups{gap:10px;padding-right:12px}
+  .wf-gridlines{right:12px}
+  .wf-plotax span{right:8px;font-size:10px}
+  .wf-costax span{right:4px;font-size:9px}
+  .wf-row{gap:3px}
+  .wf-lab div{font-size:9px}
+  .val{left:calc(40% + 11px);font-size:10px}
+  .cval{font-size:9.5px}
+}
 
 /* Lower layout */
 .layout{display:grid;grid-template-columns:minmax(0,var(--col)) 200px;gap:64px;justify-content:center;padding-block:8px 120px}
@@ -582,7 +648,6 @@ footer .wrap{padding-block:22px;font-size:13px;color:var(--ink-3)}
   .hero .wrap{padding-block:36px 24px}
   .hero-main{grid-template-columns:minmax(0,1fr);grid-template-areas:"ab" "ln" "tk";column-gap:0}
   .hero-main .tks{margin-top:22px}
-  .tk-pop{left:0;right:0;top:calc(100% + 6px);width:auto}
   .tabpanel{grid-template-columns:minmax(0,1fr);gap:20px;padding:22px}
   .clips{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
@@ -941,7 +1006,64 @@ section.sec + section.sec{margin-top:128px}
 
 <section class="film-top" id="film-top" aria-label="Project film" hidden>
   <div class="wrap">
-    <div class="ft-frame"><video id="ft-video" src="media/hero/justrua-film-v4.mp4" poster="media/hero/justrua-film-v2.jpg" width="1280" height="720" controls playsinline preload="none"></video></div>
+    <div class="ft-frame"><video id="ft-video" src="media/hero/justrua-film-v6.mp4" poster="media/hero/justrua-film-v2.jpg" width="1280" height="720" controls playsinline preload="none"><track id="ft-cc" kind="captions" srclang="en" label="English" default></video></div>
+    <script type="text/plain" id="ft-vtt">WEBVTT
+
+00:00:02.000 --> 00:00:04.034
+Introducing JustRUA.
+
+00:00:05.700 --> 00:00:08.656
+GPT-6 Astra can drive robot arms directly.
+
+00:00:08.656 --> 00:00:14.445
+It reads the cameras and the arm state, and sends targets to a motion planner.
+
+00:00:14.500 --> 00:00:20.610
+Scores on RoboDojo have risen fast, but reported systems differ in many ways at once.
+
+00:00:20.800 --> 00:00:24.570
+So we take the designs apart and test them in one framework.
+
+00:00:26.350 --> 00:00:28.150
+One testbed, one benchmark.
+
+00:00:28.150 --> 00:00:36.181
+We vary the harness, the actions, reused experience and scene geometry, and evaluate every run on the same episodes.
+
+00:00:36.117 --> 00:00:38.924
+First, a lean harness goes a long way.
+
+00:00:38.924 --> 00:00:47.129
+Keeping the full history and stopping each motion after 20 control steps lifts the score from 29.7 to 38.0.
+
+00:00:47.050 --> 00:00:49.987
+Second, reusing experience is not a free lunch.
+
+00:00:49.987 --> 00:00:58.724
+Demonstrations and a self-written skill library change how the model acts, but none clearly beats the default, and each one costs more.
+
+00:00:58.817 --> 00:01:01.278
+Third, scene geometry helps most.
+
+00:01:01.278 --> 00:01:06.651
+Even depth predicted from RGB alone cuts empty grasps from 41 to 16.
+
+00:01:06.567 --> 00:01:13.200
+With code that solves 3D points from pixels and no decision cap, the score reaches 50.3.
+
+00:01:14.583 --> 00:01:17.917
+Finally, the remaining failures are mostly long-tail.
+
+00:01:17.917 --> 00:01:20.608
+Most of them are specific to one task.
+
+00:01:26.033 --> 00:01:30.946
+No learned policy. No self-improvement loop. No task-specific tuning.
+
+00:01:31.183 --> 00:01:32.480
+JustRUA.
+</script>
+    <script>(()=>{ try{ const t=document.getElementById("ft-cc"), v=document.getElementById("ft-vtt"); if(t&&v) t.src=URL.createObjectURL(new Blob([v.textContent.trim()+"\n"],{type:"text/vtt"})); }catch(e){} })();</script>
     <div class="ft-bar"><span>Project film <em>1:32</em></span><button type="button" class="ft-x" id="ft-close">Close <span aria-hidden="true">&times;</span></button></div>
   </div>
 </section>
@@ -958,7 +1080,7 @@ section.sec + section.sec{margin-top:128px}
       </div>
     </div>
     <div class="hero-main">
-      <p class="abstract">GPT-6 Astra can drive a robot arm directly through a fixed harness, and scores on RoboDojo have risen quickly since. Reported systems bring many improvements that may help, but they may start from different harnesses, use different test subsets and change several parts of the design at once, which can make it hard to tell which choices produce most of the gains. We take these designs apart and study them in one framework. JustRUA starts from the official L3 harness and keeps only what matters most. With no learned policy, no self-improvement loop and no task-specific tuning, this minimal harness raises its score on the RoboDojo simulation benchmark from 29.7 to 50.3.</p>
+      <p class="abstract">GPT-6 Astra can drive a robot arm directly through a fixed harness, and scores on RoboDojo have risen quickly since. Reported systems differ in harness and test subset and often change several designs at once, so it is hard to tell which choices produce the gains. We take these designs apart and test them in one framework. JustRUA starts from the official L3 harness and keeps only what matters most. With no learned policy, self-improvement loop or task-specific tuning, it raises the score on the RoboDojo simulation benchmark from 29.7 to 50.3.</p>
       <div class="links hero-links">
         <a class="chip film-btn" href="#film-top" id="film-open"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="7.25"/><path d="M7.5 6.2v5.6L11.8 9z" fill="currentColor" stroke="none"/></svg>Project film <em>1:32</em></a>
         <span class="chip soon" aria-disabled="true" title="Coming soon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 1.75h5.5L12.5 4.75V14.25H4z"/><path d="M9.25 1.75v3.25h3.25M6 8h4.5M6 10.75h4.5"/></svg>Paper<span class="soon-t">soon</span></span>
@@ -969,13 +1091,13 @@ section.sec + section.sec{margin-top:128px}
       </div>
       <ol class="tks" aria-label="Key takeaways">
       <li class="tk" tabindex="0" data-go="sec-harness"><span class="n">01</span><b>A lean harness goes a long way.</b><span class="more" aria-hidden="true">+</span>
-        <span class="tk-pop">The official harness keeps only the last two observations and lets each motion run to the end before the model looks again. Keeping the full episode history and stopping each motion after 20 control steps lift the evaluation-set score from 29.7 to 38.0. Relative targets, named skills and model-chosen step counts all fail to beat plain absolute targets.</span></li>
+        <span class="tk-pop"><span>Keeping the full episode history and stopping each motion after 20 control steps lift the score from 29.7 to 38.0. Relative targets, named skills and model-chosen step counts do not beat plain absolute targets.</span></span></li>
       <li class="tk" tabindex="0" data-go="sec-exp"><span class="n">02</span><b>Reusing experience is not a free lunch.</b><span class="more" aria-hidden="true">+</span>
-        <span class="tk-pop">Demonstrations and a self-written skill library change how the model acts, yet neither clearly beats the default on the evaluation set, and each makes an episode more expensive. Of everything we tried, experience carries the highest risk of gaming the benchmark. Five rounds of self-improvement, with each task practised once, brought no visible gain, while systems that report gains practise each task many more times.</span></li>
+        <span class="tk-pop"><span>Demonstrations and a self-written skill library change how the model acts, but neither clearly beats the default, and both make an episode more expensive. They also carry the highest risk of gaming the benchmark.</span></span></li>
       <li class="tk" tabindex="0" data-go="sec-geo"><span class="n">03</span><b>Scene geometry helps most.</b><span class="more" aria-hidden="true">+</span>
-        <span class="tk-pop">Depth images cut empty grasps from 41 to 16 over the same 42 episodes, even when Depth Pro predicts the depth from RGB alone and is off by tens of centimetres. The gain needs no privileged information. With code that solves 3D coordinates from pixels and no decision cap, the evaluation-set score reaches 50.3.</span></li>
+        <span class="tk-pop"><span>Depth images cut empty grasps from 41 to 16, even when Depth Pro predicts the depth from RGB alone and is off by tens of centimetres. With code that solves 3D coordinates from pixels and no decision cap, the score reaches 50.3.</span></span></li>
       <li class="tk" tabindex="0" data-go="sec-err"><span class="n">04</span><b>Remaining failures are mostly long-tail.</b><span class="more" aria-hidden="true">+</span>
-        <span class="tk-pop">We reviewed every first-round task where our best configuration scores below 50. The causes are plans that do not suit the arm, unplanned knocks, slipping grasps and a few prompt or scoring issues, and most are specific to one task. Revising the prompts lifts the first round from 54.0 to 55.6. The rest would need trial and error on each task, which comes close to tuning on the test tasks themselves.</span></li>
+        <span class="tk-pop"><span>Most failures left in our best configuration are specific to one task, such as plans that do not suit the arm, unplanned knocks and slipping grasps. Fixing them would take trial and error on each task, which comes close to tuning on the test tasks.</span></span></li>
       </ol>
     </div>
   </div>
@@ -984,19 +1106,50 @@ section.sec + section.sec{margin-top:128px}
 <section class="gains" id="gains">
   <div class="wrap">
     <h2 class="sec-h">From the official L3 harness to JustRUA</h2>
-    <p class="sec-sub">We start from the official L3 harness, test the designs that recent systems add and keep what matters most.</p>
+    <p class="sec-sub">We test the designs that recent systems add and keep what matters most.</p>
     <div class="legend" aria-hidden="true">
       <span class="lg-item main"><i class="lg-pill"></i><span>Evaluation set, all 42 tasks, 111 episodes<sup>1</sup><em class="lg-claim">A reliable, low-cost estimate of the full 2,100-episode evaluation</em></span></span>
       <span class="lg-item minor"><i class="lg-ring"></i>First round, 42 episodes</span>
       <span class="lg-item minor"><i class="lg-cost"></i>Cost per first-round episode, lower bound</span>
-      <span class="lg-key"><span><i class="lg-sq"></i>Kept in JustRUA</span><span><i class="lg-sq drop"></i>Tried, not kept</span></span>
     </div>
     <div class="wf-panel">
-      <div class="wf-scroll">
-        <div class="wf" id="wf" role="img" aria-label="Evaluation-set score of each configuration, with first-round scores marked. Harness: official L3 29.7, full history 34.7. Action: model-set step count 37.9, 20-step cap 38.0, relative targets 33.9, semantic operations 34.6. Reusing experience: visual demonstration 39.9, text trajectory 35.2, self-built library 37.0. Scene geometry: affordances drawn 36.7, compact readings 39.8, predicted depth 42.4, affordance panel 42.1, coordinate solving 50.3."></div>
+      <div class="f1" id="f1">
+        <div class="f1-tab">
+          <div class="dt" id="dt" role="table" aria-label="Every design tested, grouped by the part of the system it changes, with its evaluation-set score">
+            <div class="dt-top" role="row"><span class="dt-key" role="columnheader"><span class="vh">Design tested. </span><span aria-hidden="true"><i class="lg-sq"></i>Kept in JustRUA</span><span aria-hidden="true"><i class="lg-sq drop"></i>Tried, not kept</span></span><span class="dt-sc" role="columnheader">Score</span></div>
+            <div class="dt-g" role="rowgroup"><div class="dt-h" role="row"><b role="rowheader">Harness</b><span>Full history helps</span></div>
+              <div class="dt-r k" data-i="0" tabindex="0" role="row"><span role="cell"><i></i>Official L3 harness</span><span role="cell">29.7</span></div>
+              <div class="dt-r k" data-i="1" tabindex="0" role="row"><span role="cell"><i></i>Full history<sup>2</sup></span><span role="cell">34.7</span></div>
+            </div>
+            <div class="dt-g" role="rowgroup"><div class="dt-h" role="row"><b role="rowheader">Action</b><span>Short motions help</span></div>
+              <div class="dt-r k" data-i="3" tabindex="0" role="row"><span role="cell"><i></i>20-step cap</span><span role="cell">38.0</span></div>
+              <div class="dt-r" data-i="2" tabindex="0" role="row"><span role="cell"><i></i>Model-set step count</span><span role="cell">37.9</span></div>
+              <div class="dt-r" data-i="4" tabindex="0" role="row"><span role="cell"><i></i>Relative targets</span><span role="cell">33.9</span></div>
+              <div class="dt-r" data-i="5" tabindex="0" role="row"><span role="cell"><i></i>Semantic operations</span><span role="cell">34.6</span></div>
+            </div>
+            <div class="dt-g risk" role="rowgroup"><div class="dt-h" role="row"><b role="rowheader">Reusing experience<sup>3</sup></b><span>No clear gain</span></div>
+              <div class="dt-r" data-i="6" tabindex="0" role="row"><span role="cell"><i></i>Visual demonstration<sup>§</sup></span><span role="cell">39.9</span></div>
+              <div class="dt-r" data-i="7" tabindex="0" role="row"><span role="cell"><i></i>Text trajectory<sup>§</sup></span><span role="cell">35.2</span></div>
+              <div class="dt-r" data-i="8" tabindex="0" role="row"><span role="cell"><i></i>Self-built library</span><span role="cell">37.0</span></div>
+            </div>
+            <div class="dt-g" role="rowgroup"><div class="dt-h" role="row"><b role="rowheader">Scene geometry</b><span>Helps most, except affordances</span></div>
+              <div class="dt-r k" data-i="10" tabindex="0" role="row"><span role="cell"><i></i>Compact readings</span><span role="cell">39.8</span></div>
+              <div class="dt-r k" data-i="11" tabindex="0" role="row"><span role="cell"><i></i>Predicted depth</span><span role="cell">42.4</span></div>
+              <div class="dt-r k" data-i="13" tabindex="0" role="row"><span role="cell"><i></i>Coordinate solving<sup>4</sup></span><span role="cell">50.3</span></div>
+              <div class="dt-r" data-i="9" tabindex="0" role="row"><span role="cell"><i></i>Affordances drawn</span><span role="cell">36.7</span></div>
+              <div class="dt-r" data-i="12" tabindex="0" role="row"><span role="cell"><i></i>Affordance panel</span><span role="cell">42.1</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="f1-ch">
+          <div class="wf-scroll">
+            <div class="wf" id="wf" role="img" aria-label="Evaluation-set score of each design JustRUA keeps, in the order it was added, with the cost per first-round episode above. Official L3 harness 29.7, full history 34.7, 20-step cap 38.0, compact readings 39.8, predicted depth 42.4, coordinate solving 50.3."></div>
+          </div>
+          <div class="wf-detail" id="wf-detail" aria-live="polite"></div>
+        </div>
       </div>
-      <p class="wf-caption"><b>Figure 1.</b> Design choices tested on the way from the official L3 harness to JustRUA. The changes JustRUA keeps give the model its full history, shorter motions and the geometry of the scene. Other action interfaces, precomputed affordances and every form of experience reuse were tried and dropped. Each bar is one evaluation-set run, and the ring marks its first-round subset. The dashed line above tracks the cost of one first-round episode, a lower bound that assumes all cacheable input hits the cache.</p>
-      <p class="wf-fn"><span><sup>1</sup> Four layouts for the 23 most uncertain tasks and one for the rest, with a score SD of 2.6. The official L3 harness scores 29.7 on it and 29.0 on all 2,100 episodes.</span><span><sup>2</sup> The official loop moved into a Codex session that keeps every image of the episode.</span><span><sup>3</sup> Reusing experience carries some risk of gaming the benchmark, since it draws on the tasks being scored.</span><span><sup>4</sup> The model may also run code, mostly to compute target coordinates, with web search off. The decision cap is lifted, and the official action limit still applies.</span></p>
+      <p class="wf-caption"><b>Figure 1.</b> The table lists every design we tested, by axis, and the chart the designs JustRUA keeps, in the order added. Each score is one evaluation-set run, the ring its first-round subset. Cost is a lower bound that assumes all cacheable input hits the cache.</p>
+      <p class="wf-fn"><span><sup>1</sup> Four layouts for the 23 most uncertain tasks and one for the rest, with a score SD of 2.6. The official L3 harness scores 29.7 on it and 29.0 on all 2,100 episodes.</span><span><sup>2</sup> The official loop moved into a Codex session that keeps every image of the episode.</span><span><sup>3</sup> Gaming risk. Reusing experience draws on the tasks being scored, so none of it is kept, whatever the score. Designs marked § game it most directly, using an expert demonstration of the very task being scored.</span><span><sup>4</sup> The model may also run code, with web search off. The decision cap is lifted, and the official action limit still applies.</span></p>
     </div>
   </div>
 </section>
@@ -1006,7 +1159,7 @@ section.sec + section.sec{margin-top:128px}
 
     <section class="sec" id="framework">
       <h2 class="sec-h">Controlled study framework</h2>
-      <p class="why">Scores reported on RoboDojo differ in harness and test subset, and most reports change several parts of the design at once. Reproducing each one would carry those differences over. We instead take the designs apart and test them on one testbed and one benchmark, changing as little as we can between runs.</p>
+      <p class="why">Instead of reproducing each reported system, we take the designs apart and test them on one testbed and one benchmark, changing as little as we can between runs.</p>
 
       <div id="fw-box">
       <div class="fw-tags" role="group" aria-label="Choose a part of the study">
@@ -1044,7 +1197,7 @@ section.sec + section.sec{margin-top:128px}
               <g class="region" data-ax="eval" tabindex="0" role="button" aria-label="Evaluation"><rect x="786" y="26" width="168" height="84" rx="14"/><g class="tag"><rect x="798" y="16" width="82" height="20" rx="10"/><text x="810" y="30">Evaluation</text></g></g>
             </svg>
           </div>
-          <p class="fw-note">Blue outlines mark the parts JustRUA changes from the official L3 harness. Select a dashed area to see what we varied there.</p>
+          <p class="fw-note">Blue outlines mark what JustRUA changes. Select a dashed area to see what we varied.</p>
         </div>
         <div class="card fw-detail" id="fw-detail"></div>
       </div>
@@ -1053,7 +1206,7 @@ section.sec + section.sec{margin-top:128px}
       <div class="halves">
         <div class="card" id="proxy">
           <h3>Evaluation set</h3>
-          <p>A task is uncertain when its score jumps between few levels and it succeeds only some of the time. The 23 most uncertain tasks get four layouts each and every other task keeps one, for 111 episodes. Layout choices are fixed in advance, since layouts differ noticeably in difficulty (<a href="#sec-eval">Notes on evaluation</a>).</p>
+          <p>The 23 most uncertain tasks, those that succeed only some of the time, get four layouts each and the rest keep one, for 111 episodes. Layouts are fixed in advance (<a href="#sec-eval">Notes on evaluation</a>).</p>
           <div class="px-pair">
             <figure>
               <div class="mini-h2">The selected tasks<br>vary most</div>
@@ -1064,11 +1217,11 @@ section.sec + section.sec{margin-top:128px}
               <svg class="pxsvg" id="px-b" viewBox="0 0 200 248" role="img" aria-label="Bootstrap standard deviation of the overall score against the number of episodes. Every task once, 42 episodes, 4.81. Twice, 84, 3.42. Three times, 126, 2.79. Four times, 168, 2.42. Evaluation set, 111 episodes, 2.58."></svg>
             </figure>
           </div>
-          <p class="px-note">Left, score SD across eight rounds for each task. Right, bootstrap SD of the overall score at medium effort. The evaluation set reaches 2.58 with 111 episodes, every task three times reaches 2.79 with 126.</p>
+          <p class="px-note">Left, each task's score SD across eight rounds. Right, bootstrap SD of the overall score at medium effort, lower for the evaluation set than for every task run three times.</p>
         </div>
         <div class="card" id="behaviour">
           <h3>Behaviour review</h3>
-          <p>Every first-round episode is reviewed from its video, and behaviours the score does not show are counted, as lower bounds.</p>
+          <p>Every first-round episode is reviewed from video, and behaviours the score misses are counted as lower bounds.</p>
           <div class="bhv" id="bhv">
             <div class="bhv-tabs" role="tablist" aria-label="Behaviours" id="bhv-tabs"></div>
             <div class="bhv-media"><video id="bhv-video" muted loop playsinline preload="metadata" width="640" height="480"></video><span class="bhv-task" id="bhv-task"></span></div>
@@ -1080,11 +1233,11 @@ section.sec + section.sec{margin-top:128px}
 
     <section class="sec axis-sec" id="sec-harness">
       <h2 class="sec-h"><span class="num">01</span>Harness and action</h2>
-      <p class="sec-sub">Our starting point was a discrepancy. The first evaluation of GPT-6 Astra on RoboDojo found it weak on tasks that require precision, scoring 12.7 on Precision, one of RoboDojo's five task groups, under the official L3 harness (<a class="cite" href="https://arxiv.org/abs/2609.24170" target="_blank" rel="noopener">RoboProbe</a>), and a broader study from Galbot saw a gap between its task decisions and reliable physical control (<a class="cite" href="https://arxiv.org/abs/2609.38537" target="_blank" rel="noopener">Galbot</a>). Yet a few reasonable fixes to the harness and the action loop, with no elaborate design on top, brought its Precision score to the level of the strongest vision-language-action models of the time (25.0 on our evaluation set, against 24.8 for DM0.5). We came to suspect that much of the weakness lay in the harness rather than in the model.</p>
+      <p class="sec-sub">The first evaluation of GPT-6 Astra on RoboDojo found it weak on precision tasks, scoring 12.7 on Precision under the official L3 harness (<a class="cite" href="https://arxiv.org/abs/2609.24170" target="_blank" rel="noopener">RoboProbe</a>), and Galbot saw a similar gap between its decisions and physical control (<a class="cite" href="https://arxiv.org/abs/2609.38537" target="_blank" rel="noopener">Galbot</a>). Yet a few reasonable fixes to the harness and the action loop brought its Precision score to the level of the strongest vision-language-action models of the time (25.0 on our evaluation set, against 24.8 for DM0.5). Much of the weakness seemed to lie in the harness rather than the model.</p>
 
       <div class="finding" id="f-harness">
         <h3><span class="num">1.1</span>Codex and full history</h3>
-        <p class="f-sub">The official L3 harness, L3 Inspect EEF from RoboProbe, calls the model API directly and keeps images from the last two observations only. We run the same loop in a <a class="cite" href="https://openai.com/codex/" target="_blank" rel="noopener">Codex</a> session<sup>*</sup> that keeps every image of the episode, with Codex's own tools switched off. The controlled comparisons keep the harness's default cap of 100 decisions per episode, and only the final configuration of JustRUA removes it. Moving the loop into Codex alone lowered the first-round score, so we credit the gain to Codex and the full history together.</p>
+        <p class="f-sub">The official L3 harness (L3 Inspect EEF, RoboProbe) calls the model API directly and keeps images from the last two observations only. We run the same loop in a <a class="cite" href="https://openai.com/codex/" target="_blank" rel="noopener">Codex</a> session<sup>*</sup> that keeps every image, with Codex's own tools off. Codex alone lowered the first-round score, so we credit the gain to the two together. All comparisons keep the default cap of 100 decisions per episode, which only the final JustRUA lifts.</p>
         <div class="card stbl-card">
           <table class="stbl">
             <thead><tr><th>Configuration</th><th>Evaluation set</th><th>First round</th></tr></thead>
@@ -1100,7 +1253,7 @@ section.sec + section.sec{margin-top:128px}
 
       <div class="finding" id="f-action">
         <h3><span class="num">1.2</span>Action design</h3>
-        <p class="f-sub"><span class="run">Motion length.</span> <a class="cite" href="https://arxiv.org/abs/2310.17274" target="_blank" rel="noopener">CuRobo</a> occasionally returns an unstable plan, and in the official loop the whole motion runs before the model sees anything. We cap each motion at 20 control steps, so the model looks again before a bad plan carries the arm far. We also tried letting the model choose 3 to 32 steps per motion, as in action chunking (<a class="cite" href="https://arxiv.org/abs/2304.13705" target="_blank" rel="noopener">ACT</a>, <a class="cite" href="https://research.nvidia.com/labs/srl/projects/astranomy/" target="_blank" rel="noopener">Astranomy</a>). JustRUA keeps the fixed cap.</p>
+        <p class="f-sub"><span class="run">Motion length.</span> In the official loop a whole motion runs before the model sees anything, so an unstable <a class="cite" href="https://arxiv.org/abs/2310.17274" target="_blank" rel="noopener">CuRobo</a> plan can carry the arm far. We stop each motion after 20 control steps. Letting the model choose 3 to 32 steps, as in action chunking (<a class="cite" href="https://arxiv.org/abs/2304.13705" target="_blank" rel="noopener">ACT</a>, <a class="cite" href="https://research.nvidia.com/labs/srl/projects/astranomy/" target="_blank" rel="noopener">Astranomy</a>), did no better, so JustRUA keeps the fixed cap.</p>
         <div class="mlen wide-r">
           <div class="card stbl-card">
             <table class="stbl">
@@ -1114,12 +1267,12 @@ section.sec + section.sec{margin-top:128px}
                 <tr class="k tot"><td>Overall</td><td>34.7</td><td class="kp b">38.0</td><td>37.9</td></tr>
               </tbody>
             </table>
-            <p class="tbl-note">All three keep the full episode history. Model-chosen motions run 3 to 32 control steps.</p>
+            <p class="tbl-note">All three keep the full episode history.</p>
           </div>
           <div class="clips2" id="cap-clips"></div>
         </div>
-        <p class="f-sub"><span class="run">Alternative interfaces.</span> Two alternatives come from recent systems, and neither beat absolute targets. Relative targets give position and orientation as offsets from the measured pose, as in <a class="cite" href="https://arxiv.org/abs/2609.22966" target="_blank" rel="noopener">RoboDawn</a>. They scored lower, much as <a class="cite" href="https://research.nvidia.com/labs/srl/projects/astranomy/" target="_blank" rel="noopener">Astranomy</a> found, and the arm struck objects almost three times as often, 20 times against 7 in the first round. One likely reason is that every coordinate the model reads, from the task recipe to the measured pose, is given in the world frame, so an offset asks for one more subtraction before each move.</p>
-        <p class="f-sub">Semantic operations replace raw targets with named skills, a common way to connect language models to robots (<a class="cite" href="https://arxiv.org/abs/2204.01691" target="_blank" rel="noopener">SayCan</a>, <a class="cite" href="https://arxiv.org/abs/2209.07753" target="_blank" rel="noopener">Code as Policies</a>). Ours are built on move_eef and only describe moves at a higher level, with no new control code or learned policy. Some name the purpose of a move, such as approach or transport, some merge several moves into one call, such as pick, and adjust_view comes with guidance to look before acting. They changed what the model did more than how well it did it. It moved its camera more than three times as often and dropped more of what it held, and the score did not rise.</p>
+        <p class="f-sub"><span class="run">Alternative interfaces.</span> Two alternatives from recent systems did not beat absolute targets. Relative targets, offsets from the measured pose as in <a class="cite" href="https://arxiv.org/abs/2609.22966" target="_blank" rel="noopener">RoboDawn</a>, scored lower, as <a class="cite" href="https://research.nvidia.com/labs/srl/projects/astranomy/" target="_blank" rel="noopener">Astranomy</a> also found, and the arm struck objects almost three times as often. Every coordinate the model reads is in the world frame, so an offset likely asks for one more subtraction before each move.</p>
+        <p class="f-sub">Semantic operations replace raw targets with named skills, as in <a class="cite" href="https://arxiv.org/abs/2204.01691" target="_blank" rel="noopener">SayCan</a> and <a class="cite" href="https://arxiv.org/abs/2209.07753" target="_blank" rel="noopener">Code as Policies</a>. Ours are built on move_eef and add no new control code or learned policy. They changed what the model did more than how well it did. It moved its camera more than three times as often and dropped more of what it held, and the score did not rise.</p>
         <div class="mlen top">
           <div class="card stbl-card">
             <table class="stbl">
@@ -1184,7 +1337,7 @@ section.sec + section.sec{margin-top:128px}
           </figure>
           <div class="tiles">
             <div class="tile"><span class="t-l">Score on the evaluation set</span><span class="t-v"><s>38.0</s> → <b>42.0</b></span><span class="t-s">If the six episodes that used to run out of decisions keep their old scores, the new score is only 39.4.</span></div>
-            <div class="tile"><span class="t-l">Decisions used per episode</span><span class="t-v"><s>63.2</s> → <b>52.7</b></span><span class="t-s">A typical episode goes from 65 to 51. In the 31 episodes both versions complete, 50.2 to 40.0.</span></div>
+            <div class="tile"><span class="t-l">Decisions used per episode</span><span class="t-v"><s>63.2</s> → <b>52.7</b></span><span class="t-s">In the 31 episodes both versions complete, 50.2 to 40.0.</span></div>
             <div class="tile"><span class="t-l">Episodes that ran out of decisions</span><span class="t-v"><s>0</s> → <b>3</b> <em>of 6 now succeed</em></span><span class="t-s">The mean score of these six rises from 11.7 to 58.3.</span></div>
           </div>
         </div>
@@ -1209,11 +1362,11 @@ section.sec + section.sec{margin-top:128px}
 
     <section class="sec axis-sec" id="sec-exp">
       <h2 class="sec-h"><span class="num">02</span>Reusing experience</h2>
-      <p class="sec-sub">Experience from other episodes is the core of recursive self-improvement, and of everything we tried it carries the greatest risk of gaming the benchmark. Looking up a task's own demonstration comes close to routing tasks to separate policies, and practising on the test layouts comes close to training on the test set. We tested it because it is widely used. No form of experience clearly beat the default.</p>
+      <p class="sec-sub">Experience from other episodes is the core of recursive self-improvement, and of everything we tried it carries the greatest risk of gaming the benchmark, since it draws on the tasks being scored. We tested it because it is widely used. No form clearly beat the default.</p>
 
       <div class="finding" id="f-exp">
         <h3><span class="num">2.1</span>Demonstrations</h3>
-        <p class="f-sub">Demonstrations placed in context are a common way to help GPT-6 Astra, and <a class="cite" href="https://arxiv.org/abs/2610.22471" target="_blank" rel="noopener">SenseNova</a> tests them. The visual demo and the text trajectory both draw on one expert-curated successful episode per task from <a class="cite" href="https://arxiv.org/abs/2609.22966" target="_blank" rel="noopener">RoboDawn</a>, looked up by task name and inserted once before the first decision. The visual demo shows the 16 keyframes its author selected. The text trajectory gives the same episode stage by stage, as the poses of both arms, the commands issued and their outcomes, converted to our coordinates, with the author's plans left out.</p>
+        <p class="f-sub">Demonstrations in context are a common way to help GPT-6 Astra (<a class="cite" href="https://arxiv.org/abs/2610.22471" target="_blank" rel="noopener">SenseNova</a>). Both versions draw on one expert-curated successful episode per task from <a class="cite" href="https://arxiv.org/abs/2609.22966" target="_blank" rel="noopener">RoboDawn</a>, inserted once before the first decision. The visual demo shows its 16 keyframes, and the text trajectory gives the same episode stage by stage, as poses, commands and outcomes in our coordinates.</p>
         <div class="mlen top">
           <div class="card stbl-card">
             <table class="stbl">
@@ -1244,7 +1397,7 @@ section.sec + section.sec{margin-top:128px}
             </div>
             <div class="iface-stack">
               <div class="iface-pane on" data-k="visual">
-                <p>What the model sees before its first decision in make_kong, the 16 keyframes of the source episode, head camera, numbered in order.</p>
+                <p>The 16 keyframes the model sees before its first decision in make_kong, head camera.</p>
                 <div class="kf-wrap">
                   <img class="kf" src="media/exp/kong-r1-keyframes.jpg" alt="Sixteen keyframes of the make_kong demonstration, from the opponent's discard to the final kong" width="1298" height="978" loading="lazy">
                   <ol class="kf-n" aria-hidden="true"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li></ol>
@@ -1252,7 +1405,7 @@ section.sec + section.sec{margin-top:128px}
                 <p class="tbl-note" style="margin:0">Three tasks also include the author's wrist-camera views. No action trace or robot state is attached.</p>
               </div>
               <div class="iface-pane" data-k="text" aria-hidden="true">
-                <p>Five of the 40 stages of the same episode. The handover appears only as coordinates, the left hand carrying the tile to the table centre and opening there, and the right hand closing at the same point.</p>
+                <p>Five of the 40 stages of the same episode. The handover appears only as coordinates.</p>
 <pre class="code demo-code">Stage 26 (source turn 28, control step 1522):
 left: pose=[-0.4,-0.05,0.9079,0.0,0.0,90.0]; opening=0.78
 right: pose=[0.3,-0.2019,0.922,90.0,0.0,0.0]; opening=0.18
@@ -1292,14 +1445,14 @@ right: pose=[-0.001,-0.208,0.7759,0.0,0.0,0.0]; opening=1
           </div>
         </div>
         <div class="kong-row">
-          <p class="f-sub"><span class="run">A better plan is not enough.</span> With either demonstration the model passed objects through the table more often, 15 and 13 times against 9 in the first round, and dropped fewer. In make_kong, without a demonstration it never hands the tile to the other arm, as the error analysis shows. With either demonstration it copies the handover in the demonstration. One arm flips the tile and sets it down at the table centre, and the other carries it to the end of the row. The text trajectory carries this handover only as coordinates, and the model still found it. Neither run copies the last step, where the demonstration grips the tile upright to push it into the row, and both lose the tiles on that push and score 0. Fixes of this kind are lost to failures elsewhere, so the overall score barely moves.</p>
+          <p class="f-sub"><span class="run">A better plan is not enough.</span> With either demonstration the model passed objects through the table more often and dropped fewer. In make_kong it copies the demonstrated handover, which it never does without one, even when the text trajectory gives the handover only as coordinates. Neither run copies the last step, gripping the tile upright to push it into the row, and both lose the tiles there and score 0. Fixes of this kind are lost to failures elsewhere, so the overall score barely moves.</p>
           <div class="clips2" id="kong-clips"></div>
         </div>
       </div>
 
       <div class="finding" id="f-loop">
         <h3><span class="num">2.2</span>Self-improvement loop</h3>
-        <p class="f-sub">Several RoboDojo entries improve themselves by writing and refining their own skills (<a class="cite" href="https://arxiv.org/abs/2610.18867" target="_blank" rel="noopener">EmbodiedEvo</a>, <a class="cite" href="https://github.com/OpenSenseNova/SenseNova-RoboRSI" target="_blank" rel="noopener">SenseNova-RoboRSI</a>). Here a Codex agent writes extra operations for the model, as Python code built on move_eef, together with a guide on when to use them. It starts from the RoboDawn demonstrations of all 42 tasks. The tasks are split into five groups. In each round the model runs the current library on one group, and the agent then reviews those runs, with their scores, action logs and videos, and revises the library for the next round. Nothing is edited by hand. Unlike the demonstrations, the result is not stored or looked up by task.</p>
+        <p class="f-sub">Several RoboDojo entries improve themselves by writing their own skills (<a class="cite" href="https://arxiv.org/abs/2610.18867" target="_blank" rel="noopener">EmbodiedEvo</a>, <a class="cite" href="https://github.com/OpenSenseNova/SenseNova-RoboRSI" target="_blank" rel="noopener">SenseNova-RoboRSI</a>). Here a Codex agent writes extra operations on top of move_eef, with a guide on when to use them, starting from the RoboDawn demonstrations. The 42 tasks are split into five groups. Each round the model runs the library on one group, and the agent reviews the scores, logs and videos and revises it. Nothing is edited by hand, and nothing is stored or looked up by task.</p>
         <div class="card iface loopx">
           <div class="act-head">
             <span class="seg" role="group" aria-label="Choose round" id="loop-seg"><button type="button" data-k="r1" aria-pressed="true">Round 1</button><button type="button" data-k="r2" aria-pressed="false">Round 2</button><button type="button" data-k="r3" aria-pressed="false">Round 3</button><button type="button" data-k="r4" aria-pressed="false">Round 4</button><button type="button" data-k="r5" aria-pressed="false">Round 5</button></span>
@@ -1311,7 +1464,7 @@ right: pose=[-0.001,-0.208,0.7759,0.0,0.0,0.0]; opening=1
                 <div class="lp-grp"><span class="lp-l">Group 1 &middot; 3 successes</span><div class="gts"><span class="gt ok"><code>stack_bowls</code><b>1</b></span><span class="gt ct"><code>plug_in_charger</code><b>0</b></span><span class="gt ok"><code>general_pickup</code><b>1</b></span><span class="gt ct"><code>fill_pen_holder</code><b>0</b></span><span class="gt"><code>sweep_blocks</code><b>0</b></span><span class="gt"><code>deposit_coin</code><b>0.2</b></span><span class="gt"><code>cover_blocks</code><b>0</b></span><span class="gt"><code>classify_objects</code><b>0.4</b></span><span class="gt ok"><code>push_T</code><b>1</b></span></div></div>
                 <div class="lp-rows">
                   <div class="tg"><span class="tg-c">Seen</span><span class="lp-tx">In <code>plug_in_charger</code> and <code>fill_pen_holder</code> the model let go before the plug or the pen was in place.</span></div>
-                  <div class="tg"><span class="tg-c">Changed for round 2</span><span class="lp-tx">place and grasp can stop before letting go or closing, so the model can look first. A new insert lines a held tip up with a hole and pushes it in, only once the hand is within 2 mm and 1&deg; of the entry.</span></div>
+                  <div class="tg"><span class="tg-c">Changed for round 2</span><span class="lp-tx">place and grasp can pause before letting go or closing. A new insert pushes a held tip into a hole once it is within 2 mm and 1° of the entry.</span></div>
                 </div>
                 <pre class="code lp-code">place(..., release_after_lowering=false)
 grasp(..., close_after_approach=false)
@@ -1332,7 +1485,7 @@ pivot(arm, feature_offset, target_orientation, feature_shift)</pre>
                 <div class="lp-grp"><span class="lp-l">Group 3 &middot; 1 success</span><div class="gts"><span class="gt"><code>sort_nesting_dolls_by_size</code><b>0</b></span><span class="gt"><code>fill_egg_holder</code><b>0.1</b></span><span class="gt ok"><code>fold_clothes</code><b>1</b></span><span class="gt ct"><code>play_Xylophone</code><b>0</b></span><span class="gt ct"><code>swap_blocks</code><b>0</b></span></div></div>
                 <div class="lp-rows">
                   <div class="tg"><span class="tg-c">Seen</span><span class="lp-tx">In <code>play_Xylophone</code> and <code>swap_blocks</code> the model counted presses that never registered.</span></div>
-                  <div class="tg"><span class="tg-c">Changed for round 4</span><span class="lp-tx">The guide now tells the model to record an attempted press separately from a confirmed one. A new tap makes one press and return, only once the hand is within 2 mm and 1&deg; of the target.</span></div>
+                  <div class="tg"><span class="tg-c">Changed for round 4</span><span class="lp-tx">The guide separates attempted presses from confirmed ones. A new tap presses once and returns, within 2 mm and 1° of the target.</span></div>
                 </div>
                 <pre class="code lp-code">tap(arm, target_point, feature_offset, axis, clearance, activate)
 guide: &quot;record attempted contact separately from verified activation&quot;</pre>
@@ -1356,9 +1509,9 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
                 <pre class="code lp-code">hold(cycles, note)</pre>
               </div>
           </div>
-          <p class="tbl-note" style="margin:0">Scores are per task, from 0 to 1. Each round runs on a different group, so the group results are not a learning curve. Problems and changes paraphrase the library's own records.</p>
+          <p class="tbl-note" style="margin:0">Scores are per task, from 0 to 1. Each round runs a different group, so this is not a learning curve. Problems and changes paraphrase the library's own records.</p>
         </div>
-        <p class="f-sub" style="margin-top:22px">The library changed how the model grasped. In the first round, empty grasps fell from 47 to 33 and arm-to-arm collisions from 6 to 0. The loop ran for five rounds, and each task was practised once. Systems that report clear gains from self-improvement practise each task many more times (<a class="cite" href="https://arxiv.org/abs/2610.18867" target="_blank" rel="noopener">EmbodiedEvo</a>, <a class="cite" href="https://arxiv.org/abs/2610.26848" target="_blank" rel="noopener">PhysRSI-eval</a>). On the iterate set, the tasks seen inside the loop, the round-5 library scored slightly higher than the runs inside the loop, and on the evaluation set it stayed level with the default. The loop helps, but slowly.</p>
+        <p class="f-sub" style="margin-top:22px">The library changed how the model grasped, with fewer empty grasps and no arm-to-arm collisions in the first round. With each task practised once, it scored slightly higher than the loop's own runs on the tasks it had seen and stayed level with the default on the evaluation set. Systems that report clear gains practise each task many more times (<a class="cite" href="https://arxiv.org/abs/2610.18867" target="_blank" rel="noopener">EmbodiedEvo</a>, <a class="cite" href="https://arxiv.org/abs/2610.26848" target="_blank" rel="noopener">PhysRSI-eval</a>). The loop helps, but slowly.</p>
         <div class="tiles tiles4">
           <div class="tile"><span class="t-l">Practice per task</span><span class="t-v"><b>1</b> <em>run in the loop</em></span><span class="t-s">Each round runs a different group of tasks.</span></div>
           <div class="tile"><span class="t-l">Evaluation set</span><span class="t-v"><s>38.0</s> → <b>37.0</b></span><span class="t-s">The default against the round-5 library.</span></div>
@@ -1370,14 +1523,14 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
     <section class="sec axis-sec" id="sec-geo">
       <h2 class="sec-h"><span class="num">03</span>Scene geometry</h2>
-      <p class="sec-sub">Recent agent systems feed the model depth, point clouds and affordances from dedicated models. We asked how much of this GPT-6 actually needs. Its own grip readings, depth predicted from RGB and a little code that turns pixels into 3D coordinates go a long way without any simulator ground truth, while precomputed affordances, the most elaborate piece, did not help and were left out.</p>
+      <p class="sec-sub">Recent agent systems give the model depth, point clouds and affordances from dedicated models. GPT-6 needs less. Its own grip readings, depth predicted from RGB and a little code that turns pixels into 3D coordinates carry most of the gain without simulator ground truth, while precomputed affordances did not help.</p>
 
       <div class="finding" id="f-readings">
         <h3><span class="num">3.1</span>Robot readings</h3>
-        <p class="f-sub">Robot readings are the basic sensor values of each gripper, finger positions and forces, contact force and wrist load. They carry no privileged information, such as the true pose of any object in the simulator.</p>
+        <p class="f-sub">Robot readings are each gripper's basic sensor values, finger positions and forces, contact force and wrist load, with no privileged information such as the true pose of an object.</p>
         <div class="gd-row">
           <div class="gd-text">
-            <p class="f-sub">Their clearest use is in grasping. The default interface reports the jaw opening the model asked for, so after closing on an object the model sees its own target. The readings give the opening the fingers actually reached and the force at each fingertip.</p>
+            <p class="f-sub">They help most in grasping. The default interface reports only the jaw opening the model asked for, while the readings give the opening the fingers actually reached and the force at each fingertip.</p>
             <table class="stbl gd-tbl">
               <thead><tr><th>insert_tubes, after closing</th><th>Default</th><th class="kc">With readings</th></tr></thead>
               <tbody>
@@ -1385,11 +1538,11 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
                 <tr><td>Contact force, N</td><td class="na">not reported</td><td class="kp b">24.9 / 24.5</td></tr>
               </tbody>
             </table>
-            <p class="tbl-note" style="margin:0">The default shows the commanded 0.24. The fingers stopped at 0.44 on the same scale and press on both sides, so the tube is held.</p>
+            <p class="tbl-note" style="margin:0">The fingers stopped at 0.44, not the commanded 0.24, and press on both sides, so the tube is held.</p>
           </div>
           <figure class="gd-fig"><img src="media/geo/grasp-67.jpg" alt="Left wrist view after the jaw closes on a tube" width="640" height="480" loading="lazy"></figure>
         </div>
-        <p class="f-sub" style="margin-top:22px">How the readings are written matters as much as what they contain. Information about the scene is long and thin, and written as full JSON the readings crowded the context and pushed many episodes into compaction. JustRUA writes them in a short text format.</p>
+        <p class="f-sub" style="margin-top:22px">How the readings are written matters too. As full JSON they crowded the context and pushed many episodes into compaction, so JustRUA writes them in a short text format.</p>
         <div class="rd">
           <div class="card">
             <span class="seg" role="group" aria-label="Choose format">
@@ -1417,8 +1570,8 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
       <div class="finding" id="f-depth">
         <h3><span class="num">3.2</span>Depth</h3>
-        <p class="f-sub">We further add depth. Many recent agent systems use depth to place objects in 3D (<a class="cite" href="https://arxiv.org/abs/2610.14018" target="_blank" rel="noopener">RoboHarness</a>, <a class="cite" href="https://arxiv.org/abs/2610.28259" target="_blank" rel="noopener">GPT-GEAR</a>, <a class="cite" href="https://arxiv.org/abs/2610.22496" target="_blank" rel="noopener">RAX</a>), but the RoboDojo leaderboard does not accept depth read from the simulator for agent entries, <a class="cite" href="https://github.com/XPolicyLab/XPolicyLab/pull/151#issuecomment-6106209632" target="_blank" rel="noopener">as a maintainer stated in review</a>. We therefore test both, depth from the simulator and depth that <a class="cite" href="https://arxiv.org/abs/2410.02073" target="_blank" rel="noopener">Depth Pro</a> predicts from the RGB image alone, against the robot readings of the previous step.</p>
-        <p class="f-sub">The predicted distances are far off. Correcting the focal length still leaves errors of tens of centimetres. A scale fitted to the robot's own geometry in each frame brings them down to a few centimetres, but that scale drifts between frames and cannot be fitted for the wrist cameras, so JustRUA passes the raw predictions on.</p>
+        <p class="f-sub">Many recent agent systems use depth to place objects in 3D (<a class="cite" href="https://arxiv.org/abs/2610.14018" target="_blank" rel="noopener">RoboHarness</a>, <a class="cite" href="https://arxiv.org/abs/2610.28259" target="_blank" rel="noopener">GPT-GEAR</a>, <a class="cite" href="https://arxiv.org/abs/2610.22496" target="_blank" rel="noopener">RAX</a>), but the RoboDojo leaderboard does not accept simulator depth for agent entries, <a class="cite" href="https://github.com/XPolicyLab/XPolicyLab/pull/151#issuecomment-6106209632" target="_blank" rel="noopener">as a maintainer stated in review</a>. We test both simulator depth and depth that <a class="cite" href="https://arxiv.org/abs/2410.02073" target="_blank" rel="noopener">Depth Pro</a> predicts from RGB alone.</p>
+        <p class="f-sub">The predicted distances are far off, by tens of centimetres even with the true focal length. Scaling each frame to the robot's geometry helps, but the scale drifts between frames and cannot be fitted for the wrist cameras, so JustRUA passes the raw predictions on.</p>
         <div class="card dpcard">
           <div class="dp-tiles">
             <figure><img src="media/geo/dp-rgb.jpg" alt="Head camera RGB view of make_kong" width="425" height="318" loading="lazy"><figcaption>RGB</figcaption></figure>
@@ -1439,7 +1592,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
         </div>
         <div class="dp-row">
           <div class="dp-text">
-            <p class="f-sub">Even so, predicted depth improves manipulation almost as much as simulator depth. Empty grasps fell from 41 to 17 with simulator depth and to 16 with predicted depth, and failed fine placements fell further with predicted depth. Drops did not fall. What the prediction gets right is the order of depths, and that seems to be enough. The gain from depth does not need privileged information.</p>
+            <p class="f-sub">Even so, predicted depth improves manipulation almost as much as simulator depth, with as few empty grasps and fewer failed fine placements, though drops did not fall. The prediction gets the order of depths right, and that seems to be enough.</p>
             <table class="stbl">
               <thead><tr><th></th><th>Robot readings</th><th>Simulator depth</th><th class="kc">Predicted depth</th></tr></thead>
               <tbody>
@@ -1462,8 +1615,8 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
       <div class="finding" id="f-hints">
         <h3><span class="num">3.3</span>Affordances</h3>
-        <p class="f-sub">Depth tells the model where surfaces are, but not where an object can be held or which arm can get to it. This kind of knowledge is an affordance, what an object or a place offers a robot, such as a handle that can be grasped or a stretch of table that one arm can reach. Recent agent systems compute affordances with dedicated models and hand them to the planner (<a class="cite" href="https://arxiv.org/abs/2610.24016" target="_blank" rel="noopener">CLARO</a>, <a class="cite" href="https://github.com/hao-ai-lab/ORA" target="_blank" rel="noopener">ORA</a>). Since many episodes go wrong at the grasp, we tested whether giving the model this knowledge directly would help.</p>
-        <p class="f-sub">We compute two kinds of affordance for each camera view. A pretrained grasp generator (<a class="cite" href="https://arxiv.org/abs/2507.13097" target="_blank" rel="noopener">GraspGen</a>) proposes up to eight grasp poses on the point cloud of each object, and inverse kinematics tests which surfaces each arm can reach with its current tool orientation. Both are drawn onto the camera image. The text lists the grasp poses as positions and angles, along with hints such as which candidates a camera cannot see. The real difficulty lies in presenting all this to the model. Each observation already carries the camera views and their depth, and anything added to it either takes more space or crowds what is already there.</p>
+        <p class="f-sub">Depth shows where surfaces are, but not where an object can be held or which arm can reach it. That knowledge is an affordance. Recent agent systems compute affordances with dedicated models (<a class="cite" href="https://arxiv.org/abs/2610.24016" target="_blank" rel="noopener">CLARO</a>, <a class="cite" href="https://github.com/hao-ai-lab/ORA" target="_blank" rel="noopener">ORA</a>), and since many episodes go wrong at the grasp, we tested giving them to the model directly.</p>
+        <p class="f-sub">For each camera view, <a class="cite" href="https://arxiv.org/abs/2507.13097" target="_blank" rel="noopener">GraspGen</a> proposes up to eight grasp poses per object and inverse kinematics marks which surfaces each arm can reach. Both are drawn onto the image, and the text lists the grasp poses. The hard part is presentation, since anything added to an observation either takes more space or crowds what is already there.</p>
         <div class="card aff-fig2" id="aff-fig2">
           <svg class="aff-link" aria-hidden="true"></svg>
           <figure class="aff-big">
@@ -1478,7 +1631,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
           </div>
           <p class="tbl-note aff-foot">Head camera at the first decision of insert_tubes. Click an image to enlarge it.</p>
         </div>
-        <p class="f-sub" style="margin-top:22px">Against depth images from the same source, none of the four versions grasped more reliably or scored higher. The moments where affordances could make a difference are also few. Reach matters most when one arm cannot get to an object and hands it to the other, and handovers stayed rare in every version, the panel included. Grasp candidates matter only in the decisions that start a grasp. The cost, in contrast, comes with every observation, since keeping the affordances in view means either adding images and tokens or shrinking the other views. We weighed the two and left affordances out of JustRUA.</p>
+        <p class="f-sub" style="margin-top:22px">None of the four versions grasped more reliably or scored higher than depth images from the same source. Affordances could matter in few moments, since handovers stayed rare and grasp candidates only matter when a grasp starts, while their cost comes with every observation. We left them out of JustRUA.</p>
         <div class="card stbl-card aff-tbl" style="overflow-x:auto">
           <table class="stbl">
             <thead>
@@ -1502,8 +1655,8 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
       <div class="finding" id="f-code">
         <h3><span class="num">3.4</span>Coordinate solving</h3>
-        <p class="f-sub">In the last step we try to unlock the full potential of GPT-6 working in Codex. The model may now write and run code in its session<sup class="fnm">1</sup>, as in <a class="cite" href="https://arxiv.org/abs/2209.07753" target="_blank" rel="noopener">Code as Policies</a> and, more recently, <a class="cite" href="https://arxiv.org/abs/2609.39018" target="_blank" rel="noopener">URAI</a>, and the 100-decision cap that all earlier comparisons keep is lifted.</p>
-        <p class="f-sub">The model used code in a consistent way. Almost every run solves for coordinates, casting rays from pixels through the camera calibration and then triangulating a point seen by two cameras or meeting a known surface height. The code works from the images and text the model already receives and never reads the depth images. The few runs that open files only list the inputs or reread the model's own helper code. Code therefore acts as one more source of scene geometry, which is why we place it on this axis.</p>
+        <p class="f-sub">In the last step the model may also write and run code in its session<sup class="fnm">1</sup>, as in <a class="cite" href="https://arxiv.org/abs/2209.07753" target="_blank" rel="noopener">Code as Policies</a> and <a class="cite" href="https://arxiv.org/abs/2609.39018" target="_blank" rel="noopener">URAI</a>, and the 100-decision cap is lifted.</p>
+        <p class="f-sub">Almost every run uses code to solve for coordinates, casting rays from pixels through the camera calibration and triangulating a point seen by two cameras or meeting a known surface height. The code never reads the depth images. Code thus acts as one more source of scene geometry, which is why it sits on this axis.</p>
         <div class="mlen top">
           <div class="card stbl-card">
             <table class="stbl">
@@ -1530,7 +1683,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
             <p class="tbl-note">Cost per first-round episode.</p>
           </div>
         </div>
-        <p class="f-sub" style="margin-top:22px">The cases below show the solving at work. In insert_tubes the model locates the tubes and the holes of the rack from pixels and the camera calibration, and places all three tubes.</p>
+        <p class="f-sub" style="margin-top:22px">In insert_tubes the model locates the tubes and the holes of the rack from pixels and places all three tubes.</p>
         <div class="card solver" id="solver">
           <div class="sv-top">
             <div class="sv-chips" role="group" aria-label="Choose case">
@@ -1563,7 +1716,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
                 <tr><td>Control steps, of 500</td><td>500</td><td class="kp">496</td></tr>
               </tbody>
             </table>
-            <p class="tbl-note">The player pauses where the code runs and skips the stretches in between, with the playback speed shown in the console. Distances compare the output of the code with the commands and gripper positions that followed, not with the true positions of the objects. Code and output as the model ran them.</p>
+            <p class="tbl-note">The player pauses where the code runs and skips the stretches between. Distances compare the code's output with the commands that followed, not with true object positions. Code and output as the model ran them.</p>
           </div>
           <script type="application/json" id="solver-data">{"tubes": {"task": "insert_tubes", "beats": [{"k": "f", "t": 0.04, "hold": 2000, "st": "decision 0 &middot; 0.0 s &middot; the simulator waits while the code runs", "title": "Locate the tube", "code": "python3 - &lt;&lt;&#x27;PY&#x27;\nimport numpy as np\nfor u,v in [(220,202),(201,235),(215,212),(302,177),(319,186)]:\n d=np.array([(u-320)/288.1325,-.86603*(v-240)/288.1325+.5,-.5*(v-240)/288.1325-.86603]); p=np.array([0,-.41,1.308]); q=p+d*((.782-p[2])/d[2]);print(u,v,q)\nPY", "out": ["220 202 [-0.22816849 -0.00619792  0.782     ]", "201 235 [-0.2533848  -0.09402191  0.782     ]", "215 212 [-0.23449104 -0.03411066  0.782     ]", "302 177 [-0.04342494  0.0691849   0.782     ]", "319 186 [-0.00236371  0.04107148  0.782     ]"], "hl": [0, 1, 2], "dim": [3, 4], "use": "&rarr; decision 1 &nbsp; left_x &minus;0.232 &nbsp; left_y &minus;0.024 &nbsp; <em>1.2 mm from the tube axis</em>", "m": ["p1", "p2", "p3", "ax", "pl", "tg", "tgl"], "z": [140, 140, 1.9]}, {"k": "p", "t": 0.04, "e": 2.76, "r": 0.9, "m": ["tg"], "cap": "The left gripper goes to the target, closes with about 25 N on each finger and lifts the tube."}, {"k": "f", "t": 7.72, "hold": 2600, "st": "decision 15 &middot; 7.7 s &middot; the simulator waits while the code runs", "title": "Holes and tip from two cameras", "code": "cat &gt; geom.py &lt;&lt;&#x27;PY&#x27;\nimport numpy as np\np=np.array([0,-.41,1.308]);q=np.array([.1237,-.1424,1.117]);R=np.array([[.92327,.3721,.09548],[.37629,-.82595,-.41977],[-.07733,.42349,-.90259]])\ndef ray(u,v):return np.array([(u-320)/397.0413,(v-240)/397.0413,1])@R\nfor uv,uv2 in [((288,189),(136,167)),((304,187),(176,179)),((321,186),(217,190))]:\n u,v=uv;a=np.array([(u-320)/288.1325,.5-.86603*(v-240)/288.1325,-.86603-.5*(v-240)/288.1325]);b=ray(*uv2);s=np.linalg.lstsq(np.stack([a,-b],axis=1),q-p,rcond=None)[0];print(&#x27;slot&#x27;, (p+s[0]*a+q+s[1]*b)/2)\n# tip expected z .875\nb=ray(135,120);print(&#x27;tip&#x27;,q+b*((.875-q[2])/b[2]))\nPY\npython3 geom.py", "out": ["slot [-0.0680863  -0.0075847   0.82781261]", "slot [-0.03343841 -0.00317352  0.82797068]", "slot [0.00261262 0.00086266 0.82782292]", "tip [-0.05959854  0.00504745  0.875     ]"], "hl": [0, 3], "dim": [1], "use": "&rarr; hole 1 &minus; tip = (&minus;8.5, &minus;12.6) mm &nbsp; decision 15 moves the left hand (&minus;6.6, &minus;12.2) mm", "m": ["h0", "h1", "h2", "w0", "w1", "w2", "l0", "l1", "l2", "tip", "tipl", "w0l", "tw"]}, {"k": "p", "t": 7.72, "e": 8.64, "r": 0.6, "m": ["w0", "tip"], "cap": "The hand shifts toward hole 1 and lowers in small steps. The first tube seats."}, {"k": "f", "t": 14.2, "hold": 1600, "st": "decision 36 &middot; 14.2 s", "title": "Reuse hole 3", "code": "# no new code, hole 3 was solved at decision 15", "out": ["slot [0.00261262 0.00086266 0.82782292]"], "hl": [0], "dim": [], "use": "&rarr; decision 36 &nbsp; x 0.003 &nbsp; y 0.001 &nbsp; <em>0.4 mm from hole 3</em>", "m": ["h2b", "h2l"], "z": [200, 116, 1.8]}, {"k": "p", "t": 14.2, "e": 16.36, "r": 1.0, "m": ["h2b"], "cap": "The second tube goes into hole 3."}, {"k": "p", "t": 20.9, "e": 21.96, "r": 1.0, "hold": 800, "m": [], "cap": "All three tubes end in the rack."}]}, "cuffs": {"task": "fold_clothes", "beats": [{"k": "f", "t": 0.04, "hold": 2000, "st": "decision 0 &middot; 0.0 s &middot; the simulator waits while the code runs", "title": "Locate both cuffs", "code": "python3 - &lt;&lt;&#x27;PY&#x27;\nimport numpy as np\nfor n,u,v in [(&#x27;lc&#x27;,213,265),(&#x27;rc&#x27;,429,311),(&#x27;ls&#x27;,281,213),(&#x27;rs&#x27;,361,222),(&#x27;lh&#x27;,251,296),(&#x27;rh&#x27;,372,325),(&#x27;lch&#x27;,287,246),(&#x27;rch&#x27;,353,257)]:\n d=np.array([(u-320)/288.1325,-.86603*(v-240)/288.1325+.5,-.5*(v-240)/288.1325-.86603]); p=np.array([0,-.41,1.308])+d*((.775-1.308)/d[2]);print(n,p)\nPY", "out": ["lc [-0.2176495  -0.16099372  0.775     ]", "rc [ 0.20382667 -0.25558144  0.775     ]", "ls [-0.08806879 -0.03187085  0.775     ]", "rs [ 0.09085301 -0.05621664  0.775     ]", "lh [-0.13251474 -0.22646023  0.775     ]", "rh [ 0.09490761 -0.28141169  0.775     ]", "lch [-0.06965075 -0.11689684  0.775     ]", "rch [ 0.06816613 -0.14282238  0.775     ]"], "hl": [0, 1], "dim": [2, 3, 4, 5, 6, 7], "use": "&rarr; decision 2 &nbsp; left (&minus;0.215, &minus;0.159) &nbsp; right (0.201, &minus;0.252) &nbsp; <em>3.3 and 4.6 mm away</em>", "m": ["lc", "rc", "lcl", "rcl"], "z": [192, 172, 1.55]}, {"k": "p", "t": 0.04, "e": 2.5, "r": 3, "m": ["lc", "rc"], "cap": "Two wrist turns, played fast."}, {"k": "p", "t": 2.5, "e": 8.2, "r": 1.5, "hold": 400, "m": ["lc", "rc"], "cap": "Both hands go to the solved points, close on the fabric and lift both cuffs."}]}, "cup": {"task": "pick_from_conveyor_by_image", "beats": [{"k": "f", "t": 0.04, "hold": 2000, "st": "decision 25 &middot; 9.8 s &middot; the simulator waits while the code runs", "title": "Rim height from two cameras", "code": "/bin/zsh -c &quot;python3 - &lt;&lt;&#x27;PY&#x27;\nimport numpy as n\np=n.array([0,-.41,1.308]);q=n.array([-.3003,.042,.9775]);a=n.array([(186-320)/288.1325,.5-(165-240)/288.1325*.86603,-.86603-(165-240)/288.1325*.5]);b=n.array([(317-320)/397.0413,.29208-(320-240)/397.0413*.95639,-.95639-(320-240)/397.0413*.29208]);t=n.linalg.lstsq(n.stack([a,-b],1),q-p,rcond=None)[0];print(p+a*t[0],q+b*t[1])\nPY&quot;", "out": ["[-0.29959047  0.05731307  0.83395086] [-0.30136917  0.05606196  0.83384164]"], "hl": [0], "dim": [], "use": "&rarr; decision 27 &nbsp; close at z = 0.835 m &nbsp; <em>1 mm from the solved rim</em>", "m": ["ch", "cw", "cl", "chl", "cwl", "czl"]}, {"k": "p", "t": 0.04, "e": 3.2, "r": 2.5, "m": ["ch", "cw"], "cap": "The left hand descends to the solved height and closes."}, {"k": "p", "t": 3.2, "e": 11.8, "r": 5, "hold": 400, "m": [], "cap": "Both fingers report contact, and the cup leaves the belt."}]}}</script>
         </div>
@@ -1573,7 +1726,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
     <section class="sec axis-sec" id="sec-err">
       <h2 class="sec-h"><span class="num">04</span>Error analysis</h2>
-      <p class="sec-sub">With our best configuration, 21 of the 42 first-round tasks score below 50. Whether these failures share a cause decides what further gains would take, one more general fix or work on each task. We reviewed every such episode and sorted them by cause. Some fail for more than one reason, and most turn out to be specific to one task.</p>
+      <p class="sec-sub">With our best configuration, 21 of the 42 first-round tasks score below 50. We sorted every such episode by cause, to see whether further gains need one general fix or work on each task. Most failures turn out to be specific to one task.</p>
 
       <div class="finding" id="f-cls">
       <h3><span class="num">4.1</span>Failure classification</h3>
@@ -1587,24 +1740,24 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
       <div class="finding" id="f-fix">
         <h3><span class="num">4.2</span>Potential fixes</h3>
-        <p class="fix-lead">Most of these failures are long-tail. Each of the first three causes points to a general direction, but each needs knowledge that is costly to supply.</p>
+        <p class="fix-lead">Each of the first three causes points to a general fix, but each needs knowledge that is costly to supply.</p>
         <div class="fix">
           <div class="fix-row"><span class="fx-c">Strategy</span><span>Planning with <b>high-level knowledge of the arm</b>, such as which flip angles one arm cannot reach while placing. Which limits matter changes from task to task.</span></div>
           <div class="fix-row"><span class="fx-c">Collision</span><span>Collision checking against <b>complete digital assets of the arm and of every object it holds</b>. Modelling every held object and joint at that level is hardly feasible.</span></div>
           <div class="fix-row"><span class="fx-c">Unstable grasp</span><span>Grasp planning on <b>the same digital assets</b>, to model how each irregular or round object sits in the gripper.</span></div>
         </div>
-        <p class="fix-close">The prompt and scoring cases are easier. Revising the task prompts raised the first-round score from 54.0 to 55.6. The other failures are hard to remove without trial and error on each task, which comes close to tuning on the test tasks themselves.</p>
+        <p class="fix-close">Revising the task prompts fixes the prompt and scoring cases and raises the first round from 54.0 to 55.6. The rest would need trial and error on each task, close to tuning on the test tasks.</p>
       </div>
       <script type="application/json" id="err-data">[{"k": "strategy", "name": "Strategy", "def": "The plan or the task breakdown does not suit the arm.", "ex": "make_kong", "exn": "A single arm cannot reach the flip angle the tile needs and still place it correctly. Nothing tells the model this about the arm, so it <b>never splits the job with a handover</b>.", "ours": {"head": "media/errors/make_kong.mp4", "left": "media/errors/make_kong-left.mp4", "right": "media/errors/make_kong-right.mp4"}, "score": 0, "spd": "2×", "list": [["make_kong", "One arm cannot flip the tile and place it at once. The model never hands it over."], ["deposit_coin", "Tries a sideways handover and the coin drops. Keeping it in one hand works."], ["pour_balls_into_vase", "Pours forward, which the arm does poorly. The task needs a side pour."], ["pour_by_language", "Pours forward and the grip slips."], ["pour_liquid_into_cup", "Pours forward and blocks its own view."], ["pick_from_conveyor_by_image", "Grasps the basket at a poor point and cannot time the belt."], ["sweep_blocks", "Leaves the receiving arm an awkward grasp point in the handover."], ["hang_mugs", "Changes view to compensate, but still cannot predict where the mug handle lands."]]}, {"k": "collision", "name": "Collision", "def": "Unplanned knocks. The model misjudges the size of the arm or of what it holds.", "ex": "pack_objects_into_box", "exn": "The arm knocks the light box out of place. The run looks complete but scores 25.", "ours": {"head": "media/errors/pack_objects_into_box.mp4", "left": "media/errors/pack_objects_into_box-left.mp4", "right": "media/errors/pack_objects_into_box-right.mp4"}, "score": 25, "spd": "3×", "list": [["pack_objects_into_box", "Knocks the light box out of place."], ["make_toast", "Misjudges the size of the bread, so neither slice goes in."], ["build_tower", "One knock brings the whole tower down."], ["fill_egg_holder", "A knock shuts the egg box."], ["fill_pen_holder", "Knocks waste steps it needs later."], ["put_bottles_into_dustbin", "Earlier knocks pile up and leave no room to recover."]]}, {"k": "grasp", "name": "Unstable grasp", "def": "Irregular or round objects slip out of the gripper.", "ex": "sort_nesting_dolls_by_size", "exn": "The arm moves too fast while holding a round doll, and the doll slips out.", "ours": {"head": "media/errors/sort_dolls_slip.mp4", "left": "media/errors/sort_dolls_slip-left.mp4", "right": "media/errors/sort_dolls_slip-right.mp4"}, "score": 0, "spd": "1×", "list": [["sort_nesting_dolls_by_size", "Moves too fast with a round doll, which slips."], ["insert_key", "The key's odd friction makes it slip in the handover the task requires."], ["deposit_coin", "The coin has few stable grasp points and drops in the handover."], ["sweep_blocks", "The irregular blocks behave oddly in simulation."], ["store_tools_in_toolbox", "Too many irregular tools to handle."], ["store_laptop_and_headphones", "The task itself is very hard."]]}, {"k": "scoring", "name": "Prompt or scoring", "def": "The task is easy, but the prompt or the scoring seems to be at fault.", "ex": "fasten_screws", "exn": "The screws go in, but the model may be unable to tell whether it met the required tolerance. The prompt needs checking.", "ours": {"head": "media/errors/fasten_screws.mp4", "left": "media/errors/fasten_screws-left.mp4", "right": "media/errors/fasten_screws-right.mp4"}, "score": 20, "spd": "3.5×", "list": [["fasten_screws", "May be unable to tell whether it met the required tolerance."], ["play_xylophone", "A simple task with no visible failure."], ["swap_blocks", "Looks simple, yet every run fails."], ["pack_objects_into_box", "Looks complete but scores low. The box seems to have moved."], ["pour_liquid_into_cup", "Part of the failure looks like a prompt or scoring problem."]]}]</script>
     </section>
 
     <section class="sec" id="sec-eval">
       <h2 class="sec-h">Notes on evaluation</h2>
-      <p class="sec-sub">The official RoboDojo evaluation scores each task over 50 episodes, since a task's score on any single layout is spiky and one run can mislead. We run far fewer episodes, so which layouts we run matters. Each round runs the next layout of every task in a fixed order, and rounds are not equally hard. Every configuration in this report therefore runs on the same fixed layouts, in the first round and on the evaluation set alike, rather than on fresh random draws.</p>
+      <p class="sec-sub">The official evaluation scores each task over 50 episodes, since one layout's score is spiky. We run far fewer, and rounds differ in difficulty, so every configuration here runs on the same fixed layouts, in the first round and on the evaluation set alike.</p>
 
       <div class="finding" id="f-rounds">
         <h3>Round-to-round variation</h3>
-        <p class="f-sub">Low and medium effort rise and fall together across eight rounds, with a correlation of 0.84, although we have not separated layout difficulty from run-to-run randomness. A score from the first round alone tends to run high. In all three settings in the table, the first round scored above the mean of eight rounds. For the official L3 harness the eight-round mean, 28.7, is close to the full 2,100-episode score of 29.0, while the first round reads 32.3.</p>
+        <p class="f-sub">Low and medium effort rise and fall together across eight rounds (correlation 0.84), though we have not separated layout difficulty from run-to-run randomness. The first round alone tends to run high, above the eight-round mean in all three settings below.</p>
         <div class="mlen rdgrid">
           <div class="card">
           <svg class="rd-svg" id="rd" viewBox="0 0 640 250" role="img" aria-label="Score of the default testbed in each of eight rounds. Low effort 35.9, 35.9, 26.5, 37.4, 27.1, 29.6, 36.2, 47.5. Medium effort 42.4, 37.5, 30.6, 41.3, 23.1, 33.3, 36.0, 43.3."></svg>
@@ -1626,7 +1779,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
       <div class="finding" id="f-four">
         <h3>Tasks run on four layouts</h3>
-        <p class="f-sub">The evaluation set runs 23 tasks on four layouts each. On each of them a partial result scores at most 50, and the default testbed both succeeded and failed on it within eight rounds, at low or medium effort.</p>
+        <p class="f-sub">These 23 tasks run on four layouts each. On each, a partial result scores at most 50, and the default testbed both succeeded and failed within eight rounds.</p>
         <div class="card tgrid">
           <div class="tg"><span class="tg-c">Generalization</span><span class="tg-t"><code>push_T</code><code>sort_nesting_dolls_by_size</code><code>stack_bowls</code><code>fold_clothes</code><code>arrange_largest_number</code><code>pack_objects_into_box</code></span></div>
           <div class="tg"><span class="tg-c">Memory</span><span class="tg-t"><code>swap_T</code><code>match_and_pick_from_conveyor</code><code>imitate_sorting_sequence</code><code>press_by_number</code><code>cover_blocks</code></span></div>
@@ -1634,7 +1787,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
           <div class="tg"><span class="tg-c">Precision</span><span class="tg-t"><code>plug_in_charger</code><code>fasten_screws</code><code>play_Xylophone</code><code>pour_balls_into_vase</code></span></div>
           <div class="tg"><span class="tg-c">Long-Horizon</span><span class="tg-t"><code>put_bottles_into_dustbin</code><code>classify_objects</code></span></div>
         </div>
-        <p class="f-sub" style="margin-top:22px">swap_T is a typical case. It scores 100 only when the two T blocks have swapped places within 20 mm, each at the required orientation within 3°, and both arms are back at rest. Anything less scores 0. Both settings scored 0 in the first round, and each succeeded in four of the eight rounds.</p>
+        <p class="f-sub" style="margin-top:22px">swap_T is a typical case. It scores 100 only when the two T blocks swap places within 20 mm and 3° and both arms are back at rest, and 0 otherwise. Both settings scored 0 in the first round and succeeded in four of the eight rounds.</p>
         <div class="card stbl-card" style="overflow-x:auto">
           <table class="stbl rgrid">
             <thead><tr><th>Round</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr></thead>
@@ -1730,15 +1883,15 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 (()=>{
   const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 
-  /* ---------- Trajectory chart ---------- */
+  /* ---------- Figure 1: kept designs charted, every tested design in the table ---------- */
   const Y=60;
   const G=[
     {id:"harness",name:"Harness"},
     {id:"act",    name:"Action"},
-    {id:"exp",    name:"Reusing experience", fn:3},
+    {id:"exp",    name:"Reusing experience"},
     {id:"geo",    name:"Scene geometry"}
   ];
-  /* s: base | kept | drop (tried, not kept). p: proxy score (null = pending). f: first round. */
+  /* s: kept | drop (tried, not kept). p: evaluation-set score. f: first round. c: cost per first-round episode. */
   const D=[
     {g:"harness",l:["Official","L3"], p:29.7, f:32.3, s:"kept",
      t:"Official L3 harness", d:"L3 Inspect EEF, the harness behind the GPT-6 Astra entry on the RoboDojo leaderboard. It keeps images from the last two observations only."},
@@ -1762,7 +1915,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
      t:"Affordances drawn on images", d:"The model gets no depth images, only grasp and reach affordances computed from simulator depth and drawn onto the camera images."},
     {g:"geo",l:["Compact","readings"], c:5.51, p:39.8, f:38.3, s:"kept",
      t:"Compact robot readings", d:"Finger and wrist readings with selected fields, fixed units and rounded values."},
-    {g:"geo",l:["Depth,","predicted"], c:7.74, p:42.4, f:47.7, s:"kept",
+    {g:"geo",l:["Predicted","depth"], c:7.74, p:42.4, f:47.7, s:"kept",
      t:"Depth predicted from RGB", d:"Depth predicted by Depth Pro from each RGB view, with the camera calibration and a few more gripper readings."},
     {g:"geo",l:["Affordance","panel"], c:7.54, p:42.1, f:45.5, s:"drop",
      t:"Compact affordance panel", d:"One panel of predicted depth and affordances beside unmarked RGB images."},
@@ -1770,12 +1923,11 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
      t:"Coordinate solving", d:"The model may also run code in its session and uses it mostly to compute target coordinates from pixels and the camera calibration. Builds on the predicted-depth input."}
   ];
 
-  /* one color for everything JustRUA keeps */
   D.forEach(d=>{ if(d.s==="kept") d.color="#2e4a73"; });
 
   const pct=v=>(v/Y*100).toFixed(2)+"%";
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  const fmt=(v,raw)=>v==null?"pending":(raw||v.toFixed(1));
+  const fmt=v=>v==null?"–":v.toFixed(1);
 
   const CLO=3, CHI=13.5, costY=v=>(8+(v-CLO)/(CHI-CLO)*56).toFixed(1)+"px";
   let html='<div class="wf-axis"><div class="wf-headsp"></div><div class="wf-costax"><span>Cost<br>$/ep</span></div><div class="wf-plotax">';
@@ -1785,33 +1937,25 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
   [0,20,40,60].forEach(v=>{ html+=`<i class="${v===0?"base":""}" style="bottom:${pct(v)}"></i>`; });
   html+='</div>';
   G.forEach(g=>{
-    const idx=D.map((d,i)=>i).filter(i=>D[i].g===g.id), n=idx.length;
-    html+=`<div class="wf-g" style="flex:${n} ${n} 0"><div class="wf-head"><b>${esc(g.name)}${g.fn?`<sup>${g.fn}</sup>`:""}</b><i></i></div><div class="wf-cost wf-row">`;
+    const idx=D.map((d,i)=>i).filter(i=>D[i].g===g.id&&D[i].s==="kept"), n=idx.length;
+    if(!n) return;
+    html+=`<div class="wf-g" style="flex:${n} ${n} 0"><div class="wf-head"><b>${esc(g.name)}</b><i></i></div><div class="wf-cost wf-row">`;
     idx.forEach(i=>{ const d=D[i]; html+=`<div class="wc" data-i="${i}">`+(d.c!=null?`<span class="cdot" style="bottom:${costY(d.c)}"></span><span class="cval" style="bottom:calc(${costY(d.c)} + 10px)">$${d.c.toFixed(1)}</span>`:"")+`</div>`; });
     html+=`</div><div class="wf-plot wf-row">`;
     idx.forEach(i=>{
-      const d=D[i], drop=d.s==="drop";
-      html+=`<div class="wf-col${d.p==null?" pend":""}" data-i="${i}" tabindex="0" aria-label="${esc(d.t)}">`;
-      html+=`<div class="track${d.p==null&&!drop?" kept":""}"></div>`;
-      if(d.p!=null){
-        const c=drop?"":d.color;
-        html+=`<div class="fill${drop?" drop":""}" style="height:calc(${pct(d.p)} + 18px);${c?"background:"+c:""}"></div>`;
-        html+=`<div class="knob" style="bottom:${pct(d.p)};${c?"--k:"+c:""}"></div>`;
-        html+=`<div class="val${drop?"":" kept"}" style="bottom:${pct(d.p)}">${fmt(d.p)}</div>`;
-        html+=`<div class="ring" style="bottom:${pct(d.f)}"></div>`;
-      }else{
-        const c=drop?"":d.color;
-        html+=`<div class="fill${drop?" drop":""}" style="height:calc(${pct(d.f)} + 18px);${c?"background:"+c:""}"></div>`;
-        html+=`<div class="knob" style="bottom:${pct(d.f)};${c?"--k:"+c:""}"></div>`;
-        html+=`<div class="val pend" style="bottom:${pct(d.f)}">pending</div>`;
-      }
+      const d=D[i];
+      html+=`<div class="wf-col" data-i="${i}" tabindex="0" aria-label="${esc(d.t)}"><div class="track"></div>`;
+      html+=`<div class="fill" style="height:calc(${pct(d.p)} + 18px);background:${d.color}"></div>`;
+      html+=`<div class="knob" style="bottom:${pct(d.p)};--k:${d.color}"></div>`;
+      html+=`<div class="val kept" style="bottom:${pct(d.p)}">${fmt(d.p)}</div>`;
+      if(d.f!=null) html+=`<div class="ring" style="bottom:${pct(d.f)}"></div>`;
       html+='</div>';
     });
     html+='</div><div class="wf-lab wf-row">';
-    idx.forEach(i=>{ const d=D[i]; html+=`<div data-i="${i}" class="${d.s==="drop"?"":"kept"}"><span>${esc(d.l[0])}<br>${esc(d.l[1])}${d.fn?`<sup>${d.fn}</sup>`:""}</span></div>`; });
+    idx.forEach(i=>{ const d=D[i]; html+=`<div data-i="${i}" class="kept"><span>${esc(d.l[0])}<br>${esc(d.l[1])}${d.fn?`<sup>${d.fn}</sup>`:""}</span></div>`; });
     html+='</div></div>';
   });
-  html+='</div><div class="wf-tip" id="wf-tip" hidden></div>';
+  html+='</div>';
   const wf=$("#wf"); wf.innerHTML=html;
   const groupsEl=wf.querySelector(".wf-groups"), costPath=wf.querySelector(".wf-costline path");
   function drawCost(){
@@ -1823,48 +1967,67 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
   if(window.ResizeObserver) new ResizeObserver(drawCost).observe(wf); else window.addEventListener("resize",drawCost);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(drawCost);
 
-  const tip=$("#wf-tip");
-  let cur=null;
-  function show(i){
-    if(cur===i) return; cur=i;
-    $$("#wf [data-i]").forEach(el=>el.classList.toggle("hover",el.dataset.i===String(i)));
-    const d=D[i];
-    const status={kept:"Kept in JustRUA",drop:"Tried, not kept"}[d.s];
-    tip.innerHTML=`<b>${esc(d.t)}</b>${esc(d.d)}<div class="nums">Evaluation set ${fmt(d.p)} · First round ${fmt(d.f)}${d.c!=null?`<br>Cost $${d.c.toFixed(2)} per first-round episode`:""}</div><div class="st${d.s==="drop"?" drop":""}">${status}</div>`;
-    tip.hidden=false;
-    const col=wf.querySelector(`.wf-col[data-i="${i}"]`);
-    const wr=wf.getBoundingClientRect(), cr=col.getBoundingClientRect();
-    let left=cr.left-wr.left+cr.width/2-125;
-    left=Math.max(4,Math.min(left,wr.width-254));
-    tip.style.left=left+"px";
-    tip.style.top="0px";
+  /* details on hover, focus or tap: shown below the chart, or under the tapped row on phones, never over the data */
+  const f1=$("#f1"), det=$("#wf-detail"), slot=det.parentNode, narrow=window.matchMedia("(max-width:899px)");
+  const HINT=`<p class="wd-hint">${window.matchMedia("(hover:hover)").matches?"Hover over":"Tap"} a row or a bar for details.</p>`;
+  const card=d=>`<div class="wd-head"><b>${esc(d.t)}</b><span class="st${d.s==="drop"?" drop":""}">${d.s==="drop"?"Tried, not kept":"Kept in JustRUA"}</span></div><p class="wd-d">${esc(d.d)}</p><p class="wd-n">Evaluation set ${fmt(d.p)} · First round ${fmt(d.f)}${d.c!=null?` · $${d.c.toFixed(2)} per first-round episode`:""}</p>`;
+  let cur=null, curRow=null, shownAt=0;
+  function place(row){
+    if(row&&narrow.matches){ if(det.previousElementSibling!==row) row.after(det); det.classList.add("inline"); }
+    else{ if(det.parentNode!==slot) slot.appendChild(det); det.classList.remove("inline"); }
   }
-  function hide(){ cur=null; tip.hidden=true; $$("#wf .hover").forEach(el=>el.classList.remove("hover")); }
-  $$("#wf [data-i]").forEach(el=>{
-    const i=+el.dataset.i;
-    el.addEventListener("pointerenter",e=>{ if(e.pointerType!=="touch") show(i); });
-    el.addEventListener("click",()=>{ cur===i?hide():show(i); });
-    el.addEventListener("focus",()=>show(i));
+  function show(i,row){
+    if(cur===i&&curRow===row) return; cur=i; curRow=row; shownAt=performance.now();
+    $$("#f1 [data-i]").forEach(el=>el.classList.toggle("hover",el.dataset.i===String(i)));
+    det.innerHTML=card(D[i]); place(row);
+  }
+  function hide(){ cur=null; curRow=null; $$("#f1 .hover").forEach(el=>el.classList.remove("hover")); det.innerHTML=HINT; place(null); }
+  /* keep room for the longest entry so nothing below the chart moves */
+  function reserve(){
+    det.style.minHeight=""; if(narrow.matches||det.classList.contains("inline")) return;
+    const keep=det.innerHTML; let m=0; D.forEach(d=>{ det.innerHTML=card(d); m=Math.max(m,det.offsetHeight); }); det.innerHTML=keep;
+    det.style.minHeight=m+"px";
+  }
+  hide(); reserve(); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(reserve);
+  let rtD; window.addEventListener("resize",()=>{ clearTimeout(rtD); rtD=setTimeout(()=>{ if(!narrow.matches&&det.classList.contains("inline")) place(null); reserve(); },150); });
+  $$("#f1 [data-i]").forEach(el=>{
+    const i=+el.dataset.i, row=el.classList.contains("dt-r")?el:null;
+    el.addEventListener("pointerenter",e=>{ if(e.pointerType!=="touch") show(i,row); });
+    el.addEventListener("click",()=>{ (cur===i&&curRow===row&&performance.now()-shownAt>400)?hide():show(i,row); });
+    el.addEventListener("focus",()=>show(i,row));
   });
-  wf.addEventListener("pointerleave",e=>{ if(e.pointerType!=="touch") hide(); });
-  wf.addEventListener("focusout",e=>{ if(!wf.contains(e.relatedTarget)) hide(); });
+  f1.addEventListener("pointerleave",e=>{ if(e.pointerType!=="touch") hide(); });
+  f1.addEventListener("focusout",e=>{ if(!f1.contains(e.relatedTarget)) hide(); });
 
   /* ---------- Key takeaways: hover, focus or tap ---------- */
   (()=>{ const t=$(".tks"); if(!t||!window.IntersectionObserver) return;
     const io=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ io.disconnect(); setTimeout(()=>{ t.classList.add("hint"); setTimeout(()=>t.classList.remove("hint"),3200); },700); } },{threshold:.6});
     io.observe(t); })();
-  $$(".tk").forEach(t=>{
-    t.addEventListener("click",e=>{
-      e.stopPropagation();
-      const go=()=>{ const el=document.getElementById(t.dataset.go); if(el) el.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); };
-      if(window.matchMedia("(hover:hover)").matches){ go(); return; }
-      if(t.classList.contains("open")){ t.classList.remove("open"); go(); return; }
-      $$(".tk.open").forEach(x=>x.classList.remove("open")); t.classList.add("open");
+  /* one takeaway open at a time; its text slides out below and the items under it move down */
+  (()=>{
+    const list=$(".tks"); if(!list) return;
+    const items=$$(".tk"), canHover=window.matchMedia("(hover:hover)"), narrow=window.matchMedia("(max-width:899px)");
+    let tIn=0, tOut=0;
+    const setOpen=t=>items.forEach(x=>{ const on=x===t; x.classList.toggle("open",on); x.setAttribute("aria-expanded",String(on)); });
+    const go=t=>{ const el=document.getElementById(t.dataset.go); if(el) el.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); };
+    items.forEach(t=>{
+      t.setAttribute("aria-expanded","false");
+      t.addEventListener("pointerenter",e=>{ if(e.pointerType==="touch") return; clearTimeout(tOut); clearTimeout(tIn); tIn=setTimeout(()=>setOpen(t), list.querySelector(".tk.open")?0:70); });
+      t.addEventListener("focus",()=>{ if(t.matches(":focus-visible")) setOpen(t); });
+      t.addEventListener("click",e=>{ e.stopPropagation(); if(canHover.matches||t.classList.contains("open")){ go(t); return; } setOpen(t); });
+      t.addEventListener("keydown",e=>{ if(e.key==="Enter") go(t); if(e.key==="Escape"){ setOpen(null); t.blur(); } });
     });
-    t.addEventListener("keydown",e=>{ if(e.key==="Enter"){ const el=document.getElementById(t.dataset.go); if(el) el.scrollIntoView(); } });
-    t.addEventListener("keydown",e=>{ if(e.key==="Escape"){ t.classList.remove("open"); t.blur(); } });
-  });
-  document.addEventListener("click",()=>$$(".tk.open").forEach(x=>x.classList.remove("open")));
+    list.addEventListener("pointerleave",e=>{ if(e.pointerType==="touch") return; clearTimeout(tIn); tOut=setTimeout(()=>{ if(!list.querySelector(":focus-visible")) setOpen(null); },160); });
+    list.addEventListener("focusout",e=>{ if(!list.contains(e.relatedTarget)) setOpen(null); });
+    document.addEventListener("click",()=>setOpen(null));
+    /* on wide screens keep room for one open item, so the hero never changes height */
+    const reserve=()=>{ list.style.minHeight=""; if(narrow.matches) return;
+      const op=list.querySelector(".tk.open .tk-pop"), base=list.offsetHeight-(op?op.offsetHeight:0);
+      const most=Math.max(...items.map(t=>t.querySelector(".tk-pop > span").offsetHeight));
+      list.style.minHeight=Math.ceil(base+most)+"px"; };
+    reserve(); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(reserve);
+    let rt; window.addEventListener("resize",()=>{ clearTimeout(rt); rt=setTimeout(reserve,150); });
+  })();
 
   document.body.classList.add("final");
 
@@ -2436,7 +2599,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       harness:{n:"Harness",w:"The loop around the model, how much of the episode it keeps and how hard the model reasons.",v:[
         ["k","Official L3","Reference loop, keeps the last two images"],["k","Full history","Codex session that keeps every image"],
         ["d","Low effort","Reasoning effort below the default, medium"],["d","High effort","Reasoning effort above the default"]]},
-      action:{n:"Action",w:"How a decision turns into motion, the command format and how long each motion runs before the model looks again.",v:[
+      action:{n:"Action",w:"The command format and how long each motion runs before the model looks again.",v:[
         ["k","20-step cap","Each motion stops after 20 control steps"],["d","Relative targets","Offsets from the measured pose"],
         ["d","Semantic ops","approach, grasp, place and others"],["d","Move sequences","Up to four moves per decision"],["d","Adaptive steps","3 to 32 steps per motion, set by the model"]]},
       exp:{n:"Reusing experience",w:"What the model carries over from other episodes, ordered by how far the experience is condensed.",v:[

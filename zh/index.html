@@ -64,7 +64,7 @@ h1 .just{color:var(--steel-2)}
 .logo-slot{width:120px;height:36px;border:1px dashed var(--rule-2);border-radius:8px;display:grid;place-items:center;font:500 11px/1 var(--f-mono);color:var(--ink-3)}
 .hero-main{display:grid;grid-template-columns:minmax(0,1fr) max-content;grid-template-areas:"ab tk" "ln tk";column-gap:72px;align-items:start;margin-top:10px}
 .hero-main .abstract{grid-area:ab;margin:0}
-.hero-main .tks{grid-area:tk;align-self:center;gap:8px}
+.hero-main .tks{grid-area:tk;align-self:start;align-content:start;gap:8px}
 .hero-links{grid-area:ln;margin-top:22px}
 .chip.film-btn{background:var(--ink);border-color:var(--ink);color:#fff}
 a.chip.film-btn:hover{background:var(--steel);border-color:var(--steel);color:#fff}
@@ -85,7 +85,8 @@ a.chip.film-btn:hover{background:var(--steel);border-color:var(--steel);color:#f
 .tks{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 .hero-main .links{gap:6px}
 .hero-main .chip{padding:0 11px;font-size:13.5px}
-.tk{position:relative;display:grid;grid-template-columns:24px minmax(0,1fr) 22px;gap:6px;align-items:center;padding:9px 10px;border-radius:10px;cursor:pointer;outline:none;transition:background .15s,box-shadow .15s}
+.tk{position:relative;display:grid;grid-template-columns:24px minmax(0,1fr) 22px;grid-template-rows:auto 0fr;column-gap:6px;row-gap:0;align-items:center;padding:9px 10px;border-radius:10px;cursor:pointer;outline:none;transition:background .15s,box-shadow .15s,grid-template-rows .26s ease}
+.tk.open{grid-template-rows:auto 1fr}
 .tk .n{font:500 11px/1 var(--f-mono);color:var(--steel-2)}
 .tk b{font-size:16px;line-height:1.35;font-weight:650;color:var(--ink);letter-spacing:-.005em}
 .tk .more{width:22px;height:22px;border-radius:50%;background:var(--steel-soft);color:var(--steel);font:500 17px/22px var(--f-sans);text-align:center;transition:transform .2s,background .2s,color .2s}
@@ -95,10 +96,13 @@ a.chip.film-btn:hover{background:var(--steel);border-color:var(--steel);color:#f
 .tks.hint .tk:nth-child(3) .more{animation-delay:.3s}
 .tks.hint .tk:nth-child(4) .more{animation-delay:.45s}
 @media (prefers-reduced-motion: reduce){.tks.hint .more{animation:none}}
-.tk:hover,.tk:focus-visible,.tk.open{background:var(--surface);box-shadow:inset 0 0 0 1px var(--rule-2);z-index:7}
-.tk:hover .more,.tk:focus-visible .more,.tk.open .more{transform:rotate(45deg);background:var(--steel);color:#fff}
-.tk-pop{position:absolute;left:0;right:0;top:calc(100% + 6px);width:auto;z-index:8;background:var(--surface);border:1px solid var(--rule-2);border-radius:10px;box-shadow:0 10px 28px rgba(20,28,40,.12);padding:12px 14px;font-size:13.5px;line-height:1.5;color:var(--ink-2);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s;pointer-events:none}
-.tk:hover .tk-pop,.tk:focus-visible .tk-pop,.tk.open .tk-pop{opacity:1;visibility:visible;transform:none}
+.tk:hover,.tk.open{background:var(--surface);box-shadow:inset 0 0 0 1px var(--rule-2)}
+.tk:focus-visible{box-shadow:inset 0 0 0 2px var(--steel-2)}
+.tk.open .more{transform:rotate(45deg);background:var(--steel);color:#fff}
+.tk-pop{grid-column:2 / 4;align-self:stretch;min-height:0;overflow:hidden;contain:inline-size;font-size:13.5px;line-height:1.5;color:var(--ink-2);opacity:0;transition:opacity .2s ease}
+.tk-pop > span{display:block;padding:6px 4px 3px 0}
+.tk.open .tk-pop{opacity:1}
+@media (prefers-reduced-motion: reduce){.tk,.tk-pop{transition:none}}
 @media (max-width:1099px){
   .hero-main{column-gap:36px}
   .hero-links{gap:6px}
@@ -128,6 +132,7 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .ft-x{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border:1px solid var(--rule-2);border-radius:999px;background:var(--surface);font:500 12px/1 var(--f-mono);color:var(--ink-2);cursor:pointer}
 .ft-x span{font-size:15px}
 .ft-x:hover{border-color:var(--steel);color:var(--steel)}
+#ft-video::cue{font:500 17px/1.4 var(--f-sans);color:#fff;background:rgba(18,22,30,.62)}
 .film-up{display:inline-flex;align-items:center;gap:6px;margin-bottom:10px;padding:7px 12px 7px 9px;border:1px solid var(--rule-2);border-radius:999px;background:rgba(255,255,255,.94);font:500 13px/1 var(--f-sans);color:var(--ink);text-decoration:none}
 .film-up svg{width:14px;height:14px;color:var(--steel)}
 .film-up em{font:400 11.5px/1 var(--f-mono);font-style:normal;color:var(--ink-3)}
@@ -155,7 +160,7 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .lg-key span{display:inline-flex;align-items:center;gap:7px}
 .lg-pill{position:relative;width:34px;height:16px;border-radius:8px;background:var(--ink-2)}
 .lg-pill::after{content:"";position:absolute;right:2px;top:2px;width:7px;height:7px;border-radius:50%;background:#fff;border:2.5px solid var(--ink-2)}
-.lg-ring{width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid var(--amber)}
+.lg-ring{width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid #a7b8d2}
 .lg-cost{position:relative;width:24px;height:10px}
 .lg-cost::before{content:"";position:absolute;left:0;right:0;top:4px;border-top:1.5px dashed var(--cost)}
 .lg-cost::after{content:"";position:absolute;left:8px;top:1px;width:6px;height:6px;transform:rotate(45deg);background:#fff;border:1.5px solid var(--cost)}
@@ -173,13 +178,13 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .lg-sq.pend{background:#f3e8d6;border:1px solid #e3d0b0}
 .wf-panel{background:var(--surface);border:1px solid var(--rule);border-radius:16px;padding:22px 20px 18px}
 .wf-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.wf{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);min-width:900px}
+.wf{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);--ph:260px}
 .wf-axis,.wf-g{display:flex;flex-direction:column}
 .wf-headsp,.wf-head{height:44px}
-.wf-plotax,.wf-plot{height:300px;position:relative;margin-bottom:9px}
+.wf-plotax,.wf-plot{height:var(--ph);position:relative;margin-bottom:9px}
 .wf-plotax span{position:absolute;right:12px;transform:translateY(50%);font:400 11px/1 var(--f-mono);color:var(--ink-3)}
 .wf-groups{display:flex;gap:16px;min-width:0;position:relative;padding-right:26px}
-.wf-gridlines{position:absolute;left:0;right:26px;top:142px;height:300px;pointer-events:none;z-index:0}
+.wf-gridlines{position:absolute;left:0;right:26px;top:142px;height:var(--ph);pointer-events:none;z-index:0}
 .wf-g{position:relative}
 .wf-gridlines i{position:absolute;left:0;right:0;border-top:1px dashed var(--rule-2)}
 .wf-gridlines i.base{border-top:1px solid var(--rule-2)}
@@ -196,7 +201,7 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .track.kept{background:#e3e9f2}
 .fill.drop{background:var(--dropped)}
 .knob{position:absolute;left:40%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:#fff;border:3px solid var(--k,var(--dropped));transform:translateY(50%);z-index:1}
-.ring{position:absolute;left:40%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#fff;border:2px solid var(--amber);transform:translateY(50%);z-index:2}
+.ring{position:absolute;left:40%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#fff;border:2px solid #a7b8d2;transform:translateY(50%);z-index:2}
 .val{position:absolute;left:calc(40% + 13px);transform:translateY(50%);font:400 11.5px/1 var(--f-mono);color:var(--ink-3);white-space:nowrap;z-index:3;font-variant-numeric:tabular-nums}
 .val.kept{color:var(--ink);font-weight:500}
 .val.pend{left:-12%;right:-12%;text-align:center;transform:none;margin-bottom:12px;font-style:italic;font-family:var(--f-sans);font-size:11px;color:#a8875a}
@@ -216,6 +221,67 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .wf-caption{margin-top:16px;padding-top:14px;border-top:1px solid var(--rule);font-size:13.5px;line-height:1.6;color:var(--ink-2)}
 .wf-caption b{color:var(--ink);font-weight:600}
 .wf-fn{margin-top:8px;display:flex;flex-wrap:wrap;gap:2px 22px;font-size:12.5px;line-height:1.5;color:var(--ink-3)}
+
+/* Figure 1: tested designs on the left, kept designs charted on the right */
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.f1{position:relative;display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);grid-template-areas:"dt ch";column-gap:30px;align-items:start}
+.f1-tab{grid-area:dt;padding-right:30px;border-right:1px solid var(--rule)}
+.f1-ch{grid-area:ch;min-width:0}
+.wf-detail{margin-top:10px;padding:10px 4px 0 44px;border-top:1px solid var(--rule);font-size:13px;line-height:1.5;color:var(--ink-2)}
+.wf-detail .wd-hint{margin:0;color:var(--ink-3);font-size:12.5px}
+.wd-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
+.wd-head b{font-size:14px;color:var(--ink)}
+.wd-head .st{font:500 10.5px/1.3 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--steel)}
+.wd-head .st.drop{color:var(--ink-3)}
+.wd-d{margin:3px 0 0}
+.wd-n{margin:4px 0 0;font:400 12px/1.5 var(--f-mono);color:var(--ink)}
+.wf-detail.inline{margin:2px 0 6px;padding:8px 10px;border:0;border-radius:8px;background:#fff;box-shadow:inset 0 0 0 1px var(--rule-2)}
+@media (max-width:560px){.wf-detail{padding-left:30px}}
+.dt{display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.3}
+.dt-top{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:0 10px 2px}
+.dt-key{display:inline-flex;flex-wrap:wrap;gap:4px 14px;font:400 12px/1.2 var(--f-sans);color:var(--ink-2)}
+.dt-key > span[aria-hidden]{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.dt-key .lg-sq{width:9px;height:9px;border-radius:2px}
+.dt-sc{font:400 11px/1.2 var(--f-mono);color:var(--ink-3)}
+.dt-g{background:#f6f7f9;border-radius:10px;padding:8px 6px 6px}
+.dt-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 10px;padding:0 4px 5px}
+.dt-h b{font-size:13px;font-weight:650;color:var(--ink)}
+.dt-h b sup{font-weight:400;color:var(--ink-3)}
+.dt-h span{font-size:11.5px;color:var(--steel)}
+.dt-r{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:3px 4px;border-radius:6px;color:var(--ink-3);outline:none;cursor:default}
+.dt-r > span:first-child{display:flex;align-items:center;white-space:nowrap;min-width:0}
+.dt-r i{flex:none;width:9px;height:9px;border-radius:2px;background:var(--dropped);margin-right:9px}
+.dt-r > span:last-child{font:400 12.5px/1.3 var(--f-mono);font-variant-numeric:tabular-nums}
+.dt-r.k{color:var(--ink);font-weight:600}
+.dt-r.k > span:last-child{font-weight:500}
+.dt-r.k i{background:var(--steel)}
+.dt-r sup{font-weight:400;color:var(--ink-3)}
+.dt-r.hover{background:#fff;box-shadow:inset 0 0 0 1px var(--rule-2)}
+.dt-r:focus-visible{box-shadow:inset 0 0 0 2px var(--steel-2)}
+.dt-g.risk{background:transparent;box-shadow:inset 0 0 0 1px var(--rule)}
+.dt-g.risk .dt-h b{color:var(--ink-3)}
+.dt-g.risk .dt-h span{color:var(--ink-3)}
+.dt-g.risk .dt-r{color:#b4b9c3}
+.dt-g.risk .dt-r i{background:#dde0e6}
+.dt-g.risk .dt-r sup{color:#c0563e}
+.dt-note{margin:4px 4px 0;padding-top:5px;border-top:1px solid var(--rule);font-size:11.5px;line-height:1.45;color:var(--ink-3)}
+.dt-note sup{color:#c0563e}
+@media (max-width:1099px){.f1{grid-template-columns:minmax(0,300px) minmax(0,1fr);column-gap:22px}.f1-tab{padding-right:22px}.dt-key{gap:4px 10px;font-size:11.5px}}
+@media (max-width:899px){
+  .f1{grid-template-columns:minmax(0,1fr);grid-template-areas:"ch" "dt";row-gap:20px}
+  .f1-tab{padding-right:0;border-right:0;border-top:1px solid var(--rule);padding-top:12px}
+}
+@media (max-width:560px){
+  .wf{grid-template-columns:30px minmax(0,1fr);--ph:240px}
+  .wf-groups{gap:10px;padding-right:12px}
+  .wf-gridlines{right:12px}
+  .wf-plotax span{right:8px;font-size:10px}
+  .wf-costax span{right:4px;font-size:9px}
+  .wf-row{gap:3px}
+  .wf-lab div{font-size:9px}
+  .val{left:calc(40% + 11px);font-size:10px}
+  .cval{font-size:9.5px}
+}
 
 /* Lower layout */
 .layout{display:grid;grid-template-columns:minmax(0,var(--col)) 200px;gap:64px;justify-content:center;padding-block:8px 120px}
@@ -582,7 +648,6 @@ footer .wrap{padding-block:22px;font-size:13px;color:var(--ink-3)}
   .hero .wrap{padding-block:36px 24px}
   .hero-main{grid-template-columns:minmax(0,1fr);grid-template-areas:"ab" "ln" "tk";column-gap:0}
   .hero-main .tks{margin-top:22px}
-  .tk-pop{left:0;right:0;top:calc(100% + 6px);width:auto}
   .tabpanel{grid-template-columns:minmax(0,1fr);gap:20px;padding:22px}
   .clips{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
@@ -932,7 +997,64 @@ section.sec + section.sec{margin-top:128px}
 
 <section class="film-top" id="film-top" aria-label="项目影片" hidden>
   <div class="wrap">
-    <div class="ft-frame"><video id="ft-video" src="../media/hero/justrua-film-v4.mp4" poster="../media/hero/justrua-film-v2.jpg" width="1280" height="720" controls playsinline preload="none"></video></div>
+    <div class="ft-frame"><video id="ft-video" src="../media/hero/justrua-film-v6.mp4" poster="../media/hero/justrua-film-v2.jpg" width="1280" height="720" controls playsinline preload="none"><track id="ft-cc" kind="captions" srclang="zh" label="中文" default></video></div>
+    <script type="text/plain" id="ft-vtt">WEBVTT
+
+00:00:02.000 --> 00:00:04.034
+JustRUA 来了。
+
+00:00:05.700 --> 00:00:08.656
+GPT-6 Astra 可以直接控制机械臂。
+
+00:00:08.656 --> 00:00:14.445
+它读取相机画面和机械臂状态，把目标发给运动规划器。
+
+00:00:14.500 --> 00:00:20.610
+RoboDojo 上的分数涨得很快，但已有系统之间同时存在许多差异。
+
+00:00:20.800 --> 00:00:24.570
+所以我们把这些设计拆开，放在同一个框架里测试。
+
+00:00:26.350 --> 00:00:28.150
+同一个测试平台，同一个基准。
+
+00:00:28.150 --> 00:00:36.181
+我们改变 harness、动作、经验复用和场景几何，每次运行都在同样的回合上评测。
+
+00:00:36.117 --> 00:00:38.924
+第一，简洁的 harness 方案已经能做很多。
+
+00:00:38.924 --> 00:00:47.129
+保留完整历史，并让每段运动在 20 个控制步后停下，得分就从 29.7 提高到 38.0。
+
+00:00:47.050 --> 00:00:49.987
+第二，复用经验并非免费午餐。
+
+00:00:49.987 --> 00:00:58.724
+示范和模型自己写的技能库会改变模型的做法，但都没有明显好过默认配置，花费也都更高。
+
+00:00:58.817 --> 00:01:01.278
+第三，场景几何帮助最大。
+
+00:01:01.278 --> 00:01:06.651
+即使是只用 RGB 预测的深度，也能把空抓从 41 次降到 16 次。
+
+00:01:06.567 --> 00:01:13.200
+再加上从像素解算 3D 点的代码并取消决策上限，得分达到 50.3。
+
+00:01:14.583 --> 00:01:17.917
+最后，余下的失败大多是长尾场景。
+
+00:01:17.917 --> 00:01:20.608
+它们大多只出现在单个任务上。
+
+00:01:26.033 --> 00:01:30.946
+没有学习得到的策略，没有自我改进循环，也不针对任务调参。
+
+00:01:31.183 --> 00:01:32.480
+JustRUA.
+</script>
+    <script>(()=>{ try{ const t=document.getElementById("ft-cc"), v=document.getElementById("ft-vtt"); if(t&&v) t.src=URL.createObjectURL(new Blob([v.textContent.trim()+"\n"],{type:"text/vtt"})); }catch(e){} })();</script>
     <div class="ft-bar"><span>项目影片 <em>1:32</em></span><button type="button" class="ft-x" id="ft-close">关闭 <span aria-hidden="true">&times;</span></button></div>
   </div>
 </section>
@@ -949,7 +1071,7 @@ section.sec + section.sec{margin-top:128px}
       </div>
     </div>
     <div class="hero-main">
-      <p class="abstract">GPT-6 Astra 可以通过一套固定的 harness 直接控制机械臂，此后 RoboDojo 上的分数涨得很快。已有系统提出了不少可能有用的改进，但它们的 harness 起点可能不同，用的测试子集可能不同，还常常同时改动设计中的好几处，很难看出哪些选择带来了大部分提升。我们把这些设计拆开，放在同一个框架里研究。JustRUA 从官方 L3 harness 出发，只保留最关键的部分。它没有学习得到的策略，没有自我改进循环，也不针对任务调参，这套最简的 harness 就把 RoboDojo 仿真基准上的得分从 29.7 提高到 50.3。</p>
+      <p class="abstract">GPT-6 Astra 可以通过一套固定的 harness 直接控制机械臂，此后 RoboDojo 上的分数涨得很快。已有系统所用的 harness 和测试子集各不相同，而且常常同时改动好几处设计，很难看出提升到底来自哪些选择。我们把这些设计拆开，放在同一个框架里测试。JustRUA 从官方 L3 harness 出发，只保留最关键的部分。它没有学习得到的策略，没有自我改进循环，也不针对任务调参，就把 RoboDojo 仿真基准上的得分从 29.7 提高到 50.3。</p>
       <div class="links hero-links">
         <a class="chip film-btn" href="#film-top" id="film-open"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="7.25"/><path d="M7.5 6.2v5.6L11.8 9z" fill="currentColor" stroke="none"/></svg>项目影片 <em>1:32</em></a>
         <span class="chip soon" aria-disabled="true" title="即将发布"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 1.75h5.5L12.5 4.75V14.25H4z"/><path d="M9.25 1.75v3.25h3.25M6 8h4.5M6 10.75h4.5"/></svg>论文<span class="soon-t">即将发布</span></span>
@@ -959,10 +1081,10 @@ section.sec + section.sec{margin-top:128px}
         <p class="lang-sw"><a href="../" lang="en">English</a> · <b>中文</b></p>
       </div>
       <ol class="tks" aria-label="主要结论">
-      <li class="tk" tabindex="0" data-go="sec-harness"><span class="n">01</span><b>简洁的 harness 方案已经能做很多</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop">官方 harness 只保留最近两次观测，每段运动都要执行完，模型才会再看一次。保留完整的回合历史，并让每段运动在 20 个控制步后停下，评测集得分就从 29.7 提升到 38.0。相对目标、命名技能和让模型自己选步数，都没有比简单的绝对目标更好。</span></li>
-      <li class="tk" tabindex="0" data-go="sec-exp"><span class="n">02</span><b>复用经验并非免费午餐</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop">示范和自写的技能库会改变模型的行为方式，但在评测集上都没有明显好过默认配置，每个回合的花费也更高。在我们试过的所有做法里，复用经验最容易变成针对基准刷分。我们做了五轮自我改进，每个任务只练一次，没有看到明显提升；报告有提升的系统，每个任务练习的次数要多得多。</span></li>
-      <li class="tk" tabindex="0" data-go="sec-geo"><span class="n">03</span><b>场景几何帮助最大</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop">在同样的 42 个回合中，深度图把空抓从 41 次降到 16 次，即使深度是 Depth Pro 只用 RGB 预测出来的，误差有几十厘米，也是如此。这一提升不需要任何特权信息。再加上从像素解算 3D 坐标的代码并取消决策上限，评测集得分达到 50.3。</span></li>
-      <li class="tk" tabindex="0" data-go="sec-err"><span class="n">04</span><b>余下的失败大多是长尾场景</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop">我们复查了最佳配置在首轮中得分低于 50 的每个任务。失败原因包括不适合机械臂的规划、计划外的碰撞、抓取打滑，以及少数提示词或评分问题，其中大多只出现在单个任务上。修改提示词后，首轮得分从 54.0 升至 55.6。其余问题需要逐个任务反复试错，这已接近在测试任务本身上调参。</span></li>
+      <li class="tk" tabindex="0" data-go="sec-harness"><span class="n">01</span><b>简洁的 harness 方案已经能做很多</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop"><span>保留完整的回合历史，并让每段运动在 20 个控制步后停下，得分就从 29.7 提高到 38.0。相对目标、命名技能和让模型自己选步数，都没有比简单的绝对目标更好。</span></span></li>
+      <li class="tk" tabindex="0" data-go="sec-exp"><span class="n">02</span><b>复用经验并非免费午餐</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop"><span>示范和模型自己写的技能库会改变模型的做法，但都没有明显好过默认配置，每个回合的花费也更高。它们还最容易变成针对基准刷分。</span></span></li>
+      <li class="tk" tabindex="0" data-go="sec-geo"><span class="n">03</span><b>场景几何帮助最大</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop"><span>深度图把空抓从 41 次降到 16 次，即使深度是 Depth Pro 只用 RGB 预测出来的，误差有几十厘米，也是如此。再加上从像素解算 3D 坐标的代码并取消决策上限，得分达到 50.3。</span></span></li>
+      <li class="tk" tabindex="0" data-go="sec-err"><span class="n">04</span><b>余下的失败大多是长尾场景</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop"><span>最佳配置剩下的失败大多只出现在单个任务上，比如规划不适合机械臂、计划外的碰撞和抓取打滑。要修好它们，得在每个任务上反复试错，这已接近在测试任务上调参。</span></span></li>
       </ol>
     </div>
   </div>
@@ -971,16 +1093,48 @@ section.sec + section.sec{margin-top:128px}
 <section class="gains" id="gains">
   <div class="wrap">
     <h2 class="sec-h">从官方 L3 harness 到 JustRUA</h2>
-    <p class="sec-sub">我们从官方 L3 harness 出发，测试近期系统加入的各项设计，只保留最关键的部分。</p>
+    <p class="sec-sub">我们测试近期系统加入的各项设计，只保留最关键的部分。</p>
     <div class="legend" aria-hidden="true">
-      <span class="lg-item main"><i class="lg-pill"></i><span>评测集，全部 42 个任务，111 个回合<sup>1</sup><em class="lg-claim">以较低成本可靠地估计完整的 2,100 回合评测</em></span></span> <span class="lg-item minor"><i class="lg-ring"></i>首轮，42 个回合</span> <span class="lg-item minor"><i class="lg-cost"></i>每个首轮回合的成本，下界</span> <span class="lg-key"><span><i class="lg-sq"></i>JustRUA 保留</span><span><i class="lg-sq drop"></i>尝试过，未保留</span></span>
+      <span class="lg-item main"><i class="lg-pill"></i><span>评测集，全部 42 个任务，111 个回合<sup>1</sup><em class="lg-claim">以较低成本可靠地估计完整的 2,100 回合评测</em></span></span> <span class="lg-item minor"><i class="lg-ring"></i>首轮，42 个回合</span> <span class="lg-item minor"><i class="lg-cost"></i>每个首轮回合的成本，下界</span>
     </div>
     <div class="wf-panel">
-      <div class="wf-scroll">
-        <div class="wf" id="wf" role="img" aria-label="各配置的评测集得分，并标出首轮得分。Harness：官方 L3 29.7，完整历史 34.7。动作：模型自定步数 37.9，20 步上限 38.0，相对目标 33.9，语义操作 34.6。经验复用：视觉示范 39.9，文本轨迹 35.2，自建库 37.0。场景几何：绘制可供性 36.7，紧凑读数 39.8，预测深度 42.4，可供性面板 42.1，坐标解算 50.3。"></div>
+      <div class="f1" id="f1">
+        <div class="f1-tab">
+          <div class="dt" id="dt" role="table" aria-label="测试过的所有设计，按改动的系统部分分组，并附评测集得分">
+            <div class="dt-top" role="row"><span class="dt-key" role="columnheader"><span class="vh">测试过的设计。</span><span aria-hidden="true"><i class="lg-sq"></i>JustRUA 保留</span><span aria-hidden="true"><i class="lg-sq drop"></i>尝试过，未保留</span></span><span class="dt-sc" role="columnheader">得分</span></div>
+            <div class="dt-g" role="rowgroup"><div class="dt-h" role="row"><b role="rowheader">Harness</b><span>完整历史有帮助</span></div>
+              <div class="dt-r k" data-i="0" tabindex="0" role="row"><span role="cell"><i></i>官方 L3 harness</span><span role="cell">29.7</span></div>
+              <div class="dt-r k" data-i="1" tabindex="0" role="row"><span role="cell"><i></i>完整历史<sup>2</sup></span><span role="cell">34.7</span></div>
+            </div>
+            <div class="dt-g" role="rowgroup"><div class="dt-h" role="row"><b role="rowheader">动作</b><span>短运动有帮助</span></div>
+              <div class="dt-r k" data-i="3" tabindex="0" role="row"><span role="cell"><i></i>20 步上限</span><span role="cell">38.0</span></div>
+              <div class="dt-r" data-i="2" tabindex="0" role="row"><span role="cell"><i></i>模型自定步数</span><span role="cell">37.9</span></div>
+              <div class="dt-r" data-i="4" tabindex="0" role="row"><span role="cell"><i></i>相对目标</span><span role="cell">33.9</span></div>
+              <div class="dt-r" data-i="5" tabindex="0" role="row"><span role="cell"><i></i>语义操作</span><span role="cell">34.6</span></div>
+            </div>
+            <div class="dt-g risk" role="rowgroup"><div class="dt-h" role="row"><b role="rowheader">经验复用<sup>3</sup></b><span>没有明显提升</span></div>
+              <div class="dt-r" data-i="6" tabindex="0" role="row"><span role="cell"><i></i>视觉示范<sup>§</sup></span><span role="cell">39.9</span></div>
+              <div class="dt-r" data-i="7" tabindex="0" role="row"><span role="cell"><i></i>文本轨迹<sup>§</sup></span><span role="cell">35.2</span></div>
+              <div class="dt-r" data-i="8" tabindex="0" role="row"><span role="cell"><i></i>自建技能库</span><span role="cell">37.0</span></div>
+            </div>
+            <div class="dt-g" role="rowgroup"><div class="dt-h" role="row"><b role="rowheader">场景几何</b><span>帮助最大，可供性除外</span></div>
+              <div class="dt-r k" data-i="10" tabindex="0" role="row"><span role="cell"><i></i>紧凑读数</span><span role="cell">39.8</span></div>
+              <div class="dt-r k" data-i="11" tabindex="0" role="row"><span role="cell"><i></i>预测深度</span><span role="cell">42.4</span></div>
+              <div class="dt-r k" data-i="13" tabindex="0" role="row"><span role="cell"><i></i>坐标解算<sup>4</sup></span><span role="cell">50.3</span></div>
+              <div class="dt-r" data-i="9" tabindex="0" role="row"><span role="cell"><i></i>绘制可供性</span><span role="cell">36.7</span></div>
+              <div class="dt-r" data-i="12" tabindex="0" role="row"><span role="cell"><i></i>可供性面板</span><span role="cell">42.1</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="f1-ch">
+          <div class="wf-scroll">
+            <div class="wf" id="wf" role="img" aria-label="JustRUA 保留的各项设计按加入顺序给出的评测集得分，上方是每个首轮回合的成本。官方 L3 harness 29.7，完整历史 34.7，20 步上限 38.0，紧凑读数 39.8，预测深度 42.4，坐标解算 50.3。"></div>
+          </div>
+          <div class="wf-detail" id="wf-detail" aria-live="polite"></div>
+        </div>
       </div>
-      <p class="wf-caption"><b>图 1.</b> 从官方 L3 harness 走到 JustRUA 的过程中测试过的设计选择。JustRUA 保留的改动让模型看到完整历史和场景几何，并缩短每段运动。其他动作接口、预计算的可供性以及各种形式的经验复用都尝试过并被舍弃。每根柱子代表一次评测集运行，圆环是其中首轮子集的得分。上方虚线是单个首轮回合的成本，按所有可缓存输入都命中缓存来算，所以是下界。</p>
-      <p class="wf-fn"><span><sup>1</sup> 23 个最不确定的任务各取四个布局，其余任务各取一个，得分标准差为 2.6。官方 L3 harness 在该集合上得 29.7 分，在全部 2,100 个回合上得 29.0 分。</span><span><sup>2</sup> 把官方循环搬进一个 Codex 会话，保留回合中的每张图像。</span><span><sup>3</sup> 复用经验用到的正是要评分的任务，因此有一定刷基准的风险。</span><span><sup>4</sup> 模型还可以运行代码，主要用来计算目标坐标，网页搜索保持关闭。决策上限被取消，官方的动作次数限制仍然适用。</span></p>
+      <p class="wf-caption"><b>图 1.</b> 左侧表格按维度列出我们测试过的所有设计，右侧图表按加入顺序画出 JustRUA 保留的设计。每个得分是一次评测集运行，圆环是其中首轮子集的得分。成本按所有可缓存输入都命中缓存来算，所以是下界。</p>
+      <p class="wf-fn"><span><sup>1</sup> 23 个最不确定的任务各取四个布局，其余任务各取一个，得分标准差为 2.6。官方 L3 harness 在这个集合上得 29.7 分，在全部 2,100 个回合上得 29.0 分。</span><span><sup>2</sup> 把官方循环搬进一个 Codex 会话，保留回合中的每张图像。</span><span><sup>3</sup> 刷分风险。经验复用用到的正是要评分的任务，所以无论得分多少，这类设计一律不保留。标 § 的设计刷分最直接，它用的是被评分任务本身的专家示范。</span><span><sup>4</sup> 模型还可以运行代码，网页搜索保持关闭。决策上限取消，官方的动作次数限制仍然有效。</span></p>
     </div>
   </div>
 </section>
@@ -990,7 +1144,7 @@ section.sec + section.sec{margin-top:128px}
 
     <section class="sec" id="framework">
       <h2 class="sec-h">受控研究框架</h2>
-      <p class="why">RoboDojo 上报告的得分所用的 harness 和测试子集各不相同，多数报告还同时改动了设计的多个部分。如果逐个复现，这些差异也会被带进来。所以我们把这些设计拆开，在同一个测试平台、同一个基准上测试，并尽量减少每次运行之间的改动。</p>
+      <p class="why">我们没有逐个复现已报道的系统，而是把设计拆开，在同一个测试平台、同一个基准上测试，并尽量减少每次运行之间的改动。</p>
 
       <div id="fw-box">
       <div class="fw-tags" role="group" aria-label="选择研究的一个部分">
@@ -1028,7 +1182,7 @@ section.sec + section.sec{margin-top:128px}
               <g class="region" data-ax="eval" tabindex="0" role="button" aria-label="评测"><rect x="786" y="26" width="168" height="84" rx="14"/><g class="tag"><rect x="798" y="16" width="82" height="20" rx="10"/><text x="810" y="30">评测</text></g></g>
             </svg>
           </div>
-          <p class="fw-note">蓝色轮廓标出 JustRUA 相对官方 L3 harness 改动的部分。选择一个虚线区域，查看我们在那里改变了什么。</p>
+          <p class="fw-note">蓝色边框标出 JustRUA 改动的部分。点击虚线区域可以查看我们改变了什么。</p>
         </div>
         <div class="card fw-detail" id="fw-detail"></div>
       </div>
@@ -1037,7 +1191,7 @@ section.sec + section.sec{margin-top:128px}
       <div class="halves">
         <div class="card" id="proxy">
           <h3>评测集</h3>
-          <p>如果一个任务的得分只在少数几个档位间跳动，且只是有时成功，我们就称它为不确定任务。23 个最不确定的任务各取四个布局，其余任务各保留一个，共 111 个回合。布局选择事先固定，因为不同布局的难度差别明显（<a href="#sec-eval">评测说明</a>）。</p>
+          <p>23 个最不确定的任务，也就是只有时成功的任务，各取四个布局，其余任务各取一个，共 111 个回合。布局事先固定（见<a href="#sec-eval">评测说明</a>）。</p>
           <div class="px-pair">
             <figure>
               <div class="mini-h2">所选任务<br>波动最大</div>
@@ -1048,11 +1202,11 @@ section.sec + section.sec{margin-top:128px}
               <svg class="pxsvg" id="px-b" viewBox="0 0 200 248" role="img" aria-label="总分的 bootstrap 标准差随回合数的变化。每个任务一次，42 个回合，4.81。两次，84 个，3.42。三次，126 个，2.79。四次，168 个，2.42。评测集，111 个回合，2.58。"></svg>
             </figure>
           </div>
-          <p class="px-note">左图为每个任务在八轮中的得分标准差。右图为中等推理强度下总分的 bootstrap 标准差。评测集用 111 个回合达到 2.58，每个任务各跑三次则用 126 个回合达到 2.79。</p>
+          <p class="px-note">左图是每个任务在八轮中的得分标准差。右图是中等推理强度下总分的 bootstrap 标准差，评测集比每个任务各跑三次的方案更低。</p>
         </div>
         <div class="card" id="behaviour">
           <h3>行为复查</h3>
-          <p>每个首轮回合都根据视频复查，得分体现不出的行为会被计数，作为下界。</p>
+          <p>每个首轮回合都对照视频复查，得分体现不出的行为按下界计数。</p>
           <div class="bhv" id="bhv">
             <div class="bhv-tabs" role="tablist" aria-label="行为" id="bhv-tabs"></div>
             <div class="bhv-media"><video id="bhv-video" muted loop playsinline preload="metadata" width="640" height="480"></video><span class="bhv-task" id="bhv-task"></span></div>
@@ -1064,11 +1218,11 @@ section.sec + section.sec{margin-top:128px}
 
     <section class="sec axis-sec" id="sec-harness">
       <h2 class="sec-h"><span class="num">01</span>Harness 与动作</h2>
-      <p class="sec-sub">我们的出发点是一个矛盾。GPT-6 Astra 在 RoboDojo 上的首次评测发现，它在需要精度的任务上表现较弱：在官方 L3 harness 下，它在精度组（RoboDojo 的五个任务组之一）上得分 12.7（<a class="cite" href="https://arxiv.org/abs/2609.24170" target="_blank" rel="noopener">RoboProbe</a>）；来自 Galbot 的一项更广泛的研究也看到，它的任务决策与可靠的物理控制之间存在差距（<a class="cite" href="https://arxiv.org/abs/2609.38537" target="_blank" rel="noopener">Galbot</a>）。然而，只对 harness 和动作循环做几处合理的修正，不在其上叠加复杂设计，就让它的精度组得分达到了当时最强的视觉-语言-动作模型的水平（在我们的评测集上为 25.0，DM0.5 为 24.8）。我们由此怀疑，这种弱点很大程度上出在 harness，而不在模型本身。</p>
+      <p class="sec-sub">对 GPT-6 Astra 在 RoboDojo 上的首次评测发现，它在精度类任务上表现较弱，官方 L3 harness 下的精度得分只有 12.7（<a class="cite" href="https://arxiv.org/abs/2609.24170" target="_blank" rel="noopener">RoboProbe</a>），Galbot 也看到它的决策和物理控制之间有类似的落差（<a class="cite" href="https://arxiv.org/abs/2609.38537" target="_blank" rel="noopener">Galbot</a>）。但对 harness 和动作循环做几处合理的修正后，它的精度得分就追上了当时最强的视觉-语言-动作模型（在我们的评测集上为 25.0，DM0.5 为 24.8）。看来这部分短板很大程度上出在 harness，而不是模型本身。</p>
 
       <div class="finding" id="f-harness">
         <h3><span class="num">1.1</span>Codex 与完整历史</h3>
-        <p class="f-sub">官方 L3 harness，即 RoboProbe 中的 L3 Inspect EEF，直接调用模型 API，且只保留最近两次观测的图像。我们在一个 <a class="cite" href="https://openai.com/codex/" target="_blank" rel="noopener">Codex</a> 会话<sup>*</sup>中运行同样的循环，保留回合中的每一张图像，并关闭 Codex 自带的工具。各项对照比较沿用该 harness 默认的每回合 100 次决策上限，只有 JustRUA 的最终配置取消了这一上限。仅把循环移入 Codex 反而降低了首轮得分，因此我们把提升归于 Codex 与完整历史两者的共同作用。</p>
+        <p class="f-sub">官方 L3 harness（即 RoboProbe 中的 L3 Inspect EEF）直接调用模型 API，只保留最近两次观测的图像。我们在一个 <a class="cite" href="https://openai.com/codex/" target="_blank" rel="noopener">Codex</a> 会话<sup>*</sup>里运行同样的循环，保留每张图像，并关闭 Codex 自带的工具。单独换成 Codex 反而让首轮得分下降，所以我们把提升归功于两者的组合。所有对比都沿用每回合 100 次决策的默认上限，只有最终的 JustRUA 取消了它。</p>
         <div class="card stbl-card">
           <table class="stbl">
             <thead><tr><th>配置</th><th>评测集</th><th>首轮</th></tr></thead>
@@ -1084,7 +1238,7 @@ section.sec + section.sec{margin-top:128px}
 
       <div class="finding" id="f-action">
         <h3><span class="num">1.2</span>动作设计</h3>
-        <p class="f-sub"><span class="run">运动长度。</span> <a class="cite" href="https://arxiv.org/abs/2310.17274" target="_blank" rel="noopener">CuRobo</a> 偶尔会返回不稳定的规划，而在官方循环中，整段运动执行完之前模型什么也看不到。我们把每段运动限制在 20 个控制步以内，这样在糟糕的规划把机械臂带远之前，模型就能再次观察。我们还尝试过像动作分块那样（<a class="cite" href="https://arxiv.org/abs/2304.13705" target="_blank" rel="noopener">ACT</a>、<a class="cite" href="https://research.nvidia.com/labs/srl/projects/astranomy/" target="_blank" rel="noopener">Astranomy</a>），让模型为每段运动选择 3 到 32 步。JustRUA 保留了固定上限。</p>
+        <p class="f-sub"><span class="run">运动时长。</span>官方循环里，一整段运动执行完模型才能看到画面，所以一条不稳定的 <a class="cite" href="https://arxiv.org/abs/2310.17274" target="_blank" rel="noopener">CuRobo</a> 规划可能把机械臂带出很远。我们让每段运动在 20 个控制步后停下。像动作分块那样让模型在 3 到 32 步之间自己选（<a class="cite" href="https://arxiv.org/abs/2304.13705" target="_blank" rel="noopener">ACT</a>、<a class="cite" href="https://research.nvidia.com/labs/srl/projects/astranomy/" target="_blank" rel="noopener">Astranomy</a>），效果并没有更好，所以 JustRUA 保留固定上限。</p>
         <div class="mlen wide-r">
           <div class="card stbl-card">
             <table class="stbl">
@@ -1098,12 +1252,12 @@ section.sec + section.sec{margin-top:128px}
                 <tr class="k tot"><td>总分</td><td>34.7</td><td class="kp b">38.0</td><td>37.9</td></tr>
               </tbody>
             </table>
-            <p class="tbl-note">三者都保留完整回合历史。模型自选的运动长度为 3 到 32 个控制步。</p>
+            <p class="tbl-note">三种设置都保留完整的回合历史。</p>
           </div>
           <div class="clips2" id="cap-clips"></div>
         </div>
-        <p class="f-sub"><span class="run">替代接口。</span> 有两种替代方案来自近期的系统，都没有胜过绝对目标。相对目标把位置和朝向表示为相对实测位姿的偏移，如 <a class="cite" href="https://arxiv.org/abs/2609.22966" target="_blank" rel="noopener">RoboDawn</a>。它的得分更低，与 <a class="cite" href="https://research.nvidia.com/labs/srl/projects/astranomy/" target="_blank" rel="noopener">Astranomy</a> 的发现大致相同，机械臂撞到物体的次数也几乎是原来的三倍，首轮中为 20 次对 7 次。一个可能的原因是，模型读到的每个坐标，从任务说明到实测位姿，都在世界坐标系下给出，因此偏移量要求模型在每次移动前多做一次减法。</p>
-        <p class="f-sub">语义操作用具名技能取代原始目标，这是连接语言模型与机器人的常见方式（<a class="cite" href="https://arxiv.org/abs/2204.01691" target="_blank" rel="noopener">SayCan</a>、<a class="cite" href="https://arxiv.org/abs/2209.07753" target="_blank" rel="noopener">Code as Policies</a>）。我们的语义操作构建在 move_eef 之上，只是在更高层次上描述移动，没有新增控制代码或学习得到的策略。有的标明移动的目的，如 approach 或 transport；有的把几次移动合并为一次调用，如 pick；adjust_view 则附带先看再动的指引。它们改变的更多是模型做了什么，而不是做得多好。模型移动相机的次数增加到三倍以上，手中物体掉落得也更多，得分却没有提高。</p>
+        <p class="f-sub"><span class="run">其他动作接口。</span>近期系统用到的两种替代方案都没有胜过绝对目标。相对目标即相对于实测位姿的偏移，<a class="cite" href="https://arxiv.org/abs/2609.22966" target="_blank" rel="noopener">RoboDawn</a> 用的就是这种方式。它的得分更低，<a class="cite" href="https://research.nvidia.com/labs/srl/projects/astranomy/" target="_blank" rel="noopener">Astranomy</a> 也有同样的发现，而且机械臂撞到物体的次数接近原来的三倍。模型读到的坐标全都在世界坐标系下，所以用偏移量可能意味着每次移动前都要多做一次减法。</p>
+        <p class="f-sub">语义操作用命名技能代替原始目标，<a class="cite" href="https://arxiv.org/abs/2204.01691" target="_blank" rel="noopener">SayCan</a> 和 <a class="cite" href="https://arxiv.org/abs/2209.07753" target="_blank" rel="noopener">Code as Policies</a> 都是这种做法。我们的语义操作构建在 move_eef 之上，没有新增控制代码或学习得到的策略。它们改变的更多是模型做了什么，而不是做得多好。模型调整相机的次数是原来的三倍多，手里的东西也掉得更多，得分没有提高。</p>
         <div class="mlen top">
           <div class="card stbl-card">
             <table class="stbl">
@@ -1136,7 +1290,7 @@ section.sec + section.sec{margin-top:128px}
               <div class="iface-pane on" data-k="default">
                 <p>任一机械臂抓取点在世界坐标系下的目标。未指定的维度保持观测值。朝向从一个固定的竖直向下抓取姿态起算，而不是叠加在当前姿态上；夹爪指令在机械臂运动之后执行。</p>
                 <div class="tgrid">
-                  <div class="tg"><span class="tg-c">工具</span><span class="tg-d"><span class="tl"><code>move_eef(targets, note)</code><small>left_x / y / z 以米为单位，left_pitch / roll / yaw_deg，left_gripper 从 0（闭合）到 1（张开），右臂同理。两只机械臂可以在一次调用中同时移动。</small></span><span class="tl"><code>give_up()</code><small>结束模型判断为无法挽回的回合。</small></span></span></div>
+                  <div class="tg"><span class="tg-c">工具</span><span class="tg-d"><span class="tl"><code>move_eef(targets, note)</code><small>left_x / y / z 以米为单位，left_pitch / roll / yaw_deg，left_gripper 从 0（闭合）到 1（张开），右臂同理。两只机械臂可以在一次调用中同时移动。</small></span><span class="tl"><code>give_up()</code><small>模型判断回合已无法挽回时结束回合。</small></span></span></div>
                 </div>
               </div>
               <div class="iface-pane" data-k="relative" aria-hidden="true">
@@ -1168,7 +1322,7 @@ section.sec + section.sec{margin-top:128px}
           </figure>
           <div class="tiles">
             <div class="tile"><span class="t-l">评测集得分</span><span class="t-v"><s>38.0</s> → <b>42.0</b></span><span class="t-s">如果原先耗尽决策次数的六个回合保持原来的得分，新得分只有 39.4。</span></div>
-            <div class="tile"><span class="t-l">每回合所用决策数</span><span class="t-v"><s>63.2</s> → <b>52.7</b></span><span class="t-s">典型回合从 65 次降到 51 次。在两个版本都完成的 31 个回合中，从 50.2 降到 40.0。</span></div>
+            <div class="tile"><span class="t-l">每回合所用决策数</span><span class="t-v"><s>63.2</s> → <b>52.7</b></span><span class="t-s">在两个版本都完成的 31 个回合中，从 50.2 降到 40.0。</span></div>
             <div class="tile"><span class="t-l">耗尽决策次数的回合</span><span class="t-v"><s>0</s> → <b>3</b> <em>个成功，共 6 个</em></span><span class="t-s">这六个回合的平均得分从 11.7 升至 58.3。</span></div>
           </div>
         </div>
@@ -1193,11 +1347,11 @@ section.sec + section.sec{margin-top:128px}
 
     <section class="sec axis-sec" id="sec-exp">
       <h2 class="sec-h"><span class="num">02</span>经验复用</h2>
-      <p class="sec-sub">来自其他回合的经验是递归自我改进的核心，而在我们尝试过的所有方法中，它钻基准空子的风险也最大。查找任务自己的示范，接近于把不同任务分派给不同的策略；在测试布局上练习，则接近于在测试集上训练。我们之所以测试它，是因为它用得很广。没有哪种形式的经验明显胜过默认配置。</p>
+      <p class="sec-sub">来自其他回合的经验是递归自我改进的核心。在我们试过的所有做法里，它也最容易变成针对基准刷分，因为它用到的正是要评分的任务。我们测试它，是因为这种做法用得很广。结果没有哪种形式明显胜过默认配置。</p>
 
       <div class="finding" id="f-exp">
         <h3><span class="num">2.1</span>示范</h3>
-        <p class="f-sub">把示范放进上下文是帮助 GPT-6 Astra 的常见做法，<a class="cite" href="https://arxiv.org/abs/2610.22471" target="_blank" rel="noopener">SenseNova</a> 对此做过测试。视觉示范和文本轨迹都取材于 <a class="cite" href="https://arxiv.org/abs/2609.22966" target="_blank" rel="noopener">RoboDawn</a> 中每个任务一条经专家整理的成功回合，按任务名查找，在第一次决策之前插入一次。视觉示范展示其作者挑选的 16 个关键帧。文本轨迹逐阶段给出同一回合，包括两只机械臂的位姿、发出的指令及其结果，已转换到我们的坐标系，并略去了作者的规划。</p>
+        <p class="f-sub">在上下文里放示范，是帮助 GPT-6 Astra 的常见做法（<a class="cite" href="https://arxiv.org/abs/2610.22471" target="_blank" rel="noopener">SenseNova</a>）。两个版本都取自 <a class="cite" href="https://arxiv.org/abs/2609.22966" target="_blank" rel="noopener">RoboDawn</a> 中每个任务一条经专家筛选的成功回合，在第一次决策前插入一次。视觉示范展示它的 16 张关键帧，文本轨迹则把同一个回合按阶段写出来，用我们的坐标给出位姿、指令和结果。</p>
         <div class="mlen top">
           <div class="card stbl-card">
             <table class="stbl">
@@ -1228,7 +1382,7 @@ section.sec + section.sec{margin-top:128px}
             </div>
             <div class="iface-stack">
               <div class="iface-pane on" data-k="visual">
-                <p>make_kong 中模型在第一次决策前看到的内容：源回合的 16 张关键帧，来自头部相机，已按顺序编号。</p>
+                <p>make_kong 中模型在第一次决策前看到的 16 张关键帧，来自头部相机。</p>
                 <div class="kf-wrap">
                   <img class="kf" src="../media/exp/kong-r1-keyframes.jpg" alt="make_kong 示范的十六个关键帧，从对手打出的牌到最后的杠" width="1298" height="978" loading="lazy">
                   <ol class="kf-n" aria-hidden="true"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li></ol>
@@ -1236,7 +1390,7 @@ section.sec + section.sec{margin-top:128px}
                 <p class="tbl-note" style="margin:0">有三个任务还包含作者的腕部相机视图。不附带任何动作轨迹或机器人状态。</p>
               </div>
               <div class="iface-pane" data-k="text" aria-hidden="true">
-                <p>同一回合 40 个阶段中的五个。交接只以坐标的形式出现：左手把牌带到桌面中央并在那里张开，右手在同一点闭合。</p>
+                <p>同一回合 40 个阶段中的五个。交接只以坐标的形式出现。</p>
 <pre class="code demo-code">Stage 26 (source turn 28, control step 1522):
 left: pose=[-0.4,-0.05,0.9079,0.0,0.0,90.0]; opening=0.78
 right: pose=[0.3,-0.2019,0.922,90.0,0.0,0.0]; opening=0.18
@@ -1276,14 +1430,14 @@ right: pose=[-0.001,-0.208,0.7759,0.0,0.0,0.0]; opening=1
           </div>
         </div>
         <div class="kong-row">
-          <p class="f-sub"><span class="run">计划更好还不够。</span>有了任一种示范，模型都更常借桌面中转来传递物体，分别为 15 次和 13 次，首轮只有 9 次，掉落也更少。错误分析里可以看到，在 make_kong 中，没有示范时模型从不把牌交给另一只机械臂。有了示范，它会照着示范里的交接来做：一只机械臂把牌翻过来放到桌子中央，另一只再把它送到这一排的末端。文本轨迹里这次交接只体现为坐标，模型仍然看出来了。示范的最后一步是把牌竖着夹住推进这一排，两次运行都没有照做，都在这一推时弄丢了牌，得分为 0。这类改进会被其他环节的失败抵消，所以总分几乎没变。</p>
+          <p class="f-sub"><span class="run">计划更好还不够。</span>有了任一种示范，模型都更常借桌面中转来传递物体，掉落也更少。在 make_kong 中，它会照着示范完成交接，没有示范时它从不这样做，即使文本轨迹只用坐标给出这次交接也一样。示范的最后一步是把牌竖着夹住推进这一排，两次运行都没有照做，都在这里弄丢了牌，得分为 0。这类改进会被其他环节的失败抵消，所以总分几乎没变。</p>
           <div class="clips2" id="kong-clips"></div>
         </div>
       </div>
 
       <div class="finding" id="f-loop">
         <h3><span class="num">2.2</span>自我改进循环</h3>
-        <p class="f-sub">RoboDojo 上有几个参赛系统通过编写并完善自己的技能来自我改进（<a class="cite" href="https://arxiv.org/abs/2610.18867" target="_blank" rel="noopener">EmbodiedEvo</a>、<a class="cite" href="https://github.com/OpenSenseNova/SenseNova-RoboRSI" target="_blank" rel="noopener">SenseNova-RoboRSI</a>）。在这里，一个 Codex 智能体为模型编写额外的操作，即构建在 move_eef 之上的 Python 代码，并附上何时使用它们的指南。它从全部 42 个任务的 RoboDawn 示范出发。任务被分成五组。每一轮，模型在其中一组上运行当前的库，智能体随后复查这些运行，包括得分、动作日志和视频，并为下一轮修订库。整个过程没有任何人工编辑。与示范不同，结果不按任务存储或查找。</p>
+        <p class="f-sub">有几个 RoboDojo 参赛系统会自己编写技能来改进自身（<a class="cite" href="https://arxiv.org/abs/2610.18867" target="_blank" rel="noopener">EmbodiedEvo</a>、<a class="cite" href="https://github.com/OpenSenseNova/SenseNova-RoboRSI" target="_blank" rel="noopener">SenseNova-RoboRSI</a>）。在这里，一个 Codex 智能体从 RoboDawn 示范出发，在 move_eef 之上编写额外的操作，并附上何时使用它们的指南。42 个任务分成五组。每一轮模型在其中一组上运行这个库，智能体再查看得分、日志和视频，修订这个库。整个过程没有人工修改，也不按任务存储或查找任何内容。</p>
         <div class="card iface loopx">
           <div class="act-head">
             <span class="seg" role="group" aria-label="选择轮次" id="loop-seg"><button type="button" data-k="r1" aria-pressed="true">第 1 轮</button><button type="button" data-k="r2" aria-pressed="false">第 2 轮</button><button type="button" data-k="r3" aria-pressed="false">第 3 轮</button><button type="button" data-k="r4" aria-pressed="false">第 4 轮</button><button type="button" data-k="r5" aria-pressed="false">第 5 轮</button></span> <span class="lp-legend"><code class="nw">new</code> 为本轮新增</span>
@@ -1294,7 +1448,7 @@ right: pose=[-0.001,-0.208,0.7759,0.0,0.0,0.0]; opening=1
                 <div class="lp-grp"><span class="lp-l">第 1 组 &middot; 3 次成功</span><div class="gts"><span class="gt ok"><code>stack_bowls</code><b>1</b></span><span class="gt ct"><code>plug_in_charger</code><b>0</b></span><span class="gt ok"><code>general_pickup</code><b>1</b></span><span class="gt ct"><code>fill_pen_holder</code><b>0</b></span><span class="gt"><code>sweep_blocks</code><b>0</b></span><span class="gt"><code>deposit_coin</code><b>0.2</b></span><span class="gt"><code>cover_blocks</code><b>0</b></span><span class="gt"><code>classify_objects</code><b>0.4</b></span><span class="gt ok"><code>push_T</code><b>1</b></span></div></div>
                 <div class="lp-rows">
                   <div class="tg"><span class="tg-c">观察</span><span class="lp-tx">在 <code>plug_in_charger</code> 和 <code>fill_pen_holder</code> 中，模型在插头或笔还没到位时就松开了。</span></div>
-                  <div class="tg"><span class="tg-c">第 2 轮的改动</span><span class="lp-tx">place 和 grasp 可以在松开或闭合之前停下，让模型先看一眼。新增的 insert 把手中物体的尖端对准孔并推入，但只在手到达入口 2 mm 和 1&deg; 以内时才执行。</span></div>
+                  <div class="tg"><span class="tg-c">第 2 轮的改动</span><span class="lp-tx">place 和 grasp 可以在松开或闭合之前停一下。新增的 insert 在手中物体的尖端到达入口 2 mm 和 1° 以内时，把它推进孔里。</span></div>
                 </div>
                 <pre class="code lp-code">place(..., release_after_lowering=false)
 grasp(..., close_after_approach=false)
@@ -1305,7 +1459,7 @@ insert(arm, entry_point, tip_offset, axis, standoff, depth, advance)</pre>
                 <div class="lp-grp"><span class="lp-l">第 2 组 &middot; 1 次成功</span><div class="gts"><span class="gt ct"><code>hang_mugs</code><b>0.15</b></span><span class="gt ct"><code>insert_tubes</code><b>0.2</b></span><span class="gt"><code>align_blocks</code><b>0</b></span><span class="gt"><code>put_bottles_into_dustbin</code><b>0.25</b></span><span class="gt ok"><code>stack_blocks</code><b>1</b></span><span class="gt"><code>insert_key</code><b>0.15</b></span><span class="gt ct"><code>pour_balls_into_vase</code><b>0</b></span><span class="gt"><code>build_tower</code><b>0.1</b></span><span class="gt"><code>pack_objects_into_box</code><b>0.1</b></span></div></div>
                 <div class="lp-rows">
                   <div class="tg"><span class="tg-c">观察</span><span class="lp-tx">松开后直接竖直抬起，在 <code>insert_tubes</code> 中把试管带歪，在 <code>hang_mugs</code> 中勾住了杯柄。在 <code>pour_balls_into_vase</code> 中，反复转动让倾倒口偏离了花瓶，球洒了出来。</span></div>
-                  <div class="tg"><span class="tg-c">第 3 轮的改动</span><span class="lp-tx">place 可以先沿选定方向后撤再抬起。新增的 pivot 让手中物体转动，同时保持物体上的某一点不动，比如倾倒口或尖端。</span></div>
+                  <div class="tg"><span class="tg-c">第 3 轮的改动</span><span class="lp-tx">place 可以先沿选定方向后撤再抬起。新增的 pivot 让手中物体转动，同时让物体上的某一点保持不动，比如杯口或尖端。</span></div>
                 </div>
                 <pre class="code lp-code">place(..., retreat_direction={x, y, z})
 pivot(arm, feature_offset, target_orientation, feature_shift)</pre>
@@ -1315,7 +1469,7 @@ pivot(arm, feature_offset, target_orientation, feature_shift)</pre>
                 <div class="lp-grp"><span class="lp-l">第 3 组 &middot; 1 次成功</span><div class="gts"><span class="gt"><code>sort_nesting_dolls_by_size</code><b>0</b></span><span class="gt"><code>fill_egg_holder</code><b>0.1</b></span><span class="gt ok"><code>fold_clothes</code><b>1</b></span><span class="gt ct"><code>play_Xylophone</code><b>0</b></span><span class="gt ct"><code>swap_blocks</code><b>0</b></span></div></div>
                 <div class="lp-rows">
                   <div class="tg"><span class="tg-c">观察</span><span class="lp-tx">在 <code>play_Xylophone</code> 和 <code>swap_blocks</code> 中，模型把并未生效的按压也计了数。</span></div>
-                  <div class="tg"><span class="tg-c">第 4 轮的改动</span><span class="lp-tx">指南现在要求模型把尝试过的按压与已确认的按压分开记录。新增的 tap 按压一次后返回，但只在手到达目标 2 mm 和 1&deg; 以内时才执行。</span></div>
+                  <div class="tg"><span class="tg-c">第 4 轮的改动</span><span class="lp-tx">指南要求把尝试过的按压和已确认的按压分开记录。新增的 tap 在到达目标 2 mm 和 1° 以内时按压一次后返回。</span></div>
                 </div>
                 <pre class="code lp-code">tap(arm, target_point, feature_offset, axis, clearance, activate)
 guide: &quot;record attempted contact separately from verified activation&quot;</pre>
@@ -1339,9 +1493,9 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
                 <pre class="code lp-code">hold(cycles, note)</pre>
               </div>
           </div>
-          <p class="tbl-note" style="margin:0">得分按任务计，从 0 到 1。每一轮在不同的组上运行，因此各组结果并非学习曲线。观察和改动转述自库自身的记录。</p>
+          <p class="tbl-note" style="margin:0">得分按任务计，范围 0 到 1。每一轮运行的是不同的任务组，所以这不是学习曲线。问题和改动是对库自身记录的转述。</p>
         </div>
-        <p class="f-sub" style="margin-top:22px">这个库改变了模型的抓取方式。首轮中，空抓从 47 次降到 33 次，双臂互撞从 6 次降到 0 次。循环运行了五轮，每个任务练习一次。报告自我改进带来明显提升的系统，每个任务的练习次数要多得多（<a class="cite" href="https://arxiv.org/abs/2610.18867" target="_blank" rel="noopener">EmbodiedEvo</a>、<a class="cite" href="https://arxiv.org/abs/2610.26848" target="_blank" rel="noopener">PhysRSI-eval</a>）。在迭代集，即循环中见过的那些任务上，第 5 轮的库得分略高于循环内的运行；在评测集上则与默认配置持平。这个循环有用，但见效很慢。</p>
+        <p class="f-sub" style="margin-top:22px">这个库改变了模型的抓取方式，首轮中空抓更少，也没有出现双臂互撞。每个任务只练一次的情况下，它在见过的任务上比循环自己的运行略高，在评测集上和默认配置持平。报告有明显提升的系统，每个任务练习的次数要多得多（<a class="cite" href="https://arxiv.org/abs/2610.18867" target="_blank" rel="noopener">EmbodiedEvo</a>、<a class="cite" href="https://arxiv.org/abs/2610.26848" target="_blank" rel="noopener">PhysRSI-eval</a>）。自我改进循环有用，但见效慢。</p>
         <div class="tiles tiles4">
           <div class="tile"><span class="t-l">每个任务的练习</span><span class="t-v"><b>1</b> <em>次循环内运行</em></span><span class="t-s">每一轮运行不同的一组任务。</span></div>
           <div class="tile"><span class="t-l">评测集</span><span class="t-v"><s>38.0</s> → <b>37.0</b></span><span class="t-s">默认配置对比第 5 轮的库。</span></div>
@@ -1353,14 +1507,14 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
     <section class="sec axis-sec" id="sec-geo">
       <h2 class="sec-h"><span class="num">03</span>场景几何</h2>
-      <p class="sec-sub">近期的智能体系统会用专门的模型算出深度、点云和可供性，再交给模型。我们想弄清 GPT-6 实际需要其中多少。它自己的抓握读数、从 RGB 预测的深度，加上一点把像素转换为 3D 坐标的代码，不借助任何模拟器真值就已经能做很多；而预计算的可供性虽然是其中最复杂的部分，却没有帮助，因此被舍弃。</p>
+      <p class="sec-sub">近期的智能体系统会用专门的模型给模型提供深度、点云和可供性。GPT-6 用不着这么多。它自己的夹爪读数、从 RGB 预测的深度，加上一小段把像素换算成 3D 坐标的代码，在不用模拟器真值的情况下就拿到了大部分提升，而预先算好的可供性没有帮助。</p>
 
       <div class="finding" id="f-readings">
         <h3><span class="num">3.1</span>机器人读数</h3>
-        <p class="f-sub">机器人读数是每个夹爪的基本传感器数值，包括手指位置与受力、接触力和腕部负载。它们不携带任何特权信息，比如模拟器中任何物体的真实位姿。</p>
+        <p class="f-sub">机器人读数是每个夹爪的基本传感器数值，包括手指位置和受力、接触力和腕部负载，不含物体真实位姿这类特权信息。</p>
         <div class="gd-row">
           <div class="gd-text">
-            <p class="f-sub">它们最明显的用处在抓取。默认接口报告的是模型要求的夹爪开度，因此闭合到物体上之后，模型看到的是自己设定的目标。读数则给出手指实际达到的开度和每个指尖的受力。</p>
+            <p class="f-sub">读数在抓取时帮助最大。默认接口只报告模型要求的夹爪开度，而读数给出手指实际到达的开度和每个指尖的受力。</p>
             <table class="stbl gd-tbl">
               <thead><tr><th>insert_tubes，闭合之后</th><th>默认</th><th class="kc">有读数</th></tr></thead>
               <tbody>
@@ -1368,11 +1522,11 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
                 <tr><td>接触力，N</td><td class="na">未报告</td><td class="kp b">24.9 / 24.5</td></tr>
               </tbody>
             </table>
-            <p class="tbl-note" style="margin:0">默认接口显示的是指令值 0.24。手指在同一刻度上停在 0.44，并从两侧施压，说明试管已被夹住。</p>
+            <p class="tbl-note" style="margin:0">手指停在 0.44，而不是指令要求的 0.24，并且两侧都在施力，说明管子已经夹住了。</p>
           </div>
           <figure class="gd-fig"><img src="../media/geo/grasp-67.jpg" alt="夹爪闭合到试管上之后的左腕视图" width="640" height="480" loading="lazy"></figure>
         </div>
-        <p class="f-sub" style="margin-top:22px">读数的写法和内容同样重要。关于场景的信息冗长而稀疏，写成完整 JSON 时，读数挤占了上下文，让许多回合进入了上下文压缩。JustRUA 用一种简短的文本格式来写。</p>
+        <p class="f-sub" style="margin-top:22px">读数的写法同样重要。写成完整 JSON 时，读数挤占了上下文，让许多回合进入了上下文压缩，所以 JustRUA 用一种简短的文本格式来写。</p>
         <div class="rd">
           <div class="card">
             <span class="seg" role="group" aria-label="选择格式">
@@ -1400,8 +1554,8 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
       <div class="finding" id="f-depth">
         <h3><span class="num">3.2</span>深度</h3>
-        <p class="f-sub">我们进一步加入深度。许多近期的智能体系统用深度在 3D 空间中定位物体（<a class="cite" href="https://arxiv.org/abs/2610.14018" target="_blank" rel="noopener">RoboHarness</a>、<a class="cite" href="https://arxiv.org/abs/2610.28259" target="_blank" rel="noopener">GPT-GEAR</a>、<a class="cite" href="https://arxiv.org/abs/2610.22496" target="_blank" rel="noopener">RAX</a>），但 RoboDojo 排行榜不接受智能体参赛者使用从模拟器读取的深度，<a class="cite" href="https://github.com/XPolicyLab/XPolicyLab/pull/151#issuecomment-6106209632" target="_blank" rel="noopener">一位维护者在评审中明确说明了这一点</a>。因此我们两者都测试，一是来自模拟器的深度，二是 <a class="cite" href="https://arxiv.org/abs/2410.02073" target="_blank" rel="noopener">Depth Pro</a> 仅凭 RGB 图像预测的深度，并与上一步的机器人读数对比。</p>
-        <p class="f-sub">预测的距离偏差很大。修正焦距后，误差仍有几十厘米。在每一帧中按机器人自身的几何拟合一个尺度，可以把误差降到几厘米，但这个尺度在帧间漂移，而且无法为腕部相机拟合，因此 JustRUA 直接传递原始预测。</p>
+        <p class="f-sub">许多近期的智能体系统用深度在 3D 空间里定位物体（<a class="cite" href="https://arxiv.org/abs/2610.14018" target="_blank" rel="noopener">RoboHarness</a>、<a class="cite" href="https://arxiv.org/abs/2610.28259" target="_blank" rel="noopener">GPT-GEAR</a>、<a class="cite" href="https://arxiv.org/abs/2610.22496" target="_blank" rel="noopener">RAX</a>），但 RoboDojo 排行榜不接受智能体参赛项使用模拟器深度，<a class="cite" href="https://github.com/XPolicyLab/XPolicyLab/pull/151#issuecomment-6106209632" target="_blank" rel="noopener">维护者在评审中明确说过这一点</a>。我们同时测试了模拟器深度和 <a class="cite" href="https://arxiv.org/abs/2410.02073" target="_blank" rel="noopener">Depth Pro</a> 只用 RGB 预测的深度。</p>
+        <p class="f-sub">预测出的距离偏差很大，即使给了真实焦距也差几十厘米。按机器人几何逐帧缩放有所改善，但缩放比例在帧与帧之间漂移，腕部相机也无法拟合，所以 JustRUA 直接传入原始预测。</p>
         <div class="card dpcard">
           <div class="dp-tiles">
             <figure><img src="../media/geo/dp-rgb.jpg" alt="make_kong 的头部相机 RGB 视图" width="425" height="318" loading="lazy"><figcaption>RGB</figcaption></figure>
@@ -1422,7 +1576,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
         </div>
         <div class="dp-row">
           <div class="dp-text">
-            <p class="f-sub">即便如此，预测深度对操作的提升几乎和模拟器深度一样大。空抓从 41 次降到 17 次（模拟器深度）和 16 次（预测深度），精细放置失败在预测深度下降得更多。掉落没有减少。预测做对的是远近的排序，而这似乎已经足够。深度带来的提升不需要特权信息。</p>
+            <p class="f-sub">即便如此，预测深度对操作的改善几乎和模拟器深度一样大，空抓同样少，精细放置失败更少，只是掉落没有减少。预测把深度的前后顺序弄对了，这似乎就已足够。</p>
             <table class="stbl">
               <thead><tr><th></th><th>机器人读数</th><th>模拟器深度</th><th class="kc">预测深度</th></tr></thead>
               <tbody>
@@ -1443,8 +1597,8 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
       <div class="finding" id="f-hints">
         <h3><span class="num">3.3</span>可供性</h3>
-        <p class="f-sub">深度告诉模型表面在哪里，却不告诉它物体可以从哪里抓住，或者哪只机械臂够得着。这类知识就是可供性，即物体或位置能为机器人提供什么，比如一个可以抓握的把手，或一块某只机械臂能够到的桌面。近期的智能体系统用专门的模型计算可供性，再交给规划器（<a class="cite" href="https://arxiv.org/abs/2610.24016" target="_blank" rel="noopener">CLARO</a>、<a class="cite" href="https://github.com/hao-ai-lab/ORA" target="_blank" rel="noopener">ORA</a>）。由于许多回合都在抓取环节出错，我们测试了直接把这类知识交给模型是否有帮助。</p>
-        <p class="f-sub">我们为每个相机视图计算两类可供性。一个预训练的抓取生成器（<a class="cite" href="https://arxiv.org/abs/2507.13097" target="_blank" rel="noopener">GraspGen</a>）在每个物体的点云上提出至多八个抓取位姿，逆运动学则检验每只机械臂以当前工具朝向能够到哪些表面。两者都绘制在相机图像上。文本以位置和角度列出抓取位姿，并附上提示，例如哪些候选在某个相机中看不到。真正的难点在于如何把这些呈现给模型。每次观测已经包含各个相机视图及其深度，再加任何东西，要么占用更多空间，要么挤占已有的内容。</p>
+        <p class="f-sub">深度能告诉模型表面在哪里，但不能告诉它物体可以从哪里抓、哪只机械臂够得着。这类知识就是可供性。近期的智能体系统用专门的模型计算可供性（<a class="cite" href="https://arxiv.org/abs/2610.24016" target="_blank" rel="noopener">CLARO</a>、<a class="cite" href="https://github.com/hao-ai-lab/ORA" target="_blank" rel="noopener">ORA</a>），而许多回合正是在抓取时出错，所以我们测试了直接把可供性交给模型。</p>
+        <p class="f-sub">对每个相机视角，<a class="cite" href="https://arxiv.org/abs/2507.13097" target="_blank" rel="noopener">GraspGen</a> 为每个物体给出最多八个抓取位姿，逆运动学则标出每只机械臂能够到哪些表面。两者都画在图像上，文本里再列出抓取位姿。难点在于怎么呈现，因为往观测里加任何东西，要么占更多篇幅，要么挤占原有内容。</p>
         <div class="card aff-fig2" id="aff-fig2">
           <svg class="aff-link" aria-hidden="true"></svg>
           <figure class="aff-big">
@@ -1459,7 +1613,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
           </div>
           <p class="tbl-note aff-foot">insert_tubes 第一次决策时的头部相机图像。点击图像可放大。</p>
         </div>
-        <p class="f-sub" style="margin-top:22px">与同一来源的深度图相比，四个版本都没有抓得更稳，得分也没有更高。可供性能起作用的时刻也不多。可达性最重要的场合，是一只机械臂够不到物体、要把它交给另一只的时候，而在每个版本中，包括面板版本，交接都很少见。抓取候选只在开始抓取的那些决策中有用。相比之下，成本伴随每一次观测，因为要让可供性一直可见，就得增加图像和 token，或者缩小其他视图。权衡两者之后，我们没有把可供性放进 JustRUA。</p>
+        <p class="f-sub" style="margin-top:22px">与同一来源的深度图相比，四个版本都没有抓得更稳，得分也没有更高。可供性能起作用的时刻很少：交接仍然少见，抓取候选只在开始抓取时才有用，而它们的成本却伴随每一次观测。我们没有把可供性放进 JustRUA。</p>
         <div class="card stbl-card aff-tbl" style="overflow-x:auto">
           <table class="stbl">
             <thead>
@@ -1483,8 +1637,8 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
       <div class="finding" id="f-code">
         <h3><span class="num">3.4</span>坐标解算</h3>
-        <p class="f-sub">在最后一步，我们尝试释放 GPT-6 在 Codex 中工作的全部潜力。现在模型可以在会话中编写并运行代码<sup class="fnm">1</sup>，如 <a class="cite" href="https://arxiv.org/abs/2209.07753" target="_blank" rel="noopener">Code as Policies</a> 以及更近的 <a class="cite" href="https://arxiv.org/abs/2609.39018" target="_blank" rel="noopener">URAI</a>，此前所有比较都保留的 100 次决策上限也被取消。</p>
-        <p class="f-sub">模型使用代码的方式很一致。几乎每次运行都是在解算坐标：根据相机标定从像素投射射线，再对两个相机都看到的点做三角测量，或与已知高度的表面求交。代码只用模型已经收到的图像和文本，从不读取深度图。少数打开文件的运行，只是列出输入或重读模型自己写的辅助代码。因此，代码相当于又一个场景几何来源，这也是我们把它放在这条轴上的原因。</p>
+        <p class="f-sub">在最后一步，模型还可以在会话里编写并运行代码<sup class="fnm">1</sup>，<a class="cite" href="https://arxiv.org/abs/2209.07753" target="_blank" rel="noopener">Code as Policies</a> 和 <a class="cite" href="https://arxiv.org/abs/2609.39018" target="_blank" rel="noopener">URAI</a> 也是这样做的，同时取消 100 次决策的上限。</p>
+        <p class="f-sub">几乎每次运行都用代码解算坐标：根据相机标定从像素发出射线，再用两个相机看到的同一点做三角测量，或者与已知高度的表面求交。代码从不读取深度图。因此代码相当于又一个场景几何的来源，这也是它归在这一维度下的原因。</p>
         <div class="mlen top">
           <div class="card stbl-card">
             <table class="stbl">
@@ -1511,7 +1665,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
             <p class="tbl-note">每个首轮回合的成本。</p>
           </div>
         </div>
-        <p class="f-sub" style="margin-top:22px">下面的案例展示了解算的过程。在 insert_tubes 中，模型根据像素和相机标定定位试管和试管架上的孔，把三根试管全部插好。</p>
+        <p class="f-sub" style="margin-top:22px">在 insert_tubes 中，模型从像素定位管子和试管架上的孔，放好了全部三根管子。</p>
         <div class="card solver" id="solver">
           <div class="sv-top">
             <div class="sv-chips" role="group" aria-label="选择案例">
@@ -1544,7 +1698,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
                 <tr><td>控制步，共 500</td><td>500</td><td class="kp">496</td></tr>
               </tbody>
             </table>
-            <p class="tbl-note">播放器在代码运行处暂停，并跳过其间的片段，播放速度显示在控制台中。距离比较的是代码输出与随后的指令和夹爪位置，而不是物体的真实位置。代码和输出均为模型实际运行时的原样。</p>
+            <p class="tbl-note">播放器在代码运行处暂停，并跳过中间的片段。距离比较的是代码输出与随后发出的指令，而不是物体的真实位置。代码和输出都是模型实际运行时的原样。</p>
           </div>
           <script type="application/json" id="solver-data">{"tubes": {"task": "insert_tubes", "beats": [{"k": "f", "t": 0.04, "hold": 2000, "st": "第 0 次决策 &middot; 0.0 s &middot; 代码运行时模拟器暂停", "title": "定位试管", "code": "python3 - &lt;&lt;&#x27;PY&#x27;\nimport numpy as np\nfor u,v in [(220,202),(201,235),(215,212),(302,177),(319,186)]:\n d=np.array([(u-320)/288.1325,-.86603*(v-240)/288.1325+.5,-.5*(v-240)/288.1325-.86603]); p=np.array([0,-.41,1.308]); q=p+d*((.782-p[2])/d[2]);print(u,v,q)\nPY", "out": ["220 202 [-0.22816849 -0.00619792  0.782     ]", "201 235 [-0.2533848  -0.09402191  0.782     ]", "215 212 [-0.23449104 -0.03411066  0.782     ]", "302 177 [-0.04342494  0.0691849   0.782     ]", "319 186 [-0.00236371  0.04107148  0.782     ]"], "hl": [0, 1, 2], "dim": [3, 4], "use": "&rarr; 第 1 次决策 &nbsp; left_x &minus;0.232 &nbsp; left_y &minus;0.024 &nbsp; <em>距试管轴线 1.2 mm</em>", "m": ["p1", "p2", "p3", "ax", "pl", "tg", "tgl"], "z": [140, 140, 1.9]}, {"k": "p", "t": 0.04, "e": 2.76, "r": 0.9, "m": ["tg"], "cap": "左夹爪移到目标处，以每指约 25 N 的力闭合，并抬起试管。"}, {"k": "f", "t": 7.72, "hold": 2600, "st": "第 15 次决策 &middot; 7.7 s &middot; 代码运行时模拟器暂停", "title": "用两个相机定位孔和尖端", "code": "cat &gt; geom.py &lt;&lt;&#x27;PY&#x27;\nimport numpy as np\np=np.array([0,-.41,1.308]);q=np.array([.1237,-.1424,1.117]);R=np.array([[.92327,.3721,.09548],[.37629,-.82595,-.41977],[-.07733,.42349,-.90259]])\ndef ray(u,v):return np.array([(u-320)/397.0413,(v-240)/397.0413,1])@R\nfor uv,uv2 in [((288,189),(136,167)),((304,187),(176,179)),((321,186),(217,190))]:\n u,v=uv;a=np.array([(u-320)/288.1325,.5-.86603*(v-240)/288.1325,-.86603-.5*(v-240)/288.1325]);b=ray(*uv2);s=np.linalg.lstsq(np.stack([a,-b],axis=1),q-p,rcond=None)[0];print(&#x27;slot&#x27;, (p+s[0]*a+q+s[1]*b)/2)\n# tip expected z .875\nb=ray(135,120);print(&#x27;tip&#x27;,q+b*((.875-q[2])/b[2]))\nPY\npython3 geom.py", "out": ["slot [-0.0680863  -0.0075847   0.82781261]", "slot [-0.03343841 -0.00317352  0.82797068]", "slot [0.00261262 0.00086266 0.82782292]", "tip [-0.05959854  0.00504745  0.875     ]"], "hl": [0, 3], "dim": [1], "use": "&rarr; 孔 1 &minus; 尖端 = (&minus;8.5, &minus;12.6) mm &nbsp; 第 15 次决策让左手移动 (&minus;6.6, &minus;12.2) mm", "m": ["h0", "h1", "h2", "w0", "w1", "w2", "l0", "l1", "l2", "tip", "tipl", "w0l", "tw"]}, {"k": "p", "t": 7.72, "e": 8.64, "r": 0.6, "m": ["w0", "tip"], "cap": "手移向孔 1，并小步下降。第一根试管插到位。"}, {"k": "f", "t": 14.2, "hold": 1600, "st": "第 36 次决策 &middot; 14.2 s", "title": "复用孔 3", "code": "# no new code, hole 3 was solved at decision 15", "out": ["slot [0.00261262 0.00086266 0.82782292]"], "hl": [0], "dim": [], "use": "&rarr; 第 36 次决策 &nbsp; x 0.003 &nbsp; y 0.001 &nbsp; <em>距孔 3 0.4 mm</em>", "m": ["h2b", "h2l"], "z": [200, 116, 1.8]}, {"k": "p", "t": 14.2, "e": 16.36, "r": 1.0, "m": ["h2b"], "cap": "第二根试管插入孔 3。"}, {"k": "p", "t": 20.9, "e": 21.96, "r": 1.0, "hold": 800, "m": [], "cap": "三根试管最终都插在试管架上。"}]}, "cuffs": {"task": "fold_clothes", "beats": [{"k": "f", "t": 0.04, "hold": 2000, "st": "第 0 次决策 &middot; 0.0 s &middot; 代码运行时模拟器暂停", "title": "定位两只袖口", "code": "python3 - &lt;&lt;&#x27;PY&#x27;\nimport numpy as np\nfor n,u,v in [(&#x27;lc&#x27;,213,265),(&#x27;rc&#x27;,429,311),(&#x27;ls&#x27;,281,213),(&#x27;rs&#x27;,361,222),(&#x27;lh&#x27;,251,296),(&#x27;rh&#x27;,372,325),(&#x27;lch&#x27;,287,246),(&#x27;rch&#x27;,353,257)]:\n d=np.array([(u-320)/288.1325,-.86603*(v-240)/288.1325+.5,-.5*(v-240)/288.1325-.86603]); p=np.array([0,-.41,1.308])+d*((.775-1.308)/d[2]);print(n,p)\nPY", "out": ["lc [-0.2176495  -0.16099372  0.775     ]", "rc [ 0.20382667 -0.25558144  0.775     ]", "ls [-0.08806879 -0.03187085  0.775     ]", "rs [ 0.09085301 -0.05621664  0.775     ]", "lh [-0.13251474 -0.22646023  0.775     ]", "rh [ 0.09490761 -0.28141169  0.775     ]", "lch [-0.06965075 -0.11689684  0.775     ]", "rch [ 0.06816613 -0.14282238  0.775     ]"], "hl": [0, 1], "dim": [2, 3, 4, 5, 6, 7], "use": "&rarr; 第 2 次决策 &nbsp; 左 (&minus;0.215, &minus;0.159) &nbsp; 右 (0.201, &minus;0.252) &nbsp; <em>分别相距 3.3 和 4.6 mm</em>", "m": ["lc", "rc", "lcl", "rcl"], "z": [192, 172, 1.55]}, {"k": "p", "t": 0.04, "e": 2.5, "r": 3, "m": ["lc", "rc"], "cap": "两次转腕，快速播放。"}, {"k": "p", "t": 2.5, "e": 8.2, "r": 1.5, "hold": 400, "m": ["lc", "rc"], "cap": "双手移到解算出的点，夹住布料，提起两只袖口。"}]}, "cup": {"task": "pick_from_conveyor_by_image", "beats": [{"k": "f", "t": 0.04, "hold": 2000, "st": "第 25 次决策 &middot; 9.8 s &middot; 代码运行时模拟器暂停", "title": "用两个相机求杯口高度", "code": "/bin/zsh -c &quot;python3 - &lt;&lt;&#x27;PY&#x27;\nimport numpy as n\np=n.array([0,-.41,1.308]);q=n.array([-.3003,.042,.9775]);a=n.array([(186-320)/288.1325,.5-(165-240)/288.1325*.86603,-.86603-(165-240)/288.1325*.5]);b=n.array([(317-320)/397.0413,.29208-(320-240)/397.0413*.95639,-.95639-(320-240)/397.0413*.29208]);t=n.linalg.lstsq(n.stack([a,-b],1),q-p,rcond=None)[0];print(p+a*t[0],q+b*t[1])\nPY&quot;", "out": ["[-0.29959047  0.05731307  0.83395086] [-0.30136917  0.05606196  0.83384164]"], "hl": [0], "dim": [], "use": "&rarr; 第 27 次决策 &nbsp; 在 z = 0.835 m 处闭合 &nbsp; <em>距解算出的杯口 1 mm</em>", "m": ["ch", "cw", "cl", "chl", "cwl", "czl"]}, {"k": "p", "t": 0.04, "e": 3.2, "r": 2.5, "m": ["ch", "cw"], "cap": "左手下降到解算出的高度并闭合。"}, {"k": "p", "t": 3.2, "e": 11.8, "r": 5, "hold": 400, "m": [], "cap": "两根手指都报告接触，杯子离开传送带。"}]}}</script>
         </div>
@@ -1554,7 +1708,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
     <section class="sec axis-sec" id="sec-err">
       <h2 class="sec-h"><span class="num">04</span>错误分析</h2>
-      <p class="sec-sub">在我们的最佳配置下，42 个首轮任务中有 21 个得分低于 50。这些失败是否有共同的原因，决定了进一步的提升需要什么，是再来一个通用的修正，还是逐个任务下功夫。我们复查了每一个这样的回合，并按原因归类。有些回合的失败不止一个原因，而大多数原因只出现在单个任务上。</p>
+      <p class="sec-sub">在最佳配置下，42 个首轮任务中有 21 个得分低于 50。我们把每个这样的回合按原因分类，看进一步的提升需要一个通用的修正，还是要逐个任务下功夫。结果发现，大多数失败只出现在单个任务上。</p>
 
       <div class="finding" id="f-cls">
       <h3><span class="num">4.1</span>失败分类</h3>
@@ -1568,24 +1722,24 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
       <div class="finding" id="f-fix">
         <h3><span class="num">4.2</span>可能的改进</h3>
-        <p class="fix-lead">这些失败大多是长尾的。前三类原因各自指向一个通用方向，但每个方向都需要代价高昂的知识。</p>
+        <p class="fix-lead">前三类原因各自指向一种通用的修正，但每一种都需要代价不小的额外知识。</p>
         <div class="fix">
           <div class="fix-row"><span class="fx-c">策略</span><span>基于<b>对机械臂的高层知识</b>做规划，比如单只机械臂在放置时够不到哪些翻转角度。哪些限制重要，因任务而异。</span></div>
           <div class="fix-row"><span class="fx-c">碰撞</span><span>基于<b>机械臂及其手中每个物体的完整数字资产</b>做碰撞检测。把每个手持物体和每个关节都建模到这种程度，几乎不可行。</span></div>
           <div class="fix-row"><span class="fx-c">抓取不稳</span><span>基于<b>同样的数字资产</b>做抓取规划，以模拟每个不规则或圆形物体在夹爪中的状态。</span></div>
         </div>
-        <p class="fix-close">提示词和评分问题比较容易处理。修改任务提示词后，首轮得分从 54.0 升至 55.6。其他失败很难在不逐个任务试错的情况下消除，而这已接近在测试任务本身上调参。</p>
+        <p class="fix-close">修改任务提示词能解决提示词和评分方面的问题，把首轮得分从 54.0 提高到 55.6。其余问题需要逐个任务反复试错，接近在测试任务上调参。</p>
       </div>
       <script type="application/json" id="err-data">[{"k": "strategy", "name": "策略", "def": "规划或任务拆解不适合机械臂。", "ex": "make_kong", "exn": "单只机械臂无法既达到牌所需的翻转角度，又把它正确放好。没有任何信息告诉模型机械臂的这一限制，所以它<b>从不通过交接来分担任务</b>。", "ours": {"head": "../media/errors/make_kong.mp4", "left": "../media/errors/make_kong-left.mp4", "right": "../media/errors/make_kong-right.mp4"}, "score": 0, "spd": "2×", "list": [["make_kong", "一只机械臂无法同时完成翻牌和放牌，而模型从不把牌交给另一只。"], ["deposit_coin", "尝试侧向交接，硬币掉落。始终用一只手拿着反而可行。"], ["pour_balls_into_vase", "向前倾倒，而机械臂不擅长这样做。这个任务需要侧向倾倒。"], ["pour_by_language", "向前倾倒，抓握打滑。"], ["pour_liquid_into_cup", "向前倾倒，挡住了自己的视线。"], ["pick_from_conveyor_by_image", "抓篮子的位置不好，也把握不住传送带的时机。"], ["sweep_blocks", "交接时给接收臂留下了别扭的抓取点。"], ["hang_mugs", "通过改变视角来弥补，但仍无法预测杯柄会落在哪里。"]]}, {"k": "collision", "name": "碰撞", "def": "计划外的碰撞。模型错估了机械臂或手中物体的尺寸。", "ex": "pack_objects_into_box", "exn": "机械臂把较轻的盒子碰离了原位。这次运行看上去已经完成，得分却是 25。", "ours": {"head": "../media/errors/pack_objects_into_box.mp4", "left": "../media/errors/pack_objects_into_box-left.mp4", "right": "../media/errors/pack_objects_into_box-right.mp4"}, "score": 25, "spd": "3×", "list": [["pack_objects_into_box", "把较轻的盒子碰离原位。"], ["make_toast", "错估了面包的尺寸，两片都没放进去。"], ["build_tower", "一次碰撞让整座塔倒塌。"], ["fill_egg_holder", "一次碰撞让蛋盒合上了。"], ["fill_pen_holder", "碰撞浪费了后面需要的步数。"], ["put_bottles_into_dustbin", "早先的碰撞不断累积，没有留下挽回的余地。"]]}, {"k": "grasp", "name": "抓取不稳", "def": "不规则或圆形的物体从夹爪中滑脱。", "ex": "sort_nesting_dolls_by_size", "exn": "机械臂拿着圆形的套娃移动得太快，套娃滑了出去。", "ours": {"head": "../media/errors/sort_dolls_slip.mp4", "left": "../media/errors/sort_dolls_slip-left.mp4", "right": "../media/errors/sort_dolls_slip-right.mp4"}, "score": 0, "spd": "1×", "list": [["sort_nesting_dolls_by_size", "拿着圆形套娃移动太快，套娃滑脱。"], ["insert_key", "钥匙的摩擦特性异常，在任务要求的交接中滑脱。"], ["deposit_coin", "硬币的稳定抓取点很少，在交接中掉落。"], ["sweep_blocks", "不规则的方块在仿真中表现异常。"], ["store_tools_in_toolbox", "不规则的工具太多，难以应付。"], ["store_laptop_and_headphones", "任务本身就很难。"]]}, {"k": "scoring", "name": "提示词或评分", "def": "任务本身不难，但提示词或评分似乎有问题。", "ex": "fasten_screws", "exn": "螺丝拧进去了，但模型可能无法判断是否达到了要求的公差。提示词需要检查。", "ours": {"head": "../media/errors/fasten_screws.mp4", "left": "../media/errors/fasten_screws-left.mp4", "right": "../media/errors/fasten_screws-right.mp4"}, "score": 20, "spd": "3.5×", "list": [["fasten_screws", "可能无法判断是否达到了要求的公差。"], ["play_xylophone", "简单的任务，看不出明显的失败。"], ["swap_blocks", "看起来简单，却每次都失败。"], ["pack_objects_into_box", "看上去已经完成，得分却很低。盒子似乎被移动过。"], ["pour_liquid_into_cup", "部分失败看起来是提示词或评分的问题。"]]}]</script>
     </section>
 
     <section class="sec" id="sec-eval">
       <h2 class="sec-h">评测说明</h2>
-      <p class="sec-sub">官方 RoboDojo 评测对每个任务运行 50 个回合，因为任务在任一布局上的得分都起伏很大，只跑一次可能产生误导。我们运行的回合少得多，因此跑哪些布局很重要。每一轮按固定顺序运行每个任务的下一个布局，而各轮的难度并不相同。因此，本报告中的每个配置，无论首轮还是评测集，都在相同的固定布局上运行，而不是重新随机抽取。</p>
+      <p class="sec-sub">官方评测每个任务跑 50 个回合，因为单个布局的得分波动很大。我们跑的回合少得多，而且各轮难度不同，所以这里的每种配置都在同一组固定布局上运行，首轮和评测集都是如此。</p>
 
       <div class="finding" id="f-rounds">
         <h3>轮间波动</h3>
-        <p class="f-sub">在八轮中，低强度和中强度的得分同起同落，相关系数为 0.84，不过我们没有把布局难度与运行之间的随机性分开。仅凭首轮得到的得分往往偏高。表中三种设置的首轮得分都高于八轮均值。对官方 L3 harness 而言，八轮均值 28.7 接近完整 2,100 回合的得分 29.0，而首轮为 32.3。</p>
+        <p class="f-sub">低、中两档推理强度在八轮中同涨同跌（相关系数 0.84），不过我们没有把布局难度和每次运行的随机性分开。单看首轮往往偏高，下面三种设置的首轮得分都高于八轮均值。</p>
         <div class="mlen rdgrid">
           <div class="card">
           <svg class="rd-svg" id="rd" viewBox="0 0 640 250" role="img" aria-label="默认测试平台在八轮中各轮的得分。低强度 35.9、35.9、26.5、37.4、27.1、29.6、36.2、47.5。中强度 42.4、37.5、30.6、41.3、23.1、33.3、36.0、43.3。"></svg>
@@ -1607,7 +1761,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 
       <div class="finding" id="f-four">
         <h3>运行四个布局的任务</h3>
-        <p class="f-sub">评测集中有 23 个任务各运行四个布局。在这些任务上，部分完成至多得 50 分，而且默认测试平台在八轮之内、在低或中强度下，在该任务上既成功过也失败过。</p>
+        <p class="f-sub">这 23 个任务各在四个布局上运行。每个布局上，部分完成最多得 50 分，而默认测试平台在八轮中既成功过也失败过。</p>
         <div class="card tgrid">
           <div class="tg"><span class="tg-c">泛化</span><span class="tg-t"><code>push_T</code><code>sort_nesting_dolls_by_size</code><code>stack_bowls</code><code>fold_clothes</code><code>arrange_largest_number</code><code>pack_objects_into_box</code></span></div>
           <div class="tg"><span class="tg-c">记忆</span><span class="tg-t"><code>swap_T</code><code>match_and_pick_from_conveyor</code><code>imitate_sorting_sequence</code><code>press_by_number</code><code>cover_blocks</code></span></div>
@@ -1615,7 +1769,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
           <div class="tg"><span class="tg-c">精度</span><span class="tg-t"><code>plug_in_charger</code><code>fasten_screws</code><code>play_Xylophone</code><code>pour_balls_into_vase</code></span></div>
           <div class="tg"><span class="tg-c">长时程</span><span class="tg-t"><code>put_bottles_into_dustbin</code><code>classify_objects</code></span></div>
         </div>
-        <p class="f-sub" style="margin-top:22px">swap_T 是一个典型例子。只有当两个 T 形块在 20 mm 以内互换位置、各自朝向误差在 3° 以内，且两只机械臂都回到静止位置时，它才得 100 分，否则得 0 分。两种设置在首轮都得 0 分，而在八轮中各成功了四轮。</p>
+        <p class="f-sub" style="margin-top:22px">swap_T 是一个典型例子。只有当两个 T 形块在 20 mm 和 3° 以内互换位置，且两只机械臂都回到静止位置时，它才得 100 分，否则得 0 分。两种设置在首轮都得 0 分，而在八轮中各成功了四轮。</p>
         <div class="card stbl-card" style="overflow-x:auto">
           <table class="stbl rgrid">
             <thead><tr><th>轮次</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr></thead>
@@ -1711,15 +1865,15 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
 (()=>{
   const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 
-  /* ---------- Trajectory chart ---------- */
+  /* ---------- Figure 1: kept designs charted, every tested design in the table ---------- */
   const Y=60;
   const G=[
     {id:"harness",name:"Harness"},
     {id:"act",    name:"动作"},
-    {id:"exp",    name:"经验复用", fn:3},
+    {id:"exp",    name:"经验复用"},
     {id:"geo",    name:"场景几何"}
   ];
-  /* s: base | kept | drop (tried, not kept). p: proxy score (null = pending). f: first round. */
+  /* s: kept | drop (tried, not kept). p: evaluation-set score. f: first round. c: cost per first-round episode. */
   const D=[
     {g:"harness",l:["官方","L3"], p:29.7, f:32.3, s:"kept",
      t:"官方 L3 harness", d:"L3 Inspect EEF，即 RoboDojo 排行榜上 GPT-6 Astra 参赛结果所用的 harness。它只保留最近两次观测的图像。"},
@@ -1751,12 +1905,11 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
      t:"坐标解算", d:"模型还可以在会话中运行代码，主要用它根据像素和相机标定计算目标坐标。建立在预测深度输入之上。"}
   ];
 
-  /* one color for everything JustRUA keeps */
   D.forEach(d=>{ if(d.s==="kept") d.color="#2e4a73"; });
 
   const pct=v=>(v/Y*100).toFixed(2)+"%";
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  const fmt=(v,raw)=>v==null?"待定":(raw||v.toFixed(1));
+  const fmt=v=>v==null?"–":v.toFixed(1);
 
   const CLO=3, CHI=13.5, costY=v=>(8+(v-CLO)/(CHI-CLO)*56).toFixed(1)+"px";
   let html='<div class="wf-axis"><div class="wf-headsp"></div><div class="wf-costax"><span>成本<br>$/回合</span></div><div class="wf-plotax">';
@@ -1766,33 +1919,25 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
   [0,20,40,60].forEach(v=>{ html+=`<i class="${v===0?"base":""}" style="bottom:${pct(v)}"></i>`; });
   html+='</div>';
   G.forEach(g=>{
-    const idx=D.map((d,i)=>i).filter(i=>D[i].g===g.id), n=idx.length;
-    html+=`<div class="wf-g" style="flex:${n} ${n} 0"><div class="wf-head"><b>${esc(g.name)}${g.fn?`<sup>${g.fn}</sup>`:""}</b><i></i></div><div class="wf-cost wf-row">`;
+    const idx=D.map((d,i)=>i).filter(i=>D[i].g===g.id&&D[i].s==="kept"), n=idx.length;
+    if(!n) return;
+    html+=`<div class="wf-g" style="flex:${n} ${n} 0"><div class="wf-head"><b>${esc(g.name)}</b><i></i></div><div class="wf-cost wf-row">`;
     idx.forEach(i=>{ const d=D[i]; html+=`<div class="wc" data-i="${i}">`+(d.c!=null?`<span class="cdot" style="bottom:${costY(d.c)}"></span><span class="cval" style="bottom:calc(${costY(d.c)} + 10px)">$${d.c.toFixed(1)}</span>`:"")+`</div>`; });
     html+=`</div><div class="wf-plot wf-row">`;
     idx.forEach(i=>{
-      const d=D[i], drop=d.s==="drop";
-      html+=`<div class="wf-col${d.p==null?" pend":""}" data-i="${i}" tabindex="0" aria-label="${esc(d.t)}">`;
-      html+=`<div class="track${d.p==null&&!drop?" kept":""}"></div>`;
-      if(d.p!=null){
-        const c=drop?"":d.color;
-        html+=`<div class="fill${drop?" drop":""}" style="height:calc(${pct(d.p)} + 18px);${c?"background:"+c:""}"></div>`;
-        html+=`<div class="knob" style="bottom:${pct(d.p)};${c?"--k:"+c:""}"></div>`;
-        html+=`<div class="val${drop?"":" kept"}" style="bottom:${pct(d.p)}">${fmt(d.p)}</div>`;
-        html+=`<div class="ring" style="bottom:${pct(d.f)}"></div>`;
-      }else{
-        const c=drop?"":d.color;
-        html+=`<div class="fill${drop?" drop":""}" style="height:calc(${pct(d.f)} + 18px);${c?"background:"+c:""}"></div>`;
-        html+=`<div class="knob" style="bottom:${pct(d.f)};${c?"--k:"+c:""}"></div>`;
-        html+=`<div class="val pend" style="bottom:${pct(d.f)}">待定</div>`;
-      }
+      const d=D[i];
+      html+=`<div class="wf-col" data-i="${i}" tabindex="0" aria-label="${esc(d.t)}"><div class="track"></div>`;
+      html+=`<div class="fill" style="height:calc(${pct(d.p)} + 18px);background:${d.color}"></div>`;
+      html+=`<div class="knob" style="bottom:${pct(d.p)};--k:${d.color}"></div>`;
+      html+=`<div class="val kept" style="bottom:${pct(d.p)}">${fmt(d.p)}</div>`;
+      if(d.f!=null) html+=`<div class="ring" style="bottom:${pct(d.f)}"></div>`;
       html+='</div>';
     });
     html+='</div><div class="wf-lab wf-row">';
-    idx.forEach(i=>{ const d=D[i]; html+=`<div data-i="${i}" class="${d.s==="drop"?"":"kept"}"><span>${esc(d.l[0])}<br>${esc(d.l[1])}${d.fn?`<sup>${d.fn}</sup>`:""}</span></div>`; });
+    idx.forEach(i=>{ const d=D[i]; html+=`<div data-i="${i}" class="kept"><span>${esc(d.l[0])}<br>${esc(d.l[1])}${d.fn?`<sup>${d.fn}</sup>`:""}</span></div>`; });
     html+='</div></div>';
   });
-  html+='</div><div class="wf-tip" id="wf-tip" hidden></div>';
+  html+='</div>';
   const wf=$("#wf"); wf.innerHTML=html;
   const groupsEl=wf.querySelector(".wf-groups"), costPath=wf.querySelector(".wf-costline path");
   function drawCost(){
@@ -1804,48 +1949,67 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
   if(window.ResizeObserver) new ResizeObserver(drawCost).observe(wf); else window.addEventListener("resize",drawCost);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(drawCost);
 
-  const tip=$("#wf-tip");
-  let cur=null;
-  function show(i){
-    if(cur===i) return; cur=i;
-    $$("#wf [data-i]").forEach(el=>el.classList.toggle("hover",el.dataset.i===String(i)));
-    const d=D[i];
-    const status={kept:"JustRUA 保留",drop:"尝试过，未保留"}[d.s];
-    tip.innerHTML=`<b>${esc(d.t)}</b>${esc(d.d)}<div class="nums">评测集 ${fmt(d.p)} · 首轮 ${fmt(d.f)}${d.c!=null?`<br>每个首轮回合成本 $${d.c.toFixed(2)}`:""}</div><div class="st${d.s==="drop"?" drop":""}">${status}</div>`;
-    tip.hidden=false;
-    const col=wf.querySelector(`.wf-col[data-i="${i}"]`);
-    const wr=wf.getBoundingClientRect(), cr=col.getBoundingClientRect();
-    let left=cr.left-wr.left+cr.width/2-125;
-    left=Math.max(4,Math.min(left,wr.width-254));
-    tip.style.left=left+"px";
-    tip.style.top="0px";
+  /* details on hover, focus or tap: shown below the chart, or under the tapped row on phones, never over the data */
+  const f1=$("#f1"), det=$("#wf-detail"), slot=det.parentNode, narrow=window.matchMedia("(max-width:899px)");
+  const HINT=`<p class="wd-hint">${window.matchMedia("(hover:hover)").matches?"悬停":"点按"}任一行或柱子可查看详情。</p>`;
+  const card=d=>`<div class="wd-head"><b>${esc(d.t)}</b><span class="st${d.s==="drop"?" drop":""}">${d.s==="drop"?"尝试过，未保留":"JustRUA 保留"}</span></div><p class="wd-d">${esc(d.d)}</p><p class="wd-n">评测集 ${fmt(d.p)} · 首轮 ${fmt(d.f)}${d.c!=null?` · 每个首轮回合 $${d.c.toFixed(2)}`:""}</p>`;
+  let cur=null, curRow=null, shownAt=0;
+  function place(row){
+    if(row&&narrow.matches){ if(det.previousElementSibling!==row) row.after(det); det.classList.add("inline"); }
+    else{ if(det.parentNode!==slot) slot.appendChild(det); det.classList.remove("inline"); }
   }
-  function hide(){ cur=null; tip.hidden=true; $$("#wf .hover").forEach(el=>el.classList.remove("hover")); }
-  $$("#wf [data-i]").forEach(el=>{
-    const i=+el.dataset.i;
-    el.addEventListener("pointerenter",e=>{ if(e.pointerType!=="touch") show(i); });
-    el.addEventListener("click",()=>{ cur===i?hide():show(i); });
-    el.addEventListener("focus",()=>show(i));
+  function show(i,row){
+    if(cur===i&&curRow===row) return; cur=i; curRow=row; shownAt=performance.now();
+    $$("#f1 [data-i]").forEach(el=>el.classList.toggle("hover",el.dataset.i===String(i)));
+    det.innerHTML=card(D[i]); place(row);
+  }
+  function hide(){ cur=null; curRow=null; $$("#f1 .hover").forEach(el=>el.classList.remove("hover")); det.innerHTML=HINT; place(null); }
+  /* keep room for the longest entry so nothing below the chart moves */
+  function reserve(){
+    det.style.minHeight=""; if(narrow.matches||det.classList.contains("inline")) return;
+    const keep=det.innerHTML; let m=0; D.forEach(d=>{ det.innerHTML=card(d); m=Math.max(m,det.offsetHeight); }); det.innerHTML=keep;
+    det.style.minHeight=m+"px";
+  }
+  hide(); reserve(); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(reserve);
+  let rtD; window.addEventListener("resize",()=>{ clearTimeout(rtD); rtD=setTimeout(()=>{ if(!narrow.matches&&det.classList.contains("inline")) place(null); reserve(); },150); });
+  $$("#f1 [data-i]").forEach(el=>{
+    const i=+el.dataset.i, row=el.classList.contains("dt-r")?el:null;
+    el.addEventListener("pointerenter",e=>{ if(e.pointerType!=="touch") show(i,row); });
+    el.addEventListener("click",()=>{ (cur===i&&curRow===row&&performance.now()-shownAt>400)?hide():show(i,row); });
+    el.addEventListener("focus",()=>show(i,row));
   });
-  wf.addEventListener("pointerleave",e=>{ if(e.pointerType!=="touch") hide(); });
-  wf.addEventListener("focusout",e=>{ if(!wf.contains(e.relatedTarget)) hide(); });
+  f1.addEventListener("pointerleave",e=>{ if(e.pointerType!=="touch") hide(); });
+  f1.addEventListener("focusout",e=>{ if(!f1.contains(e.relatedTarget)) hide(); });
 
   /* ---------- Key takeaways: hover, focus or tap ---------- */
   (()=>{ const t=$(".tks"); if(!t||!window.IntersectionObserver) return;
     const io=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ io.disconnect(); setTimeout(()=>{ t.classList.add("hint"); setTimeout(()=>t.classList.remove("hint"),3200); },700); } },{threshold:.6});
     io.observe(t); })();
-  $$(".tk").forEach(t=>{
-    t.addEventListener("click",e=>{
-      e.stopPropagation();
-      const go=()=>{ const el=document.getElementById(t.dataset.go); if(el) el.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); };
-      if(window.matchMedia("(hover:hover)").matches){ go(); return; }
-      if(t.classList.contains("open")){ t.classList.remove("open"); go(); return; }
-      $$(".tk.open").forEach(x=>x.classList.remove("open")); t.classList.add("open");
+  /* one takeaway open at a time; its text slides out below and the items under it move down */
+  (()=>{
+    const list=$(".tks"); if(!list) return;
+    const items=$$(".tk"), canHover=window.matchMedia("(hover:hover)"), narrow=window.matchMedia("(max-width:899px)");
+    let tIn=0, tOut=0;
+    const setOpen=t=>items.forEach(x=>{ const on=x===t; x.classList.toggle("open",on); x.setAttribute("aria-expanded",String(on)); });
+    const go=t=>{ const el=document.getElementById(t.dataset.go); if(el) el.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); };
+    items.forEach(t=>{
+      t.setAttribute("aria-expanded","false");
+      t.addEventListener("pointerenter",e=>{ if(e.pointerType==="touch") return; clearTimeout(tOut); clearTimeout(tIn); tIn=setTimeout(()=>setOpen(t), list.querySelector(".tk.open")?0:70); });
+      t.addEventListener("focus",()=>{ if(t.matches(":focus-visible")) setOpen(t); });
+      t.addEventListener("click",e=>{ e.stopPropagation(); if(canHover.matches||t.classList.contains("open")){ go(t); return; } setOpen(t); });
+      t.addEventListener("keydown",e=>{ if(e.key==="Enter") go(t); if(e.key==="Escape"){ setOpen(null); t.blur(); } });
     });
-    t.addEventListener("keydown",e=>{ if(e.key==="Enter"){ const el=document.getElementById(t.dataset.go); if(el) el.scrollIntoView(); } });
-    t.addEventListener("keydown",e=>{ if(e.key==="Escape"){ t.classList.remove("open"); t.blur(); } });
-  });
-  document.addEventListener("click",()=>$$(".tk.open").forEach(x=>x.classList.remove("open")));
+    list.addEventListener("pointerleave",e=>{ if(e.pointerType==="touch") return; clearTimeout(tIn); tOut=setTimeout(()=>{ if(!list.querySelector(":focus-visible")) setOpen(null); },160); });
+    list.addEventListener("focusout",e=>{ if(!list.contains(e.relatedTarget)) setOpen(null); });
+    document.addEventListener("click",()=>setOpen(null));
+    /* on wide screens keep room for one open item, so the hero never changes height */
+    const reserve=()=>{ list.style.minHeight=""; if(narrow.matches) return;
+      const op=list.querySelector(".tk.open .tk-pop"), base=list.offsetHeight-(op?op.offsetHeight:0);
+      const most=Math.max(...items.map(t=>t.querySelector(".tk-pop > span").offsetHeight));
+      list.style.minHeight=Math.ceil(base+most)+"px"; };
+    reserve(); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(reserve);
+    let rt; window.addEventListener("resize",()=>{ clearTimeout(rt); rt=setTimeout(reserve,150); });
+  })();
 
   document.body.classList.add("final");
 
@@ -2417,7 +2581,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       harness:{n:"Harness",w:"模型外围的循环，包括它保留多少回合内容，以及模型推理的强度。",v:[
         ["k","官方 L3","参考循环，保留最近两张图像"],["k","完整历史","保留每张图像的 Codex 会话"],
         ["d","低强度","推理强度低于默认的中等"],["d","高强度","推理强度高于默认"]]},
-      action:{n:"动作",w:"一次决策如何转化为运动，包括指令格式，以及每段运动在模型再次观察前执行多久。",v:[
+      action:{n:"动作",w:"指令格式，以及每段运动执行多久模型才再看一次。",v:[
         ["k","20 步上限","每段运动在 20 个控制步后停下"],["d","相对目标","相对实测位姿的偏移"],
         ["d","语义操作","approach、grasp、place 等"],["d","移动序列","每次决策至多四次移动"],["d","自适应步数","每段运动 3 到 32 步，由模型设定"]]},
       exp:{n:"经验复用",w:"模型从其他回合带过来的东西，按经验的凝练程度排列。",v:[
