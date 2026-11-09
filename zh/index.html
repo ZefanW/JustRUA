@@ -1071,7 +1071,7 @@ JustRUA.
       </div>
     </div>
     <div class="hero-main">
-      <p class="abstract">GPT-6 Astra 可以通过一套固定的 harness 直接控制机械臂，此后 RoboDojo 上的分数涨得很快。已有系统所用的 harness 和测试子集各不相同，而且常常同时改动好几处设计，很难看出提升到底来自哪些选择。我们把这些设计拆开，放在同一个框架里测试。JustRUA 从官方 L3 harness 出发，只保留最关键的部分。它没有学习得到的策略，没有自我改进循环，也不针对任务调参，就把 RoboDojo 仿真基准上的得分从 29.7 提高到 50.3。</p>
+      <p class="abstract">GPT-6 Astra 可以通过一套固定的 harness 直接控制机械臂，此后 RoboDojo 上的分数涨得很快。已有系统所用的 harness 和测试子集各不相同，而且常常同时改动好几处设计，很难看出提升到底来自哪些选择。我们把这些设计拆开，放在同一个框架里测试。JustRUA 从官方 L3 harness 出发，只保留最关键的部分。即使不用学习得到的策略和自我改进循环，也不针对任务调参，这套简单的 harness 仍能把 RoboDojo 仿真基准上的得分从 29.7 大幅提高到 50.3。</p>
       <div class="links hero-links">
         <a class="chip film-btn" href="#film-top" id="film-open"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="7.25"/><path d="M7.5 6.2v5.6L11.8 9z" fill="currentColor" stroke="none"/></svg>项目影片 <em>1:32</em></a>
         <span class="chip soon" aria-disabled="true" title="即将发布"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 1.75h5.5L12.5 4.75V14.25H4z"/><path d="M9.25 1.75v3.25h3.25M6 8h4.5M6 10.75h4.5"/></svg>论文<span class="soon-t">即将发布</span></span>
@@ -1083,8 +1083,8 @@ JustRUA.
       <ol class="tks" aria-label="主要结论">
       <li class="tk" tabindex="0" data-go="sec-harness"><span class="n">01</span><b>简洁的 harness 方案已经能做很多</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop"><span>保留完整的回合历史，并让每段运动在 20 个控制步后停下，得分就从 29.7 提高到 38.0。相对目标、命名技能和让模型自己选步数，都没有比简单的绝对目标更好。</span></span></li>
       <li class="tk" tabindex="0" data-go="sec-exp"><span class="n">02</span><b>复用经验并非免费午餐</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop"><span>示范和模型自己写的技能库会改变模型的做法，但都没有明显好过默认配置，每个回合的花费也更高。它们还最容易变成针对基准刷分。</span></span></li>
-      <li class="tk" tabindex="0" data-go="sec-geo"><span class="n">03</span><b>场景几何帮助最大</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop"><span>深度图把空抓从 41 次降到 16 次，即使深度是 Depth Pro 只用 RGB 预测出来的，误差有几十厘米，也是如此。再加上从像素解算 3D 坐标的代码并取消决策上限，得分达到 50.3。</span></span></li>
-      <li class="tk" tabindex="0" data-go="sec-err"><span class="n">04</span><b>余下的失败大多是长尾场景</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop"><span>最佳配置剩下的失败大多只出现在单个任务上，比如规划不适合机械臂、计划外的碰撞和抓取打滑。要修好它们，得在每个任务上反复试错，这已接近在测试任务上调参。</span></span></li>
+      <li class="tk" tabindex="0" data-go="sec-geo"><span class="n">03</span><b>场景几何帮助最大</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop"><span>加入深度图后，空抓从 41 次降到 16 次；哪怕深度是 Depth Pro 仅凭 RGB 预测的、误差有几十厘米，效果依然明显。再加上从像素解算 3D 坐标的代码并取消决策上限，得分达到 50.3。</span></span></li>
+      <li class="tk" tabindex="0" data-go="sec-err"><span class="n">04</span><b>余下的失败大多是长尾场景</b><span class="more" aria-hidden="true">+</span> <span class="tk-pop"><span>最佳配置剩下的失败大多只出现在单个任务上，比如规划不适合机械臂、计划外的碰撞和抓取打滑。要修好它们只能逐个任务反复试错，这已经接近在测试任务上调参。</span></span></li>
       </ol>
     </div>
   </div>
