@@ -3,10 +3,6 @@
   "A Controlled Study of GPT-6 Robot-Use Agents": "GPT-6 机器人使用智能体的受控研究",
   "From the official L3 harness to JustRUA": "从官方 L3 harness 到 JustRUA",
   "Controlled study framework": "受控研究框架",
-  "Action<i class=\"prog\"></i>": "动作<i class=\"prog\"></i>",
-  "Reusing experience<i class=\"prog\"></i>": "经验复用<i class=\"prog\"></i>",
-  "Scene geometry<i class=\"prog\"></i>": "场景几何<i class=\"prog\"></i>",
-  "Evaluation<i class=\"prog\"></i>": "评测<i class=\"prog\"></i>",
   "Other episodes": "其他回合",
   "demos, own library": "示范、自建库",
   "Codex session": "Codex 会话",
@@ -33,14 +29,12 @@
   "Fewer episodes,<br>lower SD": "回合更少，<br>标准差更低",
   "Behaviour review": "行为复查",
   "<span class=\"num\">01</span>Harness and action": "<span class=\"num\">01</span>Harness 与动作",
-  "<span class=\"num\">1.1</span>Codex and full history": "<span class=\"num\">1.1</span>Codex 与完整历史",
   "Configuration": "配置",
   "First round": "首轮",
   "Official L3 harness": "官方 L3 harness",
   "Codex, last two images": "Codex，最近两张图像",
   "Codex, full history": "Codex，完整历史",
   "<sup>*</sup> Every experiment runs on Codex 0.153.4, pinned so that small differences between versions cannot move the results.": "<sup>*</sup> 所有实验都运行在 Codex 0.153.4 上，固定这一版本，以免版本间的细微差异影响结果。",
-  "<span class=\"num\">1.2</span>Action design": "<span class=\"num\">1.2</span>动作设计",
   "No cap": "无上限",
   "20-step cap": "20 步上限",
   "Model-chosen": "模型自选",
@@ -100,7 +94,6 @@
   "Round 3": "第 3 轮",
   "Round 4": "第 4 轮",
   "Round 5": "第 5 轮",
-  "</span> <span class=\"lp-legend\"><code class=\"nw\">new</code> added this round</span>": "</span> <span class=\"lp-legend\"><code class=\"nw\">new</code> 为本轮新增</span>",
   "<span class=\"lp-l\">Library</span><span class=\"tg-t\"><code class=\"nw\">grasp</code><code class=\"nw\">transport</code><code class=\"nw\">place</code><code class=\"nw\">push</code></span><span class=\"lp-kb\">written from the demonstrations</span>": "<span class=\"lp-l\">库</span><span class=\"tg-t\"><code class=\"nw\">grasp</code><code class=\"nw\">transport</code><code class=\"nw\">place</code><code class=\"nw\">push</code></span><span class=\"lp-kb\">由示范写成</span>",
   "<span class=\"lp-l\">Group 1 &middot; 3 successes</span>": "<span class=\"lp-l\">第 1 组 &middot; 3 次成功</span>",
   "<span class=\"tg-c\">Seen</span><span class=\"lp-tx\">In <code>plug_in_charger</code> and <code>fill_pen_holder</code> the model let go before the plug or the pen was in place.</span>": "<span class=\"tg-c\">观察</span><span class=\"lp-tx\">在 <code>plug_in_charger</code> 和 <code>fill_pen_holder</code> 中，模型在插头或笔还没到位时就松开了。</span>",
@@ -124,7 +117,6 @@
   "<span class=\"t-l\">Iterate set</span><span class=\"t-v\"><s>35.4</s> → <b>36.4</b></span><span class=\"t-s\">Runs inside the loop against the round-5 library.</span>": "<span class=\"t-l\">迭代集</span><span class=\"t-v\"><s>35.4</s> → <b>36.4</b></span><span class=\"t-s\">循环内的运行对比第 5 轮的库。</span>",
   "<span class=\"t-l\">Empty grasps, first round</span><span class=\"t-v\"><s>47</s> → <b>33</b></span><span class=\"t-s\">The default against the round-5 library.</span>": "<span class=\"t-l\">空抓，首轮</span><span class=\"t-v\"><s>47</s> → <b>33</b></span><span class=\"t-s\">默认配置对比第 5 轮的库。</span>",
   "<span class=\"num\">03</span>Scene geometry": "<span class=\"num\">03</span>场景几何",
-  "<span class=\"num\">3.1</span>Robot readings": "<span class=\"num\">3.1</span>机器人读数",
   "insert_tubes, after closing": "insert_tubes，闭合之后",
   "With readings": "有读数",
   "Jaw opening, 0 to 1": "夹爪开度，0 到 1",
@@ -137,7 +129,6 @@
   "Characters added per decision": "每次决策新增字符数",
   "Episodes with context compaction": "发生上下文压缩的回合",
   "Full JSON was run on the first round only. Cost per first-round episode.": "完整 JSON 只在首轮上运行。每个首轮回合的成本。",
-  "<span class=\"num\">3.2</span>Depth": "<span class=\"num\">3.2</span>深度",
   "Depth Pro, raw <span>given to the model</span>": "Depth Pro，原始 <span>提供给模型</span>",
   "Scaled to robot geometry": "按机器人几何缩放",
   "Simulator": "模拟器",
@@ -153,7 +144,6 @@
   "Robot readings": "机器人读数",
   "Simulator depth": "模拟器深度",
   "Predicted depth": "预测深度",
-  "<span><i class=\"dk\" style=\"--c:#a7adb8\"></i>Robot readings</span> <span><i class=\"dk\" style=\"--c:#8fa6c8\"></i>Simulator depth</span> <span><i class=\"dk\" style=\"--c:#2e4a73\"></i>Predicted depth</span>": "<span><i class=\"dk\" style=\"--c:#a7adb8\"></i>机器人读数</span> <span><i class=\"dk\" style=\"--c:#8fa6c8\"></i>模拟器深度</span> <span><i class=\"dk\" style=\"--c:#2e4a73\"></i>预测深度</span>",
   "First round, same 42 episodes.": "首轮，同样的 42 个回合。",
   "<span class=\"num\">3.3</span>Affordances": "<span class=\"num\">3.3</span>可供性",
   "Yellow marks are grasp candidates with their approach direction. Blue, orange and purple shading marks surfaces the left arm, the right arm or both arms can reach.": "黄色标记是抓取候选及其接近方向。蓝色、橙色和紫色着色分别标出左臂、右臂或双臂都能够到的表面。",
@@ -177,7 +167,6 @@
   "Handovers": "交接",
   "Views from the other arm": "来自另一只机械臂的视图",
   "Tokens per observation": "每次观测的 token 数",
-  "<span class=\"num\">3.4</span>Coordinate solving": "<span class=\"num\">3.4</span>坐标解算",
   "Use of code": "代码用途",
   "Runs": "运行次数",
   "Share": "占比",
@@ -239,17 +228,12 @@
   "<a class=\"sub\" href=\"#proxy\" data-spy=\"proxy\">Evaluation set</a>": "<a class=\"sub\" href=\"#proxy\" data-spy=\"proxy\">评测集</a>",
   "<a class=\"sub\" href=\"#behaviour\" data-spy=\"behaviour\">Behaviour review</a>": "<a class=\"sub\" href=\"#behaviour\" data-spy=\"behaviour\">行为复查</a>",
   "<a href=\"#sec-harness\" data-spy=\"sec-harness\"><span class=\"tn\">01</span>Harness and action</a>": "<a href=\"#sec-harness\" data-spy=\"sec-harness\"><span class=\"tn\">01</span>Harness 与动作</a>",
-  "<a class=\"sub\" href=\"#f-harness\" data-spy=\"f-harness\"><span class=\"tn\">1.1</span>Codex and full history</a>": "<a class=\"sub\" href=\"#f-harness\" data-spy=\"f-harness\"><span class=\"tn\">1.1</span>Codex 与完整历史</a>",
-  "<a class=\"sub\" href=\"#f-action\" data-spy=\"f-action\"><span class=\"tn\">1.2</span>Action design</a>": "<a class=\"sub\" href=\"#f-action\" data-spy=\"f-action\"><span class=\"tn\">1.2</span>动作设计</a>",
   "<a class=\"sub\" href=\"#f-effort\" data-spy=\"f-effort\"><span class=\"tn\">1.3</span>Reasoning effort</a>": "<a class=\"sub\" href=\"#f-effort\" data-spy=\"f-effort\"><span class=\"tn\">1.3</span>推理强度</a>",
   "<a href=\"#sec-exp\" data-spy=\"sec-exp\"><span class=\"tn\">02</span>Reusing experience</a>": "<a href=\"#sec-exp\" data-spy=\"sec-exp\"><span class=\"tn\">02</span>经验复用</a>",
   "<a class=\"sub\" href=\"#f-exp\" data-spy=\"f-exp\"><span class=\"tn\">2.1</span>Demonstrations</a>": "<a class=\"sub\" href=\"#f-exp\" data-spy=\"f-exp\"><span class=\"tn\">2.1</span>示范</a>",
   "<a class=\"sub\" href=\"#f-loop\" data-spy=\"f-loop\"><span class=\"tn\">2.2</span>Self-improvement loop</a>": "<a class=\"sub\" href=\"#f-loop\" data-spy=\"f-loop\"><span class=\"tn\">2.2</span>自我改进循环</a>",
   "<a href=\"#sec-geo\" data-spy=\"sec-geo\"><span class=\"tn\">03</span>Scene geometry</a>": "<a href=\"#sec-geo\" data-spy=\"sec-geo\"><span class=\"tn\">03</span>场景几何</a>",
-  "<a class=\"sub\" href=\"#f-readings\" data-spy=\"f-readings\"><span class=\"tn\">3.1</span>Robot readings</a>": "<a class=\"sub\" href=\"#f-readings\" data-spy=\"f-readings\"><span class=\"tn\">3.1</span>机器人读数</a>",
-  "<a class=\"sub\" href=\"#f-depth\" data-spy=\"f-depth\"><span class=\"tn\">3.2</span>Depth</a>": "<a class=\"sub\" href=\"#f-depth\" data-spy=\"f-depth\"><span class=\"tn\">3.2</span>深度</a>",
   "<a class=\"sub\" href=\"#f-hints\" data-spy=\"f-hints\"><span class=\"tn\">3.3</span>Affordances</a>": "<a class=\"sub\" href=\"#f-hints\" data-spy=\"f-hints\"><span class=\"tn\">3.3</span>可供性</a>",
-  "<a class=\"sub\" href=\"#f-code\" data-spy=\"f-code\"><span class=\"tn\">3.4</span>Coordinate solving</a>": "<a class=\"sub\" href=\"#f-code\" data-spy=\"f-code\"><span class=\"tn\">3.4</span>坐标解算</a>",
   "<a href=\"#sec-err\" data-spy=\"sec-err\"><span class=\"tn\">04</span>Error analysis</a>": "<a href=\"#sec-err\" data-spy=\"sec-err\"><span class=\"tn\">04</span>错误分析</a>",
   "<a class=\"sub\" href=\"#f-cls\" data-spy=\"f-cls\"><span class=\"tn\">4.1</span>Failure classification</a>": "<a class=\"sub\" href=\"#f-cls\" data-spy=\"f-cls\"><span class=\"tn\">4.1</span>失败分类</a>",
   "<a class=\"sub\" href=\"#f-fix\" data-spy=\"f-fix\"><span class=\"tn\">4.2</span>Potential fixes</a>": "<a class=\"sub\" href=\"#f-fix\" data-spy=\"f-fix\"><span class=\"tn\">4.2</span>可能的改进</a>",
@@ -257,8 +241,6 @@
   "<a class=\"sub\" href=\"#f-rounds\" data-spy=\"f-rounds\">Round-to-round variation</a>": "<a class=\"sub\" href=\"#f-rounds\" data-spy=\"f-rounds\">轮间波动</a>",
   "<a class=\"sub\" href=\"#f-four\" data-spy=\"f-four\">Tasks run on four layouts</a>": "<a class=\"sub\" href=\"#f-four\" data-spy=\"f-four\">运行四个布局的任务</a>",
   "<a href=\"#cite\" data-spy=\"cite\">Citation</a>": "<a href=\"#cite\" data-spy=\"cite\">引用</a>",
-  "<a href=\"#overview\" data-spy=\"overview\">Overview</a> <a href=\"#gains\" data-spy=\"gains\">L3 to JustRUA</a> <a href=\"#framework\" data-spy=\"framework\">Framework</a> <a href=\"#sec-harness\" data-spy=\"sec-harness\">Harness</a> <a href=\"#sec-exp\" data-spy=\"sec-exp\">Experience</a> <a href=\"#sec-geo\" data-spy=\"sec-geo\">Geometry</a> <a href=\"#sec-err\" data-spy=\"sec-err\">Errors</a> <a href=\"#sec-eval\" data-spy=\"sec-eval\">Evaluation</a> <a href=\"#refs\" data-spy=\"refs\">References</a> <a href=\"#cite\" data-spy=\"cite\">Citation</a>": "<a href=\"#overview\" data-spy=\"overview\">概览</a> <a href=\"#gains\" data-spy=\"gains\">L3 到 JustRUA</a> <a href=\"#framework\" data-spy=\"framework\">框架</a> <a href=\"#sec-harness\" data-spy=\"sec-harness\">Harness</a> <a href=\"#sec-exp\" data-spy=\"sec-exp\">经验</a> <a href=\"#sec-geo\" data-spy=\"sec-geo\">几何</a> <a href=\"#sec-err\" data-spy=\"sec-err\">错误</a> <a href=\"#sec-eval\" data-spy=\"sec-eval\">评测</a> <a href=\"#refs\" data-spy=\"refs\">参考文献</a> <a href=\"#cite\" data-spy=\"cite\">引用</a>",
-  "Project film <em>1:32</em>": "项目影片 <em>1:32</em>",
   "Close <span aria-hidden=\"true\">&times;</span>": "关闭 <span aria-hidden=\"true\">&times;</span>",
   "<sup>*</sup>Core contributor": "<sup>*</sup>核心贡献者",
   "<sup>†</sup>Project lead": "<sup>†</sup>项目负责人",
@@ -269,12 +251,7 @@
   "Replays": "回放",
   "References": "参考文献",
   "Back to top": "回到顶部",
-  "<span class=\"n\">01</span><b>A lean harness goes a long way.</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>Keeping the full episode history and stopping each motion after 20 control steps lift the score from 29.7 to 38.0. Relative targets, named skills and model-chosen step counts do not beat plain absolute targets.</span></span>": "<span class=\"n\">01</span><b>简洁的 harness 方案已经能做很多</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>保留完整的回合历史，并让每段运动在 20 个控制步后停下，得分就从 29.7 提高到 38.0。相对目标、命名技能和让模型自己选步数，都没有比简单的绝对目标更好。</span></span>",
-  "<span class=\"n\">02</span><b>Reusing experience is not a free lunch.</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>Demonstrations and a self-written skill library change how the model acts, but neither clearly beats the default, and both make an episode more expensive. They also carry the highest risk of gaming the benchmark.</span></span>": "<span class=\"n\">02</span><b>复用经验并非免费午餐</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>示范和模型自己写的技能库会改变模型的做法，但都没有明显好过默认配置，每个回合的花费也更高。它们还最容易变成针对基准刷分。</span></span>",
-  "<span class=\"n\">03</span><b>Scene geometry helps most.</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>Depth images cut empty grasps from 41 to 16, even when Depth Pro predicts the depth from RGB alone and is off by tens of centimetres. With code that solves 3D coordinates from pixels and no decision cap, the score reaches 50.3.</span></span>": "<span class=\"n\">03</span><b>场景几何帮助最大</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>加入深度图后，空抓从 41 次降到 16 次；哪怕深度是 Depth Pro 仅凭 RGB 预测的、误差有几十厘米，效果依然明显。再加上从像素解算 3D 坐标的代码并取消决策上限，得分达到 50.3。</span></span>",
-  "<span class=\"n\">04</span><b>Remaining failures are mostly long-tail.</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>Most failures left in our best configuration are specific to one task, such as plans that do not suit the arm, unplanned knocks and slipping grasps. Fixing them would take trial and error on each task, which comes close to tuning on the test tasks.</span></span>": "<span class=\"n\">04</span><b>余下的失败大多是长尾场景</b><span class=\"more\" aria-hidden=\"true\">+</span> <span class=\"tk-pop\"><span>最佳配置剩下的失败大多只出现在单个任务上，比如规划不适合机械臂、计划外的碰撞和抓取打滑。要修好它们只能逐个任务反复试错，这已经接近在测试任务上调参。</span></span>",
   "We test the designs that recent systems add and keep what matters most.": "我们测试近期系统加入的各项设计，只保留最关键的部分。",
-  "<span class=\"lg-item main\"><i class=\"lg-pill\"></i><span>Evaluation set, all 42 tasks, 111 episodes<sup>1</sup><em class=\"lg-claim\">A reliable, low-cost estimate of the full 2,100-episode evaluation</em></span></span> <span class=\"lg-item minor\"><i class=\"lg-ring\"></i>First round, 42 episodes</span> <span class=\"lg-item minor\"><i class=\"lg-cost\"></i>Cost per first-round episode, lower bound</span>": "<span class=\"lg-item main\"><i class=\"lg-pill\"></i><span>评测集，全部 42 个任务，111 个回合<sup>1</sup><em class=\"lg-claim\">以较低成本可靠地估计完整的 2,100 回合评测</em></span></span> <span class=\"lg-item minor\"><i class=\"lg-ring\"></i>首轮，42 个回合</span> <span class=\"lg-item minor\"><i class=\"lg-cost\"></i>每个首轮回合的成本，下界</span>",
   "<span class=\"dt-key\" role=\"columnheader\"><span class=\"vh\">Design tested. </span><span aria-hidden=\"true\"><i class=\"lg-sq\"></i>Kept in JustRUA</span><span aria-hidden=\"true\"><i class=\"lg-sq drop\"></i>Tried, not kept</span></span><span class=\"dt-sc\" role=\"columnheader\">Score</span>": "<span class=\"dt-key\" role=\"columnheader\"><span class=\"vh\">测试过的设计。</span><span aria-hidden=\"true\"><i class=\"lg-sq\"></i>JustRUA 保留</span><span aria-hidden=\"true\"><i class=\"lg-sq drop\"></i>尝试过，未保留</span></span><span class=\"dt-sc\" role=\"columnheader\">得分</span>",
   "<b role=\"rowheader\">Harness</b><span>Full history helps</span>": "<b role=\"rowheader\">Harness</b><span>完整历史有帮助</span>",
   "<span role=\"cell\"><i></i>Full history<sup>2</sup></span><span role=\"cell\">34.7</span>": "<span role=\"cell\"><i></i>完整历史<sup>2</sup></span><span role=\"cell\">34.7</span>",
@@ -288,7 +265,6 @@
   "<b role=\"rowheader\">Scene geometry</b><span>Helps most, except affordances</span>": "<b role=\"rowheader\">场景几何</b><span>帮助最大，可供性除外</span>",
   "<span role=\"cell\"><i></i>Compact readings</span><span role=\"cell\">39.8</span>": "<span role=\"cell\"><i></i>紧凑读数</span><span role=\"cell\">39.8</span>",
   "<b>Figure 1.</b> The table lists every design we tested, by axis, and the chart the designs JustRUA keeps, in the order added. Each score is one evaluation-set run, the ring its first-round subset. Cost is a lower bound that assumes all cacheable input hits the cache.": "<b>图 1.</b> 左侧表格按维度列出我们测试过的所有设计，右侧图表按加入顺序画出 JustRUA 保留的设计。每个得分是一次评测集运行，圆环是其中首轮子集的得分。成本按所有可缓存输入都命中缓存来算，所以是下界。",
-  "<span><sup>1</sup> Four layouts for the 23 most uncertain tasks and one for the rest, with a score SD of 2.6. The official L3 harness scores 29.7 on it and 29.0 on all 2,100 episodes.</span><span><sup>2</sup> The official loop moved into a Codex session that keeps every image of the episode.</span><span><sup>3</sup> Gaming risk. Reusing experience draws on the tasks being scored, so none of it is kept, whatever the score. Designs marked § game it most directly, using an expert demonstration of the very task being scored.</span><span><sup>4</sup> The model may also run code, with web search off. The decision cap is lifted, and the official action limit still applies.</span>": "<span><sup>1</sup> 23 个最不确定的任务各取四个布局，其余任务各取一个，得分标准差为 2.6。官方 L3 harness 在这个集合上得 29.7 分，在全部 2,100 个回合上得 29.0 分。</span><span><sup>2</sup> 把官方循环搬进一个 Codex 会话，保留回合中的每张图像。</span><span><sup>3</sup> 刷分风险。经验复用用到的正是要评分的任务，所以无论得分多少，这类设计一律不保留。标 § 的设计刷分最直接，它用的是被评分任务本身的专家示范。</span><span><sup>4</sup> 模型还可以运行代码，网页搜索保持关闭。决策上限取消，官方的动作次数限制仍然有效。</span>",
   "Instead of reproducing each reported system, we take the designs apart and test them on one testbed and one benchmark, changing as little as we can between runs.": "我们没有逐个复现已报道的系统，而是把设计拆开，在同一个测试平台、同一个基准上测试，并尽量减少每次运行之间的改动。",
   "Blue outlines mark what JustRUA changes. Select a dashed area to see what we varied.": "蓝色边框标出 JustRUA 改动的部分。点击虚线区域可以查看我们改变了什么。",
   "The 23 most uncertain tasks, those that succeed only some of the time, get four layouts each and the rest keep one, for 111 episodes. Layouts are fixed in advance (<a href=\"#sec-eval\">Notes on evaluation</a>).": "23 个最不确定的任务，也就是只有时成功的任务，各取四个布局，其余任务各取一个，共 111 个回合。布局事先固定（见<a href=\"#sec-eval\">评测说明</a>）。",
@@ -333,13 +309,14 @@
   "Low and medium effort rise and fall together across eight rounds (correlation 0.84), though we have not separated layout difficulty from run-to-run randomness. The first round alone tends to run high, above the eight-round mean in all three settings below.": "低、中两档推理强度在八轮中同涨同跌（相关系数 0.84），不过我们没有把布局难度和每次运行的随机性分开。单看首轮往往偏高，下面三种设置的首轮得分都高于八轮均值。",
   "These 23 tasks run on four layouts each. On each, a partial result scores at most 50, and the default testbed both succeeded and failed within eight rounds.": "这 23 个任务各在四个布局上运行。每个布局上，部分完成最多得 50 分，而默认测试平台在八轮中既成功过也失败过。",
   "swap_T is a typical case. It scores 100 only when the two T blocks swap places within 20 mm and 3° and both arms are back at rest, and 0 otherwise. Both settings scored 0 in the first round and succeeded in four of the eight rounds.": "swap_T 是一个典型例子。只有当两个 T 形块在 20 mm 和 3° 以内互换位置，且两只机械臂都回到静止位置时，它才得 100 分，否则得 0 分。两种设置在首轮都得 0 分，而在八轮中各成功了四轮。",
-  "GPT-6 Astra can drive a robot arm directly through a fixed harness, and scores on RoboDojo have risen quickly since. Reported systems differ in harness and test subset and often change several designs at once, so it is hard to tell which choices produce the gains. We take these designs apart and test them in one framework. JustRUA starts from the official L3 harness and keeps only what matters most. Even with no learned policy, self-improvement loop or task-specific tuning, this simple harness raises the score on the RoboDojo simulation benchmark substantially, from 29.7 to 50.3.": "GPT-6 Astra 可以通过一套固定的 harness 直接控制机械臂，此后 RoboDojo 上的分数涨得很快。已有系统所用的 harness 和测试子集各不相同，而且常常同时改动好几处设计，很难看出提升到底来自哪些选择。我们把这些设计拆开，放在同一个框架里测试。JustRUA 从官方 L3 harness 出发，只保留最关键的部分。即使不用学习得到的策略和自我改进循环，也不针对任务调参，这套简单的 harness 仍能把 RoboDojo 仿真基准上的得分从 29.7 大幅提高到 50.3。"
+  "GPT-6 Astra can drive a robot arm directly through a fixed harness, and scores on RoboDojo have risen quickly since. Reported systems differ in harness and test subset and often change several designs at once, so it is hard to tell which choices produce the gains. We take these designs apart and test them in one framework. JustRUA starts from the official L3 harness and keeps only what matters most. Even with no learned policy, self-improvement loop or task-specific tuning, this simple harness raises the score on the RoboDojo simulation benchmark substantially, from 29.7 to 50.3.": "GPT-6 Astra 可以通过一套固定的 harness 直接控制机械臂，此后 RoboDojo 上的分数涨得很快。已有系统所用的 harness 和测试子集各不相同，而且常常同时改动好几处设计，很难看出提升到底来自哪些选择。我们把这些设计拆开，放在同一个框架里测试。JustRUA 从官方 L3 harness 出发，只保留最关键的部分。即使不用学习得到的策略和自我改进循环，也不针对任务调参，这套简单的 harness 仍能把 RoboDojo 仿真基准上的得分从 29.7 大幅提高到 50.3。",
+  "Project film <em>1:40</em>": "项目影片 <em>1:40</em>",
+  "Kept in JustRUA": "JustRUA 保留"
  },
  "attr": {
   "Sections": "章节",
   "Tsinghua University": "清华大学",
   "Key takeaways": "主要结论",
-  "Choose a part of the study": "选择研究的一个部分",
   "The testbed loop. GPT-6 Astra in a Codex session sends a command, the planner plans it, at most 20 control steps run in the RoboDojo simulator, and an observation returns to the model. Experience from other episodes feeds the model, and each run is scored on the evaluation set with a behaviour review.": "测试平台的循环。Codex 会话中的 GPT-6 Astra 发出指令，规划器进行规划，至多 20 个控制步在 RoboDojo 模拟器中执行，观测再返回给模型。来自其他回合的经验输入模型，每次运行都在评测集上评分，并经过行为复查。",
   "Reusing experience": "经验复用",
   "Action": "动作",
@@ -375,7 +352,8 @@
   "Project film": "项目影片",
   "Coming soon": "即将发布",
   "Evaluation-set score of each design JustRUA keeps, in the order it was added, with the cost per first-round episode above. Official L3 harness 29.7, full history 34.7, 20-step cap 38.0, compact readings 39.8, predicted depth 42.4, coordinate solving 50.3.": "JustRUA 保留的各项设计按加入顺序给出的评测集得分，上方是每个首轮回合的成本。官方 L3 harness 29.7，完整历史 34.7，20 步上限 38.0，紧凑读数 39.8，预测深度 42.4，坐标解算 50.3。",
-  "Every design tested, grouped by the part of the system it changes, with its evaluation-set score": "测试过的所有设计，按改动的系统部分分组，并附评测集得分"
+  "Every design tested, grouped by the part of the system it changes, with its evaluation-set score": "测试过的所有设计，按改动的系统部分分组，并附评测集得分",
+  "Includes a design kept in JustRUA": "含 JustRUA 保留的设计"
  },
  "json": {
   "decision 0 &middot; 0.0 s &middot; the simulator waits while the code runs": "第 0 次决策 &middot; 0.0 s &middot; 代码运行时模拟器暂停",
@@ -920,48 +898,12 @@
    "<track id=\"ft-cc\" kind=\"captions\" srclang=\"zh\" label=\"中文\" default>"
   ],
   [
-   "\nIntroducing JustRUA.\n",
-   "\nJustRUA 来了。\n"
-  ],
-  [
-   "\nGPT-6 Astra can drive robot arms directly.\n",
-   "\nGPT-6 Astra 可以直接控制机械臂。\n"
-  ],
-  [
-   "\nIt reads the cameras and the arm state, and sends targets to a motion planner.\n",
-   "\n它读取相机画面和机械臂状态，把目标发给运动规划器。\n"
-  ],
-  [
-   "\nScores on RoboDojo have risen fast, but reported systems differ in many ways at once.\n",
-   "\nRoboDojo 上的分数涨得很快，但已有系统之间同时存在许多差异。\n"
-  ],
-  [
-   "\nSo we take the designs apart and test them in one framework.\n",
-   "\n所以我们把这些设计拆开，放在同一个框架里测试。\n"
-  ],
-  [
-   "\nOne testbed, one benchmark.\n",
-   "\n同一个测试平台，同一个基准。\n"
-  ],
-  [
-   "\nWe vary the harness, the actions, reused experience and scene geometry, and evaluate every run on the same episodes.\n",
-   "\n我们改变 harness、动作、经验复用和场景几何，每次运行都在同样的回合上评测。\n"
-  ],
-  [
    "\nFirst, a lean harness goes a long way.\n",
    "\n第一，简洁的 harness 方案已经能做很多。\n"
   ],
   [
-   "\nKeeping the full history and stopping each motion after 20 control steps lifts the score from 29.7 to 38.0.\n",
-   "\n保留完整历史，并让每段运动在 20 个控制步后停下，得分就从 29.7 提高到 38.0。\n"
-  ],
-  [
    "\nSecond, reusing experience is not a free lunch.\n",
    "\n第二，复用经验并非免费午餐。\n"
-  ],
-  [
-   "\nDemonstrations and a self-written skill library change how the model acts, but none clearly beats the default, and each one costs more.\n",
-   "\n示范和模型自己写的技能库会改变模型的做法，但都没有明显好过默认配置，花费也都更高。\n"
   ],
   [
    "\nThird, scene geometry helps most.\n",
@@ -972,20 +914,72 @@
    "\n即使是只用 RGB 预测的深度，也能把空抓从 41 次降到 16 次。\n"
   ],
   [
-   "\nWith code that solves 3D points from pixels and no decision cap, the score reaches 50.3.\n",
-   "\n再加上从像素解算 3D 点的代码并取消决策上限，得分达到 50.3。\n"
-  ],
-  [
    "\nFinally, the remaining failures are mostly long-tail.\n",
    "\n最后，余下的失败大多是长尾场景。\n"
   ],
   [
-   "\nMost of them are specific to one task.\n",
-   "\n它们大多只出现在单个任务上。\n"
+   "How far can GPT-6 Astra go on RoboDojo with no RSI, learned policy or task-specific tuning?",
+   "不用 RSI、不用学习得到的策略、也不针对任务调参，GPT-6 Astra 在 RoboDojo 上能做到多好？"
   ],
   [
-   "\nNo learned policy. No self-improvement loop. No task-specific tuning.\n",
-   "\n没有学习得到的策略，没有自我改进循环，也不针对任务调参。\n"
+   "From 29.7 to 50.3.",
+   "从 29.7 到 50.3。"
+  ],
+  [
+   "This is JustRUA.",
+   "这就是 JustRUA。"
+  ],
+  [
+   "RoboDojo scores have risen fast.",
+   "RoboDojo 上的分数涨得很快。"
+  ],
+  [
+   "But reported systems differ in harness, in test subset, and in several designs at once.",
+   "但已有系统的 harness 和测试子集各不相同，往往还同时改了好几处设计。"
+  ],
+  [
+   "So we take the designs apart and test them one at a time, on one testbed.",
+   "所以我们把这些设计拆开，在同一个测试平台上逐个测试。"
+  ],
+  [
+   "Keeping the full episode history and stopping each motion after 20 control steps lifts the score from 29.7 to 38.0.",
+   "保留完整的回合历史，并让每段运动在 20 个控制步后停下，得分就从 29.7 提高到 38.0。"
+  ],
+  [
+   "Demonstrations and self-written skills bring no clear gain.",
+   "示范和模型自己写的技能都没有带来明显提升。"
+  ],
+  [
+   "They also carry a gaming risk, because they draw on the very tasks being scored.",
+   "它们用到的正是要评分的任务，所以还有刷分的风险。"
+  ],
+  [
+   "JustRUA keeps none of them.",
+   "JustRUA 一个都没有保留。"
+  ],
+  [
+   "With code that solves 3D coordinates from pixels and no decision cap, the score reaches 50.3.",
+   "再加上从像素解算 3D 坐标的代码并取消决策上限，得分达到 50.3。"
+  ],
+  [
+   "Most are specific to a single task.",
+   "大多只出现在单个任务上。"
+  ],
+  [
+   "Five changes take the official harness from 29.7 to 50.3.",
+   "五处改动把官方 harness 的得分从 29.7 提高到 50.3。"
+  ],
+  [
+   "Every design we tested is on the project page, with scores, costs and rollouts.",
+   "我们测试过的每个设计都放在项目主页上，附有得分、成本和执行录像。"
+  ],
+  [
+   "d.t===\"Coordinate solving\"",
+   "d.t===\"坐标解算\""
+  ],
+  [
+   "?\"Hover over\":\"Tap\"} a row or a bar for the other designs",
+   "?\"悬停\":\"点按\"}任一行或柱子可查看其他设计"
   ]
  ]
 }
