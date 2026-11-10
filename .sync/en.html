@@ -62,7 +62,7 @@ h1 .just{color:var(--steel-2)}
 .logos .lg-mb{height:22px}
 .logos .lg-tc{height:19px}
 .logo-slot{width:120px;height:36px;border:1px dashed var(--rule-2);border-radius:8px;display:grid;place-items:center;font:500 11px/1 var(--f-mono);color:var(--ink-3)}
-.hero-main{display:grid;grid-template-columns:minmax(0,1fr) max-content;grid-template-areas:"ab tk" "ln tk";column-gap:72px;align-items:start;margin-top:10px}
+.hero-main{display:grid;grid-template-columns:minmax(0,1fr) max-content;grid-template-areas:"hd hd" "ab tk" "ln tk";column-gap:72px;align-items:start}
 .hero-main .abstract{grid-area:ab;margin:0}
 .hero-main .tks{grid-area:tk;align-self:start;align-content:start;gap:8px}
 .hero-links{grid-area:ln;margin-top:22px}
@@ -123,11 +123,17 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .film-cta svg{width:16px;height:16px;color:var(--steel)}
 .film-cta em{font:400 11.5px/1 var(--f-mono);font-style:normal;color:var(--ink-3)}
 .film:hover .film-cta,.film:focus-visible .film-cta{background:#fff}
-.film-top{scroll-margin-top:72px}
+.film-top{scroll-margin-top:72px;--ftw:min(1168px,calc((100vh - 110px)*16/9))}
+.hero-hd{grid-area:hd;margin-bottom:28px}
+.links{align-items:center}
+.chip.film-btn{height:44px;padding:0 16px 0 4px;gap:10px}
+.fb-th{position:relative;flex:none;height:36px;aspect-ratio:16/9;border-radius:18px 7px 7px 18px;overflow:hidden;background:#2a2d34}
+.fb-th img{display:block;width:100%;height:100%;object-fit:cover}
+.fb-th svg{position:absolute;left:50%;top:50%;width:14px!important;height:14px!important;margin:-7px 0 0 -6px;color:#fff;filter:drop-shadow(0 0 3px rgba(0,0,0,.65))}
 .film-top .wrap{padding-top:28px}
-.ft-frame{max-width:980px;margin:0 auto;aspect-ratio:16/9;border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:var(--surface)}
+.ft-frame{max-width:var(--ftw);margin:0 auto;aspect-ratio:16/9;border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:var(--surface)}
 .ft-frame video{display:block;width:100%;height:100%;object-fit:cover;background:var(--surface)}
-.ft-bar{max-width:980px;margin:10px auto 0;display:flex;align-items:center;justify-content:space-between;gap:12px;font:400 12px/1 var(--f-mono);color:var(--ink-3)}
+.ft-bar{max-width:var(--ftw);margin:10px auto 0;display:flex;align-items:center;justify-content:space-between;gap:12px;font:400 12px/1 var(--f-mono);color:var(--ink-3)}
 .ft-bar em{font-style:normal;margin-left:4px}
 .ft-x{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border:1px solid var(--rule-2);border-radius:999px;background:var(--surface);font:500 12px/1 var(--f-mono);color:var(--ink-2);cursor:pointer}
 .ft-x span{font-size:15px}
@@ -233,6 +239,7 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .wd-head b{font-size:14px;color:var(--ink)}
 .wd-head .st{font:500 10.5px/1.3 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--steel)}
 .wd-head .st.drop{color:var(--ink-3)}
+.wd-head .wd-tip{margin-left:auto;font-size:12px;color:var(--ink-3)}
 .wd-d{margin:3px 0 0}
 .wd-n{margin:4px 0 0;font:400 12px/1.5 var(--f-mono);color:var(--ink)}
 .wf-detail.inline{margin:2px 0 6px;padding:8px 10px;border:0;border-radius:8px;background:#fff;box-shadow:inset 0 0 0 1px var(--rule-2)}
@@ -293,6 +300,10 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .toc .tn{font:500 10.5px/1.75 var(--f-mono);color:var(--ink-3);flex:none;min-width:2.3em}
 .toc a:has(.tn){display:flex}
 .toc a.active .tn{color:var(--steel)}
+.toc a.sub .tn{min-width:0;padding:0 4px;margin-right:6px;border-radius:4px;line-height:1.55;align-self:center}
+.toc a.kept .tn,.toc a.kept.active .tn{color:var(--steel);background:var(--steel-soft);box-shadow:inset 0 0 0 1px rgba(46,74,115,.14)}
+.toc-key{display:flex;align-items:center;gap:7px;margin:12px 0 0;padding:0 8px;font-size:11.5px;line-height:1.3;color:var(--ink-3)}
+.toc-key i{flex:none;width:16px;height:10px;border-radius:3px;background:var(--steel-soft);box-shadow:inset 0 0 0 1px rgba(46,74,115,.22)}
 .toc a:hover{color:var(--ink)}
 .toc a.active{background:var(--surface);color:var(--steel);box-shadow:inset 0 0 0 1px var(--rule)}
 .toc-foot{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule)}
@@ -332,7 +343,9 @@ h3{font-size:20px;line-height:1.25;letter-spacing:-.01em;font-weight:650;margin:
 .fw-tags .prog{background:rgba(255,255,255,.75)}
 .fw-tags button[aria-pressed="true"]{background:var(--steel);border-color:var(--steel);color:#fff}
 .fw-wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
-.fw-detail{display:grid}
+.fw-detail{display:grid;position:relative;margin-top:14px;padding-top:18px;border-top:1px solid var(--rule)}
+.fw-pane h4{position:relative;width:fit-content;padding-bottom:6px}
+.fw-pane .prog{position:absolute;left:0;bottom:0;height:2px;width:0;border-radius:1px;background:var(--steel-2);opacity:.6;pointer-events:none}
 .fw-pane{grid-area:1/1;display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:28px;align-items:start;visibility:hidden}
 .fw-pane.on{visibility:visible}
 .fw-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -501,6 +514,7 @@ a.cite:hover{text-decoration-color:var(--steel)}
 .finding:first-of-type{margin-top:22px}
 .finding h3{font-size:21px;margin-bottom:6px}
 .finding h3 .num{font:500 .6em/1 var(--f-mono);color:var(--steel-2);margin-right:.7em;vertical-align:.2em;letter-spacing:0}
+.finding h3.kept .num{color:var(--steel);background:var(--steel-soft);box-shadow:inset 0 0 0 1px rgba(46,74,115,.14);border-radius:5px;padding:.3em .5em;vertical-align:.22em}
 .f-sub{font-size:14.5px;line-height:1.5;color:var(--ink-2);max-width:var(--measure);margin:0 0 16px}
 .f-note{font-size:14px;line-height:1.5;color:var(--ink-2);margin-top:12px;max-width:var(--measure)}
 .card{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:22px;min-width:0}
@@ -646,7 +660,7 @@ footer .wrap{padding-block:22px;font-size:13px;color:var(--ink-3)}
 @media (max-width:899px){
   .f-grid,.rd,.pb,.fw-wrap,.halves{grid-template-columns:minmax(0,1fr)}
   .hero .wrap{padding-block:36px 24px}
-  .hero-main{grid-template-columns:minmax(0,1fr);grid-template-areas:"ab" "ln" "tk";column-gap:0}
+  .hero-main{grid-template-columns:minmax(0,1fr);grid-template-areas:"hd" "ab" "ln" "tk";column-gap:0}
   .hero-main .tks{margin-top:22px}
   .tabpanel{grid-template-columns:minmax(0,1fr);gap:20px;padding:22px}
   .clips{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -955,28 +969,28 @@ section.sec + section.sec{margin-top:128px}
 .sv-freeze i{width:7px;height:7px;border-radius:50%;background:#7ee0a8;animation:svBlink 1s steps(2) infinite}
 .sv-freeze.on{opacity:1}
 @keyframes svBlink{50%{opacity:.2}}
-.sv-con{background:#0f131a;color:#d6dce6;border-top:1px solid #1d232d}
-.sv-con-h{display:flex;align-items:center;gap:12px;padding:8px 14px;border-bottom:1px solid #1d232d;font:400 11px var(--f-mono);color:#8b95a6;min-width:0}
-.sv-dots{display:flex;gap:5px}.sv-dots i{width:8px;height:8px;border-radius:50%;background:#2b3240}
-.sv-title{color:#e9edf3;font-weight:500;white-space:nowrap}
+.sv-con{background:#f6f7f9;color:var(--ink);border-top:1px solid var(--rule-2)}
+.sv-con-h{display:flex;align-items:center;gap:12px;padding:8px 14px;border-bottom:1px solid var(--rule-2);font:400 11px var(--f-mono);color:var(--ink-3);min-width:0}
+.sv-dots{display:flex;gap:5px}.sv-dots i{width:8px;height:8px;border-radius:50%;background:#d5d9e0}
+.sv-title{color:var(--ink);font-weight:500;white-space:nowrap}
 .sv-st{margin-left:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .sv-con-b{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);height:206px}
-.sv-code,.sv-out{margin:0;font:400 11px/1.55 var(--f-mono);white-space:pre;overflow:hidden;color:#c9d1dc}
-.sv-code{padding:12px 14px;border-right:1px solid #1d232d}
-.sv-code::after,.sv-out.typing::after{content:"";display:inline-block;width:6px;height:12px;margin-left:1px;background:#7ee0a8;vertical-align:-2px;animation:svBlink 1s steps(2) infinite}
+.sv-code,.sv-out{margin:0;font:400 11px/1.55 var(--f-mono);white-space:pre;overflow:hidden;color:#3b4250}
+.sv-code{padding:12px 14px;border-right:1px solid var(--rule-2)}
+.sv-code::after,.sv-out.typing::after{content:"";display:inline-block;width:6px;height:12px;margin-left:1px;background:#2f8a5c;vertical-align:-2px;animation:svBlink 1s steps(2) infinite}
 .sv-code.done::after{display:none}
 .sv-outw{padding:10px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
-.sv-ol{font:500 10px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#6c7688}
+.sv-ol{font:500 10px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
 .sv-out span{display:block;opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s}
 .sv-out span.on{opacity:1;transform:none}
-.sv-out span.hl{color:#7ee0a8}
-.sv-out span.dm{color:#6c7688}
-.sv-use{margin-top:auto;font:500 11.5px/1.5 var(--f-mono);color:#ffcf9e;opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s;white-space:normal}
-.sv-use em{font-style:normal;color:#9fb0c6}
+.sv-out span.hl{color:#24704a;font-weight:500}
+.sv-out span.dm{color:var(--ink-3)}
+.sv-use{margin-top:auto;font:500 11.5px/1.5 var(--f-mono);color:#9a5b14;opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s;white-space:normal}
+.sv-use em{font-style:normal;color:var(--ink-2)}
 .sv-use.on{opacity:1;transform:none}
 .sv-foot{padding:16px 18px 18px}
 .sv-foot .tbl-note{margin-bottom:0}
-@media (max-width:760px){.sv-con-b{grid-template-columns:minmax(0,1fr);height:auto}.sv-code{max-height:110px;border-right:0;border-bottom:1px solid #1d232d}.sv-outw{min-height:120px}.sv-st{display:none}.sv-cap{font-size:12px;left:8px;bottom:8px;max-width:calc(100% - 16px)}.sv-shot{--fs:30px!important}.sv-shot[data-k="cup"]{--fs:32px!important}}
+@media (max-width:760px){.sv-con-b{grid-template-columns:minmax(0,1fr);height:auto}.sv-code{max-height:110px;border-right:0;border-bottom:1px solid var(--rule-2)}.sv-outw{min-height:120px}.sv-st{display:none}.sv-cap{font-size:12px;left:8px;bottom:8px;max-width:calc(100% - 16px)}.sv-shot{--fs:30px!important}.sv-shot[data-k="cup"]{--fs:32px!important}}
 @media (prefers-reduced-motion:reduce){.sv-m.on .sv-ring,.sv-m.on .sv-ln{animation:none}}
 
 /* progress bar on auto-rotating segmented tabs */
@@ -1006,83 +1020,89 @@ section.sec + section.sec{margin-top:128px}
 
 <section class="film-top" id="film-top" aria-label="Project film" hidden>
   <div class="wrap">
-    <div class="ft-frame"><video id="ft-video" src="media/hero/justrua-film-v6.mp4" poster="media/hero/justrua-film-v2.jpg" width="1280" height="720" controls playsinline preload="none"><track id="ft-cc" kind="captions" srclang="en" label="English" default></video></div>
+    <div class="ft-frame"><video id="ft-video" src="media/hero/justrua-film-v8.mp4" poster="media/hero/justrua-film-v8.jpg" width="1920" height="1080" controls playsinline preload="none"><track id="ft-cc" kind="captions" srclang="en" label="English" default></video></div>
     <script type="text/plain" id="ft-vtt">WEBVTT
 
-00:00:02.000 --> 00:00:04.034
-Introducing JustRUA.
+00:00:00.600 --> 00:00:08.479
+How far can GPT-6 Astra go on RoboDojo with no RSI, learned policy or task-specific tuning?
 
-00:00:05.700 --> 00:00:08.656
-GPT-6 Astra can drive robot arms directly.
+00:00:08.779 --> 00:00:11.702
+From 29.7 to 50.3.
 
-00:00:08.656 --> 00:00:14.445
-It reads the cameras and the arm state, and sends targets to a motion planner.
+00:00:11.902 --> 00:00:13.470
+This is JustRUA.
 
-00:00:14.500 --> 00:00:20.610
-Scores on RoboDojo have risen fast, but reported systems differ in many ways at once.
+00:00:15.233 --> 00:00:17.426
+RoboDojo scores have risen fast.
 
-00:00:20.800 --> 00:00:24.570
-So we take the designs apart and test them in one framework.
+00:00:17.426 --> 00:00:23.639
+But reported systems differ in harness, in test subset, and in several designs at once.
 
-00:00:26.350 --> 00:00:28.150
-One testbed, one benchmark.
+00:00:23.889 --> 00:00:28.504
+So we take the designs apart and test them one at a time, on one testbed.
 
-00:00:28.150 --> 00:00:36.181
-We vary the harness, the actions, reused experience and scene geometry, and evaluate every run on the same episodes.
-
-00:00:36.117 --> 00:00:38.924
+00:00:30.067 --> 00:00:32.485
 First, a lean harness goes a long way.
 
-00:00:38.924 --> 00:00:47.129
-Keeping the full history and stopping each motion after 20 control steps lifts the score from 29.7 to 38.0.
+00:00:32.635 --> 00:00:41.216
+Keeping the full episode history and stopping each motion after 20 control steps lifts the score from 29.7 to 38.0.
 
-00:00:47.050 --> 00:00:49.987
+00:00:42.867 --> 00:00:45.980
 Second, reusing experience is not a free lunch.
 
-00:00:49.987 --> 00:00:58.724
-Demonstrations and a self-written skill library change how the model acts, but none clearly beats the default, and each one costs more.
+00:00:46.130 --> 00:00:49.746
+Demonstrations and self-written skills bring no clear gain.
 
-00:00:58.817 --> 00:01:01.278
+00:00:49.946 --> 00:00:54.817
+They also carry a gaming risk, because they draw on the very tasks being scored.
+
+00:00:55.067 --> 00:00:56.917
+JustRUA keeps none of them.
+
+00:00:58.667 --> 00:01:00.757
 Third, scene geometry helps most.
 
-00:01:01.278 --> 00:01:06.651
+00:01:00.857 --> 00:01:06.614
 Even depth predicted from RGB alone cuts empty grasps from 41 to 16.
 
-00:01:06.567 --> 00:01:13.200
-With code that solves 3D points from pixels and no decision cap, the score reaches 50.3.
+00:01:07.064 --> 00:01:13.974
+With code that solves 3D coordinates from pixels and no decision cap, the score reaches 50.3.
 
-00:01:14.583 --> 00:01:17.917
+00:01:15.833 --> 00:01:19.121
 Finally, the remaining failures are mostly long-tail.
 
-00:01:17.917 --> 00:01:20.608
-Most of them are specific to one task.
+00:01:19.121 --> 00:01:21.543
+Most are specific to a single task.
 
-00:01:26.033 --> 00:01:30.946
-No learned policy. No self-improvement loop. No task-specific tuning.
+00:01:24.500 --> 00:01:29.652
+Five changes take the official harness from 29.7 to 50.3.
 
-00:01:31.183 --> 00:01:32.480
+00:01:30.102 --> 00:01:35.250
+Every design we tested is on the project page, with scores, costs and rollouts.
+
+00:01:35.600 --> 00:01:36.806
 JustRUA.
 </script>
     <script>(()=>{ try{ const t=document.getElementById("ft-cc"), v=document.getElementById("ft-vtt"); if(t&&v) t.src=URL.createObjectURL(new Blob([v.textContent.trim()+"\n"],{type:"text/vtt"})); }catch(e){} })();</script>
-    <div class="ft-bar"><span>Project film <em>1:32</em></span><button type="button" class="ft-x" id="ft-close">Close <span aria-hidden="true">&times;</span></button></div>
+    <div class="ft-bar"><span>Project film <em>1:40</em></span><button type="button" class="ft-x" id="ft-close">Close <span aria-hidden="true">&times;</span></button></div>
   </div>
 </section>
 
 <header class="hero" id="overview">
   <canvas class="hero-fx" id="hero-fx" aria-hidden="true"></canvas>
   <div class="wrap">
-    <div>
+    <div class="hero-main">
+    <div class="hero-hd">
       <h1><span class="just">Just</span>RUA</h1>
       <p class="subtitle">A Controlled Study of GPT-6 Robot-Use Agents</p>
       <div class="byline">
-        <p class="by-names"><span>Zefan Wang<sup>*†</sup></span>, <span>Yufan Dang<sup>*</sup></span>, <span>Xuanwei Shi<sup>*</sup></span>, <span>Chuan Gao<sup>*</sup></span>, <span>Cheng Yin</span>, <span>SikYuen Tam</span>, <span>Hanyu Liu</span>, <span>Yasheng Wang</span>, <span>Yaxi Lu</span>, <span>Yi Jiang</span>, <span>Songyang Zhang</span>, <span>Xin Cong</span>, <span>Yuan Yao<sup>‡</sup></span></p>
+        <p class="by-names"><span>Zefan Wang<sup>*†</sup></span>, <span>Yufan Dang<sup>*</sup></span>, <span>Xuanwei Shi<sup>*</sup></span>, <span>Mingqi Gao<sup>*</sup></span>, <span>Cheng Yin</span>, <span>SikYuen Tam</span>, <span>Hanyu Liu</span>, <span>Yasheng Wang</span>, <span>Yaxi Lu</span>, <span>Songyang Zhang</span>, <span>Xin Cong</span>, <span>Yuan Yao<sup>‡</sup></span></p>
         <div class="by-foot"><p class="by-notes"><span><sup>*</sup>Core contributor</span><span><sup>†</sup>Project lead</span><span><sup>‡</sup>Corresponding author</span></p><img class="by-logo" src="media/logos/tsinghua.png" alt="Tsinghua University" width="268" height="84"></div>
       </div>
     </div>
-    <div class="hero-main">
-      <p class="abstract">GPT-6 Astra can drive a robot arm directly through a fixed harness, and scores on RoboDojo have risen quickly since. Reported systems differ in harness and test subset and often change several designs at once, so it is hard to tell which choices produce the gains. We take these designs apart and test them in one framework. JustRUA starts from the official L3 harness and keeps only what matters most. Even with no learned policy, self-improvement loop or task-specific tuning, this simple harness raises the score on the RoboDojo simulation benchmark substantially, from 29.7 to 50.3.</p>
+    <p class="abstract">GPT-6 Astra can drive a robot arm directly through a fixed harness, and scores on RoboDojo have risen quickly since. Reported systems differ in harness and test subset and often change several designs at once, so it is hard to tell which choices produce the gains. We take these designs apart and test them in one framework. JustRUA starts from the official L3 harness and keeps only what matters most. Even with no learned policy, self-improvement loop or task-specific tuning, this simple harness raises the score on the RoboDojo simulation benchmark substantially, from 29.7 to 50.3.</p>
       <div class="links hero-links">
-        <a class="chip film-btn" href="#film-top" id="film-open"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="7.25"/><path d="M7.5 6.2v5.6L11.8 9z" fill="currentColor" stroke="none"/></svg>Project film <em>1:32</em></a>
+        <a class="chip film-btn" href="#film-top" id="film-open" data-film-open><span class="fb-th" aria-hidden="true"><img src="media/hero/film-thumb.jpg" alt="" width="640" height="360"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>Project film <em>1:40</em></a>
         <span class="chip soon" aria-disabled="true" title="Coming soon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 1.75h5.5L12.5 4.75V14.25H4z"/><path d="M9.25 1.75v3.25h3.25M6 8h4.5M6 10.75h4.5"/></svg>Paper<span class="soon-t">soon</span></span>
         <a class="chip" href="https://github.com/ZefanW/JustRUA" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5.5 4.5 2 8l3.5 3.5M10.5 4.5 14 8l-3.5 3.5"/></svg>Code</a>
         <a class="chip" href="https://huggingface.co/spaces/ZefanW/robodojo-replay-explorer" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><ellipse cx="8" cy="3.75" rx="5" ry="1.75"/><path d="M3 3.75v8.5c0 .97 2.24 1.75 5 1.75s5-.78 5-1.75v-8.5M3 8c0 .97 2.24 1.75 5 1.75S13 8.97 13 8"/></svg>Replays</a>
@@ -1149,7 +1169,7 @@ JustRUA.
         </div>
       </div>
       <p class="wf-caption"><b>Figure 1.</b> The table lists every design we tested, by axis, and the chart the designs JustRUA keeps, in the order added. Each score is one evaluation-set run, the ring its first-round subset. Cost is a lower bound that assumes all cacheable input hits the cache.</p>
-      <p class="wf-fn"><span><sup>1</sup> Four layouts for the 23 most uncertain tasks and one for the rest, with a score SD of 2.6. The official L3 harness scores 29.7 on it and 29.0 on all 2,100 episodes.</span><span><sup>2</sup> The official loop moved into a Codex session that keeps every image of the episode.</span><span><sup>3</sup> Gaming risk. Reusing experience draws on the tasks being scored, so none of it is kept, whatever the score. Designs marked § game it most directly, using an expert demonstration of the very task being scored.</span><span><sup>4</sup> The model may also run code, with web search off. The decision cap is lifted, and the official action limit still applies.</span></p>
+      <p class="wf-fn"><span><sup>1</sup> Four layouts for the 23 most uncertain tasks and one for the rest, with a score SD of 2.6. The official L3 harness scores 29.7 on it and 29.0 on all 2,100 episodes.</span><span><sup>2</sup> The official loop moved into a Codex session that keeps every image of the episode.</span><span><sup>3</sup> Gaming risk. Reusing experience draws on the tasks being scored, so none is kept, whatever the score. Designs marked § game it most directly, with an expert demonstration of the same task.</span><span><sup>4</sup> The model may also run code, with web search off. The decision cap is lifted, and the official action limit still applies.</span></p>
     </div>
   </div>
 </section>
@@ -1162,15 +1182,8 @@ JustRUA.
       <p class="why">Instead of reproducing each reported system, we take the designs apart and test them on one testbed and one benchmark, changing as little as we can between runs.</p>
 
       <div id="fw-box">
-      <div class="fw-tags" role="group" aria-label="Choose a part of the study">
-        <button type="button" id="fw-harness" data-ax="harness" aria-pressed="true">Harness<i class="prog"></i></button>
-        <button type="button" id="fw-action" data-ax="action" aria-pressed="false">Action<i class="prog"></i></button>
-        <button type="button" id="fw-exp" data-ax="exp" aria-pressed="false">Reusing experience<i class="prog"></i></button>
-        <button type="button" id="fw-geo" data-ax="geo" aria-pressed="false">Scene geometry<i class="prog"></i></button>
-        <button type="button" id="fw-eval" data-ax="eval" aria-pressed="false">Evaluation<i class="prog"></i></button>
-      </div>
       <div class="fw-wrap">
-        <div class="card">
+        <div class="card fw-card">
           <div class="fw-scroll">
             <svg class="fw-svg" viewBox="0 0 960 400" role="img" aria-label="The testbed loop. GPT-6 Astra in a Codex session sends a command, the planner plans it, at most 20 control steps run in the RoboDojo simulator, and an observation returns to the model. Experience from other episodes feeds the model, and each run is scored on the evaluation set with a behaviour review.">
               <defs><marker id="fw-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 8 4 0 8z" fill="#a9b0bb"/></marker></defs>
@@ -1198,8 +1211,8 @@ JustRUA.
             </svg>
           </div>
           <p class="fw-note">Blue outlines mark what JustRUA changes. Select a dashed area to see what we varied.</p>
+          <div class="fw-detail" id="fw-detail"></div>
         </div>
-        <div class="card fw-detail" id="fw-detail"></div>
       </div>
       </div>
 
@@ -1236,7 +1249,7 @@ JustRUA.
       <p class="sec-sub">The first evaluation of GPT-6 Astra on RoboDojo found it weak on precision tasks, scoring 12.7 on Precision under the official L3 harness (<a class="cite" href="https://arxiv.org/abs/2609.24170" target="_blank" rel="noopener">RoboProbe</a>), and Galbot saw a similar gap between its decisions and physical control (<a class="cite" href="https://arxiv.org/abs/2609.38537" target="_blank" rel="noopener">Galbot</a>). Yet a few reasonable fixes to the harness and the action loop brought its Precision score to the level of the strongest vision-language-action models of the time (25.0 on our evaluation set, against 24.8 for DM0.5). Much of the weakness seemed to lie in the harness rather than the model.</p>
 
       <div class="finding" id="f-harness">
-        <h3><span class="num">1.1</span>Codex and full history</h3>
+        <h3 class="kept"><span class="num" title="Includes a design kept in JustRUA">1.1</span>Codex and full history</h3>
         <p class="f-sub">The official L3 harness (L3 Inspect EEF, RoboProbe) calls the model API directly and keeps images from the last two observations only. We run the same loop in a <a class="cite" href="https://openai.com/codex/" target="_blank" rel="noopener">Codex</a> session<sup>*</sup> that keeps every image, with Codex's own tools off. Codex alone lowered the first-round score, so we credit the gain to the two together. All comparisons keep the default cap of 100 decisions per episode, which only the final JustRUA lifts.</p>
         <div class="card stbl-card">
           <table class="stbl">
@@ -1252,7 +1265,7 @@ JustRUA.
       </div>
 
       <div class="finding" id="f-action">
-        <h3><span class="num">1.2</span>Action design</h3>
+        <h3 class="kept"><span class="num" title="Includes a design kept in JustRUA">1.2</span>Action design</h3>
         <p class="f-sub"><span class="run">Motion length.</span> In the official loop a whole motion runs before the model sees anything, so an unstable <a class="cite" href="https://arxiv.org/abs/2310.17274" target="_blank" rel="noopener">CuRobo</a> plan can carry the arm far. We stop each motion after 20 control steps. Letting the model choose 3 to 32 steps, as in action chunking (<a class="cite" href="https://arxiv.org/abs/2304.13705" target="_blank" rel="noopener">ACT</a>, <a class="cite" href="https://research.nvidia.com/labs/srl/projects/astranomy/" target="_blank" rel="noopener">Astranomy</a>), did no better, so JustRUA keeps the fixed cap.</p>
         <div class="mlen wide-r">
           <div class="card stbl-card">
@@ -1526,7 +1539,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       <p class="sec-sub">Recent agent systems give the model depth, point clouds and affordances from dedicated models. GPT-6 needs less. Its own grip readings, depth predicted from RGB and a little code that turns pixels into 3D coordinates carry most of the gain without simulator ground truth, while precomputed affordances did not help.</p>
 
       <div class="finding" id="f-readings">
-        <h3><span class="num">3.1</span>Robot readings</h3>
+        <h3 class="kept"><span class="num" title="Includes a design kept in JustRUA">3.1</span>Robot readings</h3>
         <p class="f-sub">Robot readings are each gripper's basic sensor values, finger positions and forces, contact force and wrist load, with no privileged information such as the true pose of an object.</p>
         <div class="gd-row">
           <div class="gd-text">
@@ -1569,7 +1582,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       </div>
 
       <div class="finding" id="f-depth">
-        <h3><span class="num">3.2</span>Depth</h3>
+        <h3 class="kept"><span class="num" title="Includes a design kept in JustRUA">3.2</span>Depth</h3>
         <p class="f-sub">Many recent agent systems use depth to place objects in 3D (<a class="cite" href="https://arxiv.org/abs/2610.14018" target="_blank" rel="noopener">RoboHarness</a>, <a class="cite" href="https://arxiv.org/abs/2610.28259" target="_blank" rel="noopener">GPT-GEAR</a>, <a class="cite" href="https://arxiv.org/abs/2610.22496" target="_blank" rel="noopener">RAX</a>), but the RoboDojo leaderboard does not accept simulator depth for agent entries, <a class="cite" href="https://github.com/XPolicyLab/XPolicyLab/pull/151#issuecomment-6106209632" target="_blank" rel="noopener">as a maintainer stated in review</a>. We test both simulator depth and depth that <a class="cite" href="https://arxiv.org/abs/2410.02073" target="_blank" rel="noopener">Depth Pro</a> predicts from RGB alone.</p>
         <p class="f-sub">The predicted distances are far off, by tens of centimetres even with the true focal length. Scaling each frame to the robot's geometry helps, but the scale drifts between frames and cannot be fitted for the wrist cameras, so JustRUA passes the raw predictions on.</p>
         <div class="card dpcard">
@@ -1654,7 +1667,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       </div>
 
       <div class="finding" id="f-code">
-        <h3><span class="num">3.4</span>Coordinate solving</h3>
+        <h3 class="kept"><span class="num" title="Includes a design kept in JustRUA">3.4</span>Coordinate solving</h3>
         <p class="f-sub">In the last step the model may also write and run code in its session<sup class="fnm">1</sup>, as in <a class="cite" href="https://arxiv.org/abs/2209.07753" target="_blank" rel="noopener">Code as Policies</a> and <a class="cite" href="https://arxiv.org/abs/2609.39018" target="_blank" rel="noopener">URAI</a>, and the 100-decision cap is lifted.</p>
         <p class="f-sub">Almost every run uses code to solve for coordinates, casting rays from pixels through the camera calibration and triangulating a point seen by two cameras or meeting a known surface height. The code never reads the depth images. Code thus acts as one more source of scene geometry, which is why it sits on this axis.</p>
         <div class="mlen top">
@@ -1835,7 +1848,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
         <button type="button" class="copy" id="copy-bib">Copy</button>
         <pre id="bibtex">@misc{justrua2026,
   title  = {JustRUA: A Controlled Study of GPT-6 Robot-Use Agents},
-  author = {Zefan Wang and Yufan Dang and Xuanwei Shi and Chuan Gao and Cheng Yin and SikYuen Tam and Hanyu Liu and Yasheng Wang and Yaxi Lu and Yi Jiang and Songyang Zhang and Xin Cong and Yuan Yao},
+  author = {Zefan Wang and Yufan Dang and Xuanwei Shi and Mingqi Gao and Cheng Yin and SikYuen Tam and Hanyu Liu and Yasheng Wang and Yaxi Lu and Songyang Zhang and Xin Cong and Yuan Yao},
   year   = {2026}
 }</pre>
       </div>
@@ -1851,17 +1864,17 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       <li><a class="sub" href="#proxy" data-spy="proxy">Evaluation set</a></li>
       <li><a class="sub" href="#behaviour" data-spy="behaviour">Behaviour review</a></li>
       <li><a href="#sec-harness" data-spy="sec-harness"><span class="tn">01</span>Harness and action</a></li>
-      <li><a class="sub" href="#f-harness" data-spy="f-harness"><span class="tn">1.1</span>Codex and full history</a></li>
-      <li><a class="sub" href="#f-action" data-spy="f-action"><span class="tn">1.2</span>Action design</a></li>
+      <li><a class="sub kept" href="#f-harness" data-spy="f-harness"><span class="tn">1.1</span>Codex and full history</a></li>
+      <li><a class="sub kept" href="#f-action" data-spy="f-action"><span class="tn">1.2</span>Action design</a></li>
       <li><a class="sub" href="#f-effort" data-spy="f-effort"><span class="tn">1.3</span>Reasoning effort</a></li>
       <li><a href="#sec-exp" data-spy="sec-exp"><span class="tn">02</span>Reusing experience</a></li>
       <li><a class="sub" href="#f-exp" data-spy="f-exp"><span class="tn">2.1</span>Demonstrations</a></li>
       <li><a class="sub" href="#f-loop" data-spy="f-loop"><span class="tn">2.2</span>Self-improvement loop</a></li>
       <li><a href="#sec-geo" data-spy="sec-geo"><span class="tn">03</span>Scene geometry</a></li>
-      <li><a class="sub" href="#f-readings" data-spy="f-readings"><span class="tn">3.1</span>Robot readings</a></li>
-      <li><a class="sub" href="#f-depth" data-spy="f-depth"><span class="tn">3.2</span>Depth</a></li>
+      <li><a class="sub kept" href="#f-readings" data-spy="f-readings"><span class="tn">3.1</span>Robot readings</a></li>
+      <li><a class="sub kept" href="#f-depth" data-spy="f-depth"><span class="tn">3.2</span>Depth</a></li>
       <li><a class="sub" href="#f-hints" data-spy="f-hints"><span class="tn">3.3</span>Affordances</a></li>
-      <li><a class="sub" href="#f-code" data-spy="f-code"><span class="tn">3.4</span>Coordinate solving</a></li>
+      <li><a class="sub kept" href="#f-code" data-spy="f-code"><span class="tn">3.4</span>Coordinate solving</a></li>
       <li><a href="#sec-err" data-spy="sec-err"><span class="tn">04</span>Error analysis</a></li>
       <li><a class="sub" href="#f-cls" data-spy="f-cls"><span class="tn">4.1</span>Failure classification</a></li>
       <li><a class="sub" href="#f-fix" data-spy="f-fix"><span class="tn">4.2</span>Potential fixes</a></li>
@@ -1871,6 +1884,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       <li><a href="#refs" data-spy="refs">References</a></li>
       <li><a href="#cite" data-spy="cite">Citation</a></li>
     </ol>
+    <p class="toc-key"><i></i>Kept in JustRUA</p>
     <a class="toc-top" href="#overview"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 13V3.5M4 7.25 8 3.25l4 4"/></svg>Back to top</a>
   </aside>
 </div>
@@ -1981,11 +1995,15 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
     $$("#f1 [data-i]").forEach(el=>el.classList.toggle("hover",el.dataset.i===String(i)));
     det.innerHTML=card(D[i]); place(row);
   }
-  function hide(){ cur=null; curRow=null; $$("#f1 .hover").forEach(el=>el.classList.remove("hover")); det.innerHTML=HINT; place(null); }
+  const DEF=D.findIndex(d=>d.t==="Coordinate solving");
+  function hide(){ cur=null; curRow=null; $$("#f1 .hover").forEach(el=>el.classList.remove("hover")); place(null);
+    if(narrow.matches||DEF<0){ det.innerHTML=HINT; return; }
+    det.innerHTML=defCard(); $$(`#f1 [data-i="${DEF}"]`).forEach(el=>el.classList.add("hover")); }
+  function defCard(){ return card(D[DEF]).replace("</div>",`<span class="wd-tip">${window.matchMedia("(hover:hover)").matches?"Hover over":"Tap"} a row or a bar for the other designs</span></div>`); }
   /* keep room for the longest entry so nothing below the chart moves */
   function reserve(){
     det.style.minHeight=""; if(narrow.matches||det.classList.contains("inline")) return;
-    const keep=det.innerHTML; let m=0; D.forEach(d=>{ det.innerHTML=card(d); m=Math.max(m,det.offsetHeight); }); det.innerHTML=keep;
+    const keep=det.innerHTML; let m=0; D.forEach(d=>{ det.innerHTML=card(d); m=Math.max(m,det.offsetHeight); }); if(DEF>=0){ det.innerHTML=defCard(); m=Math.max(m,det.offsetHeight); } det.innerHTML=keep;
     det.style.minHeight=m+"px";
   }
   hide(); reserve(); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(reserve);
@@ -2611,14 +2629,13 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
         ["n","Evaluation set","111 episodes, the main score"],["n","First round","42 episodes, the first layout of each task"],["n","Behaviour review","Behaviours counted from video"]]}
     };
     const box=$("#fw-box"), det=$("#fw-detail"); if(!box||!det) return;
-    det.innerHTML=KEYS.map(k=>{ const a=AX[k]; return `<div class="fw-pane" data-ax="${k}"><div><h4>${a.n}</h4><p class="what">${a.w}</p></div><ul class="vlist">${a.v.map(([c,n,d,p])=>`<li class="${c}"><b>${n}</b><span>${d}${p?`<em>${p}</em>`:""}</span></li>`).join("")}</ul></div>`; }).join("");
-    const panes=[...det.querySelectorAll(".fw-pane")], regions=$$(".fw-svg .region"), tags=KEYS.map(k=>box.querySelector(`.fw-tags button[data-ax="${k}"]`));
-    const c=cycler({root:box,tabs:tags,count:KEYS.length,dur:6000,
+    det.innerHTML=KEYS.map(k=>{ const a=AX[k]; return `<div class="fw-pane" data-ax="${k}"><div><h4>${a.n}<i class="prog"></i></h4><p class="what">${a.w}</p></div><ul class="vlist">${a.v.map(([c,n,d,p])=>`<li class="${c}"><b>${n}</b><span>${d}${p?`<em>${p}</em>`:""}</span></li>`).join("")}</ul></div>`; }).join("");
+    const panes=[...det.querySelectorAll(".fw-pane")], regions=$$(".fw-svg .region");
+    const c=cycler({root:box,tabs:panes,count:KEYS.length,dur:6000,
       show:i=>{ const k=KEYS[i];
         regions.forEach(r=>r.classList.toggle("on",r.dataset.ax===k));
-        tags.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.ax===k)));
+        regions.forEach(r=>r.setAttribute("aria-pressed",String(r.dataset.ax===k)));
         panes.forEach(p=>{ const on=p.dataset.ax===k; p.classList.toggle("on",on); p.setAttribute("aria-hidden",String(!on)); }); }});
-    tags.forEach((b,i)=>bindTab(b,c,i));
     regions.forEach(r=>{
       const i=KEYS.indexOf(r.dataset.ax);
       bindTab(r,c,i);
@@ -2821,17 +2838,17 @@ draw();addEventListener("resize",draw);addEventListener("load",draw);[big,tgt].f
 if(window.ResizeObserver)new ResizeObserver(draw).observe(box);})();
 </script>
 <script>
-(()=>{const sec=document.getElementById("film-top"),v=document.getElementById("ft-video"),btn=document.getElementById("film-open"),x=document.getElementById("ft-close"),hero=document.getElementById("overview");if(!sec||!v||!btn||!hero)return;
+(()=>{const sec=document.getElementById("film-top"),v=document.getElementById("ft-video"),btns=[...document.querySelectorAll("[data-film-open]")],x=document.getElementById("ft-close"),hero=document.getElementById("overview");if(!sec||!v||!btns.length||!hero)return;let btn=btns[0];
 const rm=window.matchMedia("(prefers-reduced-motion: reduce)").matches,play=()=>{const p=v.play();if(p&&p.catch)p.catch(()=>{});};
 let raf=0;
 const jump=y=>window.scrollTo({top:y,behavior:"instant"});
 const glide=(to,ms,done)=>{cancelAnimationFrame(raf);const from=window.scrollY,d=to-from;if(rm||Math.abs(d)<2){jump(to);if(done)done();return;}
   const t0=performance.now(),step=now=>{const u=Math.min(1,(now-t0)/ms),e=u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;jump(from+d*e);if(u<1)raf=requestAnimationFrame(step);else if(done)done();};raf=requestAnimationFrame(step);};
 const keep=fn=>{const a=hero.getBoundingClientRect().top;fn();const b=hero.getBoundingClientRect().top;if(b!==a)jump(Math.max(0,window.scrollY+b-a));};
-btn.addEventListener("click",e=>{e.preventDefault();
+btns.forEach(b=>b.addEventListener("click",e=>{e.preventDefault();btn=b;
   if(sec.hidden){keep(()=>{sec.hidden=false;});v.muted=false;v.volume=.8;try{v.currentTime=0;}catch(_){}}
   if(v.paused)play();
-  glide(sec.getBoundingClientRect().top+window.scrollY,800);});
+  glide(sec.getBoundingClientRect().top+window.scrollY,800);}));
 const close=()=>{v.pause();glide(hero.getBoundingClientRect().top+window.scrollY,650,()=>{keep(()=>{sec.hidden=true;});btn.focus({preventScroll:true});});};
 if(x)x.addEventListener("click",close);
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!sec.hidden)close();});})();

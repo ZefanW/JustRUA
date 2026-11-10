@@ -62,7 +62,7 @@ h1 .just{color:var(--steel-2)}
 .logos .lg-mb{height:22px}
 .logos .lg-tc{height:19px}
 .logo-slot{width:120px;height:36px;border:1px dashed var(--rule-2);border-radius:8px;display:grid;place-items:center;font:500 11px/1 var(--f-mono);color:var(--ink-3)}
-.hero-main{display:grid;grid-template-columns:minmax(0,1fr) max-content;grid-template-areas:"ab tk" "ln tk";column-gap:72px;align-items:start;margin-top:10px}
+.hero-main{display:grid;grid-template-columns:minmax(0,1fr) max-content;grid-template-areas:"hd hd" "ab tk" "ln tk";column-gap:72px;align-items:start}
 .hero-main .abstract{grid-area:ab;margin:0}
 .hero-main .tks{grid-area:tk;align-self:start;align-content:start;gap:8px}
 .hero-links{grid-area:ln;margin-top:22px}
@@ -123,11 +123,17 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .film-cta svg{width:16px;height:16px;color:var(--steel)}
 .film-cta em{font:400 11.5px/1 var(--f-mono);font-style:normal;color:var(--ink-3)}
 .film:hover .film-cta,.film:focus-visible .film-cta{background:#fff}
-.film-top{scroll-margin-top:72px}
+.film-top{scroll-margin-top:72px;--ftw:min(1168px,calc((100vh - 110px)*16/9))}
+.hero-hd{grid-area:hd;margin-bottom:28px}
+.links{align-items:center}
+.chip.film-btn{height:44px;padding:0 16px 0 4px;gap:10px}
+.fb-th{position:relative;flex:none;height:36px;aspect-ratio:16/9;border-radius:18px 7px 7px 18px;overflow:hidden;background:#2a2d34}
+.fb-th img{display:block;width:100%;height:100%;object-fit:cover}
+.fb-th svg{position:absolute;left:50%;top:50%;width:14px!important;height:14px!important;margin:-7px 0 0 -6px;color:#fff;filter:drop-shadow(0 0 3px rgba(0,0,0,.65))}
 .film-top .wrap{padding-top:28px}
-.ft-frame{max-width:980px;margin:0 auto;aspect-ratio:16/9;border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:var(--surface)}
+.ft-frame{max-width:var(--ftw);margin:0 auto;aspect-ratio:16/9;border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:var(--surface)}
 .ft-frame video{display:block;width:100%;height:100%;object-fit:cover;background:var(--surface)}
-.ft-bar{max-width:980px;margin:10px auto 0;display:flex;align-items:center;justify-content:space-between;gap:12px;font:400 12px/1 var(--f-mono);color:var(--ink-3)}
+.ft-bar{max-width:var(--ftw);margin:10px auto 0;display:flex;align-items:center;justify-content:space-between;gap:12px;font:400 12px/1 var(--f-mono);color:var(--ink-3)}
 .ft-bar em{font-style:normal;margin-left:4px}
 .ft-x{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border:1px solid var(--rule-2);border-radius:999px;background:var(--surface);font:500 12px/1 var(--f-mono);color:var(--ink-2);cursor:pointer}
 .ft-x span{font-size:15px}
@@ -233,6 +239,7 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .wd-head b{font-size:14px;color:var(--ink)}
 .wd-head .st{font:500 10.5px/1.3 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--steel)}
 .wd-head .st.drop{color:var(--ink-3)}
+.wd-head .wd-tip{margin-left:auto;font-size:12px;color:var(--ink-3)}
 .wd-d{margin:3px 0 0}
 .wd-n{margin:4px 0 0;font:400 12px/1.5 var(--f-mono);color:var(--ink)}
 .wf-detail.inline{margin:2px 0 6px;padding:8px 10px;border:0;border-radius:8px;background:#fff;box-shadow:inset 0 0 0 1px var(--rule-2)}
@@ -293,6 +300,10 @@ a.chip:hover{border-color:var(--steel);color:var(--steel)}
 .toc .tn{font:500 10.5px/1.75 var(--f-mono);color:var(--ink-3);flex:none;min-width:2.3em}
 .toc a:has(.tn){display:flex}
 .toc a.active .tn{color:var(--steel)}
+.toc a.sub .tn{min-width:0;padding:0 4px;margin-right:6px;border-radius:4px;line-height:1.55;align-self:center}
+.toc a.kept .tn,.toc a.kept.active .tn{color:var(--steel);background:var(--steel-soft);box-shadow:inset 0 0 0 1px rgba(46,74,115,.14)}
+.toc-key{display:flex;align-items:center;gap:7px;margin:12px 0 0;padding:0 8px;font-size:11.5px;line-height:1.3;color:var(--ink-3)}
+.toc-key i{flex:none;width:16px;height:10px;border-radius:3px;background:var(--steel-soft);box-shadow:inset 0 0 0 1px rgba(46,74,115,.22)}
 .toc a:hover{color:var(--ink)}
 .toc a.active{background:var(--surface);color:var(--steel);box-shadow:inset 0 0 0 1px var(--rule)}
 .toc-foot{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule)}
@@ -332,7 +343,9 @@ h3{font-size:20px;line-height:1.25;letter-spacing:-.01em;font-weight:650;margin:
 .fw-tags .prog{background:rgba(255,255,255,.75)}
 .fw-tags button[aria-pressed="true"]{background:var(--steel);border-color:var(--steel);color:#fff}
 .fw-wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
-.fw-detail{display:grid}
+.fw-detail{display:grid;position:relative;margin-top:14px;padding-top:18px;border-top:1px solid var(--rule)}
+.fw-pane h4{position:relative;width:fit-content;padding-bottom:6px}
+.fw-pane .prog{position:absolute;left:0;bottom:0;height:2px;width:0;border-radius:1px;background:var(--steel-2);opacity:.6;pointer-events:none}
 .fw-pane{grid-area:1/1;display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:28px;align-items:start;visibility:hidden}
 .fw-pane.on{visibility:visible}
 .fw-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -501,6 +514,7 @@ a.cite:hover{text-decoration-color:var(--steel)}
 .finding:first-of-type{margin-top:22px}
 .finding h3{font-size:21px;margin-bottom:6px}
 .finding h3 .num{font:500 .6em/1 var(--f-mono);color:var(--steel-2);margin-right:.7em;vertical-align:.2em;letter-spacing:0}
+.finding h3.kept .num{color:var(--steel);background:var(--steel-soft);box-shadow:inset 0 0 0 1px rgba(46,74,115,.14);border-radius:5px;padding:.3em .5em;vertical-align:.22em}
 .f-sub{font-size:14.5px;line-height:1.5;color:var(--ink-2);max-width:var(--measure);margin:0 0 16px}
 .f-note{font-size:14px;line-height:1.5;color:var(--ink-2);margin-top:12px;max-width:var(--measure)}
 .card{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:22px;min-width:0}
@@ -646,7 +660,7 @@ footer .wrap{padding-block:22px;font-size:13px;color:var(--ink-3)}
 @media (max-width:899px){
   .f-grid,.rd,.pb,.fw-wrap,.halves{grid-template-columns:minmax(0,1fr)}
   .hero .wrap{padding-block:36px 24px}
-  .hero-main{grid-template-columns:minmax(0,1fr);grid-template-areas:"ab" "ln" "tk";column-gap:0}
+  .hero-main{grid-template-columns:minmax(0,1fr);grid-template-areas:"hd" "ab" "ln" "tk";column-gap:0}
   .hero-main .tks{margin-top:22px}
   .tabpanel{grid-template-columns:minmax(0,1fr);gap:20px;padding:22px}
   .clips{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -955,28 +969,28 @@ section.sec + section.sec{margin-top:128px}
 .sv-freeze i{width:7px;height:7px;border-radius:50%;background:#7ee0a8;animation:svBlink 1s steps(2) infinite}
 .sv-freeze.on{opacity:1}
 @keyframes svBlink{50%{opacity:.2}}
-.sv-con{background:#0f131a;color:#d6dce6;border-top:1px solid #1d232d}
-.sv-con-h{display:flex;align-items:center;gap:12px;padding:8px 14px;border-bottom:1px solid #1d232d;font:400 11px var(--f-mono);color:#8b95a6;min-width:0}
-.sv-dots{display:flex;gap:5px}.sv-dots i{width:8px;height:8px;border-radius:50%;background:#2b3240}
-.sv-title{color:#e9edf3;font-weight:500;white-space:nowrap}
+.sv-con{background:#f6f7f9;color:var(--ink);border-top:1px solid var(--rule-2)}
+.sv-con-h{display:flex;align-items:center;gap:12px;padding:8px 14px;border-bottom:1px solid var(--rule-2);font:400 11px var(--f-mono);color:var(--ink-3);min-width:0}
+.sv-dots{display:flex;gap:5px}.sv-dots i{width:8px;height:8px;border-radius:50%;background:#d5d9e0}
+.sv-title{color:var(--ink);font-weight:500;white-space:nowrap}
 .sv-st{margin-left:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .sv-con-b{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);height:206px}
-.sv-code,.sv-out{margin:0;font:400 11px/1.55 var(--f-mono);white-space:pre;overflow:hidden;color:#c9d1dc}
-.sv-code{padding:12px 14px;border-right:1px solid #1d232d}
-.sv-code::after,.sv-out.typing::after{content:"";display:inline-block;width:6px;height:12px;margin-left:1px;background:#7ee0a8;vertical-align:-2px;animation:svBlink 1s steps(2) infinite}
+.sv-code,.sv-out{margin:0;font:400 11px/1.55 var(--f-mono);white-space:pre;overflow:hidden;color:#3b4250}
+.sv-code{padding:12px 14px;border-right:1px solid var(--rule-2)}
+.sv-code::after,.sv-out.typing::after{content:"";display:inline-block;width:6px;height:12px;margin-left:1px;background:#2f8a5c;vertical-align:-2px;animation:svBlink 1s steps(2) infinite}
 .sv-code.done::after{display:none}
 .sv-outw{padding:10px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
-.sv-ol{font:500 10px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#6c7688}
+.sv-ol{font:500 10px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
 .sv-out span{display:block;opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s}
 .sv-out span.on{opacity:1;transform:none}
-.sv-out span.hl{color:#7ee0a8}
-.sv-out span.dm{color:#6c7688}
-.sv-use{margin-top:auto;font:500 11.5px/1.5 var(--f-mono);color:#ffcf9e;opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s;white-space:normal}
-.sv-use em{font-style:normal;color:#9fb0c6}
+.sv-out span.hl{color:#24704a;font-weight:500}
+.sv-out span.dm{color:var(--ink-3)}
+.sv-use{margin-top:auto;font:500 11.5px/1.5 var(--f-mono);color:#9a5b14;opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s;white-space:normal}
+.sv-use em{font-style:normal;color:var(--ink-2)}
 .sv-use.on{opacity:1;transform:none}
 .sv-foot{padding:16px 18px 18px}
 .sv-foot .tbl-note{margin-bottom:0}
-@media (max-width:760px){.sv-con-b{grid-template-columns:minmax(0,1fr);height:auto}.sv-code{max-height:110px;border-right:0;border-bottom:1px solid #1d232d}.sv-outw{min-height:120px}.sv-st{display:none}.sv-cap{font-size:12px;left:8px;bottom:8px;max-width:calc(100% - 16px)}.sv-shot{--fs:30px!important}.sv-shot[data-k="cup"]{--fs:32px!important}}
+@media (max-width:760px){.sv-con-b{grid-template-columns:minmax(0,1fr);height:auto}.sv-code{max-height:110px;border-right:0;border-bottom:1px solid var(--rule-2)}.sv-outw{min-height:120px}.sv-st{display:none}.sv-cap{font-size:12px;left:8px;bottom:8px;max-width:calc(100% - 16px)}.sv-shot{--fs:30px!important}.sv-shot[data-k="cup"]{--fs:32px!important}}
 @media (prefers-reduced-motion:reduce){.sv-m.on .sv-ring,.sv-m.on .sv-ln{animation:none}}
 
 /* progress bar on auto-rotating segmented tabs */
@@ -997,83 +1011,89 @@ section.sec + section.sec{margin-top:128px}
 
 <section class="film-top" id="film-top" aria-label="项目影片" hidden>
   <div class="wrap">
-    <div class="ft-frame"><video id="ft-video" src="../media/hero/justrua-film-v6.mp4" poster="../media/hero/justrua-film-v2.jpg" width="1280" height="720" controls playsinline preload="none"><track id="ft-cc" kind="captions" srclang="zh" label="中文" default></video></div>
+    <div class="ft-frame"><video id="ft-video" src="../media/hero/justrua-film-v8.mp4" poster="../media/hero/justrua-film-v8.jpg" width="1920" height="1080" controls playsinline preload="none"><track id="ft-cc" kind="captions" srclang="zh" label="中文" default></video></div>
     <script type="text/plain" id="ft-vtt">WEBVTT
 
-00:00:02.000 --> 00:00:04.034
-JustRUA 来了。
+00:00:00.600 --> 00:00:08.479
+不用 RSI、不用学习得到的策略、也不针对任务调参，GPT-6 Astra 在 RoboDojo 上能做到多好？
 
-00:00:05.700 --> 00:00:08.656
-GPT-6 Astra 可以直接控制机械臂。
+00:00:08.779 --> 00:00:11.702
+从 29.7 到 50.3。
 
-00:00:08.656 --> 00:00:14.445
-它读取相机画面和机械臂状态，把目标发给运动规划器。
+00:00:11.902 --> 00:00:13.470
+这就是 JustRUA。
 
-00:00:14.500 --> 00:00:20.610
-RoboDojo 上的分数涨得很快，但已有系统之间同时存在许多差异。
+00:00:15.233 --> 00:00:17.426
+RoboDojo 上的分数涨得很快。
 
-00:00:20.800 --> 00:00:24.570
-所以我们把这些设计拆开，放在同一个框架里测试。
+00:00:17.426 --> 00:00:23.639
+但已有系统的 harness 和测试子集各不相同，往往还同时改了好几处设计。
 
-00:00:26.350 --> 00:00:28.150
-同一个测试平台，同一个基准。
+00:00:23.889 --> 00:00:28.504
+所以我们把这些设计拆开，在同一个测试平台上逐个测试。
 
-00:00:28.150 --> 00:00:36.181
-我们改变 harness、动作、经验复用和场景几何，每次运行都在同样的回合上评测。
-
-00:00:36.117 --> 00:00:38.924
+00:00:30.067 --> 00:00:32.485
 第一，简洁的 harness 方案已经能做很多。
 
-00:00:38.924 --> 00:00:47.129
-保留完整历史，并让每段运动在 20 个控制步后停下，得分就从 29.7 提高到 38.0。
+00:00:32.635 --> 00:00:41.216
+保留完整的回合历史，并让每段运动在 20 个控制步后停下，得分就从 29.7 提高到 38.0。
 
-00:00:47.050 --> 00:00:49.987
+00:00:42.867 --> 00:00:45.980
 第二，复用经验并非免费午餐。
 
-00:00:49.987 --> 00:00:58.724
-示范和模型自己写的技能库会改变模型的做法，但都没有明显好过默认配置，花费也都更高。
+00:00:46.130 --> 00:00:49.746
+示范和模型自己写的技能都没有带来明显提升。
 
-00:00:58.817 --> 00:01:01.278
+00:00:49.946 --> 00:00:54.817
+它们用到的正是要评分的任务，所以还有刷分的风险。
+
+00:00:55.067 --> 00:00:56.917
+JustRUA 一个都没有保留。
+
+00:00:58.667 --> 00:01:00.757
 第三，场景几何帮助最大。
 
-00:01:01.278 --> 00:01:06.651
+00:01:00.857 --> 00:01:06.614
 即使是只用 RGB 预测的深度，也能把空抓从 41 次降到 16 次。
 
-00:01:06.567 --> 00:01:13.200
-再加上从像素解算 3D 点的代码并取消决策上限，得分达到 50.3。
+00:01:07.064 --> 00:01:13.974
+再加上从像素解算 3D 坐标的代码并取消决策上限，得分达到 50.3。
 
-00:01:14.583 --> 00:01:17.917
+00:01:15.833 --> 00:01:19.121
 最后，余下的失败大多是长尾场景。
 
-00:01:17.917 --> 00:01:20.608
-它们大多只出现在单个任务上。
+00:01:19.121 --> 00:01:21.543
+大多只出现在单个任务上。
 
-00:01:26.033 --> 00:01:30.946
-没有学习得到的策略，没有自我改进循环，也不针对任务调参。
+00:01:24.500 --> 00:01:29.652
+五处改动把官方 harness 的得分从 29.7 提高到 50.3。
 
-00:01:31.183 --> 00:01:32.480
+00:01:30.102 --> 00:01:35.250
+我们测试过的每个设计都放在项目主页上，附有得分、成本和执行录像。
+
+00:01:35.600 --> 00:01:36.806
 JustRUA.
 </script>
     <script>(()=>{ try{ const t=document.getElementById("ft-cc"), v=document.getElementById("ft-vtt"); if(t&&v) t.src=URL.createObjectURL(new Blob([v.textContent.trim()+"\n"],{type:"text/vtt"})); }catch(e){} })();</script>
-    <div class="ft-bar"><span>项目影片 <em>1:32</em></span><button type="button" class="ft-x" id="ft-close">关闭 <span aria-hidden="true">&times;</span></button></div>
+    <div class="ft-bar"><span>项目影片 <em>1:40</em></span><button type="button" class="ft-x" id="ft-close">关闭 <span aria-hidden="true">&times;</span></button></div>
   </div>
 </section>
 
 <header class="hero" id="overview">
   <canvas class="hero-fx" id="hero-fx" aria-hidden="true"></canvas>
   <div class="wrap">
-    <div>
+    <div class="hero-main">
+    <div class="hero-hd">
       <h1><span class="just">Just</span>RUA</h1>
       <p class="subtitle">GPT-6 机器人使用智能体的受控研究</p>
       <div class="byline">
-        <p class="by-names"><span>Zefan Wang<sup>*†</sup></span>, <span>Yufan Dang<sup>*</sup></span>, <span>Xuanwei Shi<sup>*</sup></span>, <span>Chuan Gao<sup>*</sup></span>, <span>Cheng Yin</span>, <span>SikYuen Tam</span>, <span>Hanyu Liu</span>, <span>Yasheng Wang</span>, <span>Yaxi Lu</span>, <span>Yi Jiang</span>, <span>Songyang Zhang</span>, <span>Xin Cong</span>, <span>Yuan Yao<sup>‡</sup></span></p>
+        <p class="by-names"><span>Zefan Wang<sup>*†</sup></span>, <span>Yufan Dang<sup>*</sup></span>, <span>Xuanwei Shi<sup>*</sup></span>, <span>Mingqi Gao<sup>*</sup></span>, <span>Cheng Yin</span>, <span>SikYuen Tam</span>, <span>Hanyu Liu</span>, <span>Yasheng Wang</span>, <span>Yaxi Lu</span>, <span>Songyang Zhang</span>, <span>Xin Cong</span>, <span>Yuan Yao<sup>‡</sup></span></p>
         <div class="by-foot"><p class="by-notes"><span><sup>*</sup>核心贡献者</span><span><sup>†</sup>项目负责人</span><span><sup>‡</sup>通讯作者</span></p><img class="by-logo" src="../media/logos/tsinghua.png" alt="清华大学" width="268" height="84"></div>
       </div>
     </div>
-    <div class="hero-main">
-      <p class="abstract">GPT-6 Astra 可以通过一套固定的 harness 直接控制机械臂，此后 RoboDojo 上的分数涨得很快。已有系统所用的 harness 和测试子集各不相同，而且常常同时改动好几处设计，很难看出提升到底来自哪些选择。我们把这些设计拆开，放在同一个框架里测试。JustRUA 从官方 L3 harness 出发，只保留最关键的部分。即使不用学习得到的策略和自我改进循环，也不针对任务调参，这套简单的 harness 仍能把 RoboDojo 仿真基准上的得分从 29.7 大幅提高到 50.3。</p>
+    <p class="abstract">GPT-6 Astra 可以通过一套固定的 harness 直接控制机械臂，此后 RoboDojo 上的分数涨得很快。已有系统所用的 harness 和测试子集各不相同，而且常常同时改动好几处设计，很难看出提升到底来自哪些选择。我们把这些设计拆开，放在同一个框架里测试。JustRUA 从官方 L3 harness 出发，只保留最关键的部分。即使不用学习得到的策略和自我改进循环，也不针对任务调参，这套简单的 harness 仍能把 RoboDojo 仿真基准上的得分从 29.7 大幅提高到 50.3。</p>
       <div class="links hero-links">
-        <a class="chip film-btn" href="#film-top" id="film-open"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="9" r="7.25"/><path d="M7.5 6.2v5.6L11.8 9z" fill="currentColor" stroke="none"/></svg>项目影片 <em>1:32</em></a>
+        <a class="chip film-btn" href="#film-top" id="film-open" data-film-open><span class="fb-th" aria-hidden="true"><img src="../media/hero/film-thumb.jpg" alt="" width="640" height="360"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>项目影片 <em>1:40</em></a>
         <span class="chip soon" aria-disabled="true" title="即将发布"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 1.75h5.5L12.5 4.75V14.25H4z"/><path d="M9.25 1.75v3.25h3.25M6 8h4.5M6 10.75h4.5"/></svg>论文<span class="soon-t">即将发布</span></span>
         <a class="chip" href="https://github.com/ZefanW/JustRUA" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5.5 4.5 2 8l3.5 3.5M10.5 4.5 14 8l-3.5 3.5"/></svg>代码</a>
         <a class="chip" href="https://huggingface.co/spaces/ZefanW/robodojo-replay-explorer" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><ellipse cx="8" cy="3.75" rx="5" ry="1.75"/><path d="M3 3.75v8.5c0 .97 2.24 1.75 5 1.75s5-.78 5-1.75v-8.5M3 8c0 .97 2.24 1.75 5 1.75S13 8.97 13 8"/></svg>回放</a>
@@ -1147,15 +1167,8 @@ JustRUA.
       <p class="why">我们没有逐个复现已报道的系统，而是把设计拆开，在同一个测试平台、同一个基准上测试，并尽量减少每次运行之间的改动。</p>
 
       <div id="fw-box">
-      <div class="fw-tags" role="group" aria-label="选择研究的一个部分">
-        <button type="button" id="fw-harness" data-ax="harness" aria-pressed="true">Harness<i class="prog"></i></button>
-        <button type="button" id="fw-action" data-ax="action" aria-pressed="false">动作<i class="prog"></i></button>
-        <button type="button" id="fw-exp" data-ax="exp" aria-pressed="false">经验复用<i class="prog"></i></button>
-        <button type="button" id="fw-geo" data-ax="geo" aria-pressed="false">场景几何<i class="prog"></i></button>
-        <button type="button" id="fw-eval" data-ax="eval" aria-pressed="false">评测<i class="prog"></i></button>
-      </div>
       <div class="fw-wrap">
-        <div class="card">
+        <div class="card fw-card">
           <div class="fw-scroll">
             <svg class="fw-svg" viewBox="0 0 960 400" role="img" aria-label="测试平台的循环。Codex 会话中的 GPT-6 Astra 发出指令，规划器进行规划，至多 20 个控制步在 RoboDojo 模拟器中执行，观测再返回给模型。来自其他回合的经验输入模型，每次运行都在评测集上评分，并经过行为复查。">
               <defs><marker id="fw-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 8 4 0 8z" fill="#a9b0bb"/></marker></defs>
@@ -1183,8 +1196,8 @@ JustRUA.
             </svg>
           </div>
           <p class="fw-note">蓝色边框标出 JustRUA 改动的部分。点击虚线区域可以查看我们改变了什么。</p>
+          <div class="fw-detail" id="fw-detail"></div>
         </div>
-        <div class="card fw-detail" id="fw-detail"></div>
       </div>
       </div>
 
@@ -1221,7 +1234,7 @@ JustRUA.
       <p class="sec-sub">对 GPT-6 Astra 在 RoboDojo 上的首次评测发现，它在精度类任务上表现较弱，官方 L3 harness 下的精度得分只有 12.7（<a class="cite" href="https://arxiv.org/abs/2609.24170" target="_blank" rel="noopener">RoboProbe</a>），Galbot 也看到它的决策和物理控制之间有类似的落差（<a class="cite" href="https://arxiv.org/abs/2609.38537" target="_blank" rel="noopener">Galbot</a>）。但对 harness 和动作循环做几处合理的修正后，它的精度得分就追上了当时最强的视觉-语言-动作模型（在我们的评测集上为 25.0，DM0.5 为 24.8）。看来这部分短板很大程度上出在 harness，而不是模型本身。</p>
 
       <div class="finding" id="f-harness">
-        <h3><span class="num">1.1</span>Codex 与完整历史</h3>
+        <h3 class="kept"><span class="num" title="含 JustRUA 保留的设计">1.1</span>Codex 与完整历史</h3>
         <p class="f-sub">官方 L3 harness（即 RoboProbe 中的 L3 Inspect EEF）直接调用模型 API，只保留最近两次观测的图像。我们在一个 <a class="cite" href="https://openai.com/codex/" target="_blank" rel="noopener">Codex</a> 会话<sup>*</sup>里运行同样的循环，保留每张图像，并关闭 Codex 自带的工具。单独换成 Codex 反而让首轮得分下降，所以我们把提升归功于两者的组合。所有对比都沿用每回合 100 次决策的默认上限，只有最终的 JustRUA 取消了它。</p>
         <div class="card stbl-card">
           <table class="stbl">
@@ -1237,7 +1250,7 @@ JustRUA.
       </div>
 
       <div class="finding" id="f-action">
-        <h3><span class="num">1.2</span>动作设计</h3>
+        <h3 class="kept"><span class="num" title="含 JustRUA 保留的设计">1.2</span>动作设计</h3>
         <p class="f-sub"><span class="run">运动时长。</span>官方循环里，一整段运动执行完模型才能看到画面，所以一条不稳定的 <a class="cite" href="https://arxiv.org/abs/2310.17274" target="_blank" rel="noopener">CuRobo</a> 规划可能把机械臂带出很远。我们让每段运动在 20 个控制步后停下。像动作分块那样让模型在 3 到 32 步之间自己选（<a class="cite" href="https://arxiv.org/abs/2304.13705" target="_blank" rel="noopener">ACT</a>、<a class="cite" href="https://research.nvidia.com/labs/srl/projects/astranomy/" target="_blank" rel="noopener">Astranomy</a>），效果并没有更好，所以 JustRUA 保留固定上限。</p>
         <div class="mlen wide-r">
           <div class="card stbl-card">
@@ -1510,7 +1523,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       <p class="sec-sub">近期的智能体系统会用专门的模型给模型提供深度、点云和可供性。GPT-6 用不着这么多。它自己的夹爪读数、从 RGB 预测的深度，加上一小段把像素换算成 3D 坐标的代码，在不用模拟器真值的情况下就拿到了大部分提升，而预先算好的可供性没有帮助。</p>
 
       <div class="finding" id="f-readings">
-        <h3><span class="num">3.1</span>机器人读数</h3>
+        <h3 class="kept"><span class="num" title="含 JustRUA 保留的设计">3.1</span>机器人读数</h3>
         <p class="f-sub">机器人读数是每个夹爪的基本传感器数值，包括手指位置和受力、接触力和腕部负载，不含物体真实位姿这类特权信息。</p>
         <div class="gd-row">
           <div class="gd-text">
@@ -1553,7 +1566,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       </div>
 
       <div class="finding" id="f-depth">
-        <h3><span class="num">3.2</span>深度</h3>
+        <h3 class="kept"><span class="num" title="含 JustRUA 保留的设计">3.2</span>深度</h3>
         <p class="f-sub">许多近期的智能体系统用深度在 3D 空间里定位物体（<a class="cite" href="https://arxiv.org/abs/2610.14018" target="_blank" rel="noopener">RoboHarness</a>、<a class="cite" href="https://arxiv.org/abs/2610.28259" target="_blank" rel="noopener">GPT-GEAR</a>、<a class="cite" href="https://arxiv.org/abs/2610.22496" target="_blank" rel="noopener">RAX</a>），但 RoboDojo 排行榜不接受智能体参赛项使用模拟器深度，<a class="cite" href="https://github.com/XPolicyLab/XPolicyLab/pull/151#issuecomment-6106209632" target="_blank" rel="noopener">维护者在评审中明确说过这一点</a>。我们同时测试了模拟器深度和 <a class="cite" href="https://arxiv.org/abs/2410.02073" target="_blank" rel="noopener">Depth Pro</a> 只用 RGB 预测的深度。</p>
         <p class="f-sub">预测出的距离偏差很大，即使给了真实焦距也差几十厘米。按机器人几何逐帧缩放有所改善，但缩放比例在帧与帧之间漂移，腕部相机也无法拟合，所以 JustRUA 直接传入原始预测。</p>
         <div class="card dpcard">
@@ -1636,7 +1649,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       </div>
 
       <div class="finding" id="f-code">
-        <h3><span class="num">3.4</span>坐标解算</h3>
+        <h3 class="kept"><span class="num" title="含 JustRUA 保留的设计">3.4</span>坐标解算</h3>
         <p class="f-sub">在最后一步，模型还可以在会话里编写并运行代码<sup class="fnm">1</sup>，<a class="cite" href="https://arxiv.org/abs/2209.07753" target="_blank" rel="noopener">Code as Policies</a> 和 <a class="cite" href="https://arxiv.org/abs/2609.39018" target="_blank" rel="noopener">URAI</a> 也是这样做的，同时取消 100 次决策的上限。</p>
         <p class="f-sub">几乎每次运行都用代码解算坐标：根据相机标定从像素发出射线，再用两个相机看到的同一点做三角测量，或者与已知高度的表面求交。代码从不读取深度图。因此代码相当于又一个场景几何的来源，这也是它归在这一维度下的原因。</p>
         <div class="mlen top">
@@ -1817,7 +1830,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
         <button type="button" class="copy" id="copy-bib">复制</button>
         <pre id="bibtex">@misc{justrua2026,
   title  = {JustRUA: A Controlled Study of GPT-6 Robot-Use Agents},
-  author = {Zefan Wang and Yufan Dang and Xuanwei Shi and Chuan Gao and Cheng Yin and SikYuen Tam and Hanyu Liu and Yasheng Wang and Yaxi Lu and Yi Jiang and Songyang Zhang and Xin Cong and Yuan Yao},
+  author = {Zefan Wang and Yufan Dang and Xuanwei Shi and Mingqi Gao and Cheng Yin and SikYuen Tam and Hanyu Liu and Yasheng Wang and Yaxi Lu and Songyang Zhang and Xin Cong and Yuan Yao},
   year   = {2026}
 }</pre>
       </div>
@@ -1833,17 +1846,17 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       <li><a class="sub" href="#proxy" data-spy="proxy">评测集</a></li>
       <li><a class="sub" href="#behaviour" data-spy="behaviour">行为复查</a></li>
       <li><a href="#sec-harness" data-spy="sec-harness"><span class="tn">01</span>Harness 与动作</a></li>
-      <li><a class="sub" href="#f-harness" data-spy="f-harness"><span class="tn">1.1</span>Codex 与完整历史</a></li>
-      <li><a class="sub" href="#f-action" data-spy="f-action"><span class="tn">1.2</span>动作设计</a></li>
+      <li><a class="sub kept" href="#f-harness" data-spy="f-harness"><span class="tn">1.1</span>Codex 与完整历史</a></li>
+      <li><a class="sub kept" href="#f-action" data-spy="f-action"><span class="tn">1.2</span>动作设计</a></li>
       <li><a class="sub" href="#f-effort" data-spy="f-effort"><span class="tn">1.3</span>推理强度</a></li>
       <li><a href="#sec-exp" data-spy="sec-exp"><span class="tn">02</span>经验复用</a></li>
       <li><a class="sub" href="#f-exp" data-spy="f-exp"><span class="tn">2.1</span>示范</a></li>
       <li><a class="sub" href="#f-loop" data-spy="f-loop"><span class="tn">2.2</span>自我改进循环</a></li>
       <li><a href="#sec-geo" data-spy="sec-geo"><span class="tn">03</span>场景几何</a></li>
-      <li><a class="sub" href="#f-readings" data-spy="f-readings"><span class="tn">3.1</span>机器人读数</a></li>
-      <li><a class="sub" href="#f-depth" data-spy="f-depth"><span class="tn">3.2</span>深度</a></li>
+      <li><a class="sub kept" href="#f-readings" data-spy="f-readings"><span class="tn">3.1</span>机器人读数</a></li>
+      <li><a class="sub kept" href="#f-depth" data-spy="f-depth"><span class="tn">3.2</span>深度</a></li>
       <li><a class="sub" href="#f-hints" data-spy="f-hints"><span class="tn">3.3</span>可供性</a></li>
-      <li><a class="sub" href="#f-code" data-spy="f-code"><span class="tn">3.4</span>坐标解算</a></li>
+      <li><a class="sub kept" href="#f-code" data-spy="f-code"><span class="tn">3.4</span>坐标解算</a></li>
       <li><a href="#sec-err" data-spy="sec-err"><span class="tn">04</span>错误分析</a></li>
       <li><a class="sub" href="#f-cls" data-spy="f-cls"><span class="tn">4.1</span>失败分类</a></li>
       <li><a class="sub" href="#f-fix" data-spy="f-fix"><span class="tn">4.2</span>可能的改进</a></li>
@@ -1853,6 +1866,7 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
       <li><a href="#refs" data-spy="refs">参考文献</a></li>
       <li><a href="#cite" data-spy="cite">引用</a></li>
     </ol>
+    <p class="toc-key"><i></i>JustRUA 保留</p>
     <a class="toc-top" href="#overview"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 13V3.5M4 7.25 8 3.25l4 4"/></svg>回到顶部</a>
   </aside>
 </div>
@@ -1963,11 +1977,15 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
     $$("#f1 [data-i]").forEach(el=>el.classList.toggle("hover",el.dataset.i===String(i)));
     det.innerHTML=card(D[i]); place(row);
   }
-  function hide(){ cur=null; curRow=null; $$("#f1 .hover").forEach(el=>el.classList.remove("hover")); det.innerHTML=HINT; place(null); }
+  const DEF=D.findIndex(d=>d.t==="坐标解算");
+  function hide(){ cur=null; curRow=null; $$("#f1 .hover").forEach(el=>el.classList.remove("hover")); place(null);
+    if(narrow.matches||DEF<0){ det.innerHTML=HINT; return; }
+    det.innerHTML=defCard(); $$(`#f1 [data-i="${DEF}"]`).forEach(el=>el.classList.add("hover")); }
+  function defCard(){ return card(D[DEF]).replace("</div>",`<span class="wd-tip">${window.matchMedia("(hover:hover)").matches?"悬停":"点按"}任一行或柱子可查看其他设计</span></div>`); }
   /* keep room for the longest entry so nothing below the chart moves */
   function reserve(){
     det.style.minHeight=""; if(narrow.matches||det.classList.contains("inline")) return;
-    const keep=det.innerHTML; let m=0; D.forEach(d=>{ det.innerHTML=card(d); m=Math.max(m,det.offsetHeight); }); det.innerHTML=keep;
+    const keep=det.innerHTML; let m=0; D.forEach(d=>{ det.innerHTML=card(d); m=Math.max(m,det.offsetHeight); }); if(DEF>=0){ det.innerHTML=defCard(); m=Math.max(m,det.offsetHeight); } det.innerHTML=keep;
     det.style.minHeight=m+"px";
   }
   hide(); reserve(); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(reserve);
@@ -2593,14 +2611,13 @@ guide: &quot;record attempted contact separately from verified activation&quot;<
         ["n","评测集","111 个回合，主要得分"],["n","首轮","42 个回合，每个任务的第一个布局"],["n","行为复查","根据视频统计的行为"]]}
     };
     const box=$("#fw-box"), det=$("#fw-detail"); if(!box||!det) return;
-    det.innerHTML=KEYS.map(k=>{ const a=AX[k]; return `<div class="fw-pane" data-ax="${k}"><div><h4>${a.n}</h4><p class="what">${a.w}</p></div><ul class="vlist">${a.v.map(([c,n,d,p])=>`<li class="${c}"><b>${n}</b><span>${d}${p?`<em>${p}</em>`:""}</span></li>`).join("")}</ul></div>`; }).join("");
-    const panes=[...det.querySelectorAll(".fw-pane")], regions=$$(".fw-svg .region"), tags=KEYS.map(k=>box.querySelector(`.fw-tags button[data-ax="${k}"]`));
-    const c=cycler({root:box,tabs:tags,count:KEYS.length,dur:6000,
+    det.innerHTML=KEYS.map(k=>{ const a=AX[k]; return `<div class="fw-pane" data-ax="${k}"><div><h4>${a.n}<i class="prog"></i></h4><p class="what">${a.w}</p></div><ul class="vlist">${a.v.map(([c,n,d,p])=>`<li class="${c}"><b>${n}</b><span>${d}${p?`<em>${p}</em>`:""}</span></li>`).join("")}</ul></div>`; }).join("");
+    const panes=[...det.querySelectorAll(".fw-pane")], regions=$$(".fw-svg .region");
+    const c=cycler({root:box,tabs:panes,count:KEYS.length,dur:6000,
       show:i=>{ const k=KEYS[i];
         regions.forEach(r=>r.classList.toggle("on",r.dataset.ax===k));
-        tags.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.ax===k)));
+        regions.forEach(r=>r.setAttribute("aria-pressed",String(r.dataset.ax===k)));
         panes.forEach(p=>{ const on=p.dataset.ax===k; p.classList.toggle("on",on); p.setAttribute("aria-hidden",String(!on)); }); }});
-    tags.forEach((b,i)=>bindTab(b,c,i));
     regions.forEach(r=>{
       const i=KEYS.indexOf(r.dataset.ax);
       bindTab(r,c,i);
@@ -2803,17 +2820,17 @@ draw();addEventListener("resize",draw);addEventListener("load",draw);[big,tgt].f
 if(window.ResizeObserver)new ResizeObserver(draw).observe(box);})();
 </script>
 <script>
-(()=>{const sec=document.getElementById("film-top"),v=document.getElementById("ft-video"),btn=document.getElementById("film-open"),x=document.getElementById("ft-close"),hero=document.getElementById("overview");if(!sec||!v||!btn||!hero)return;
+(()=>{const sec=document.getElementById("film-top"),v=document.getElementById("ft-video"),btns=[...document.querySelectorAll("[data-film-open]")],x=document.getElementById("ft-close"),hero=document.getElementById("overview");if(!sec||!v||!btns.length||!hero)return;let btn=btns[0];
 const rm=window.matchMedia("(prefers-reduced-motion: reduce)").matches,play=()=>{const p=v.play();if(p&&p.catch)p.catch(()=>{});};
 let raf=0;
 const jump=y=>window.scrollTo({top:y,behavior:"instant"});
 const glide=(to,ms,done)=>{cancelAnimationFrame(raf);const from=window.scrollY,d=to-from;if(rm||Math.abs(d)<2){jump(to);if(done)done();return;}
   const t0=performance.now(),step=now=>{const u=Math.min(1,(now-t0)/ms),e=u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;jump(from+d*e);if(u<1)raf=requestAnimationFrame(step);else if(done)done();};raf=requestAnimationFrame(step);};
 const keep=fn=>{const a=hero.getBoundingClientRect().top;fn();const b=hero.getBoundingClientRect().top;if(b!==a)jump(Math.max(0,window.scrollY+b-a));};
-btn.addEventListener("click",e=>{e.preventDefault();
+btns.forEach(b=>b.addEventListener("click",e=>{e.preventDefault();btn=b;
   if(sec.hidden){keep(()=>{sec.hidden=false;});v.muted=false;v.volume=.8;try{v.currentTime=0;}catch(_){}}
   if(v.paused)play();
-  glide(sec.getBoundingClientRect().top+window.scrollY,800);});
+  glide(sec.getBoundingClientRect().top+window.scrollY,800);}));
 const close=()=>{v.pause();glide(hero.getBoundingClientRect().top+window.scrollY,650,()=>{keep(()=>{sec.hidden=true;});btn.focus({preventScroll:true});});};
 if(x)x.addEventListener("click",close);
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!sec.hidden)close();});})();
