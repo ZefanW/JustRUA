@@ -1169,7 +1169,7 @@ JustRUA.
         </div>
       </div>
       <p class="wf-caption"><b>Figure 1.</b> The table lists every design we tested, by axis, and the chart the designs JustRUA keeps, in the order added. Each score is one evaluation-set run, the ring its first-round subset. Cost is a lower bound that assumes all cacheable input hits the cache.</p>
-      <p class="wf-fn"><span><sup>1</sup> Four layouts for the 23 most uncertain tasks and one for the rest, with a score SD of 2.6. The official L3 harness scores 29.7 on it and 29.0 on all 2,100 episodes.</span><span><sup>2</sup> The official loop moved into a Codex session that keeps every image of the episode.</span><span><sup>3</sup> Gaming risk. Reusing experience draws on the tasks being scored, so none is kept, whatever the score. Designs marked § game it most directly, with an expert demonstration of the same task.</span><span><sup>4</sup> The model may also run code, with web search off. The decision cap is lifted, and the official action limit still applies.</span></p>
+      <p class="wf-fn"><span><sup>1</sup> Four layouts for the 23 most uncertain tasks and one for the rest, with a score SD of 2.6. The official L3 harness scores 29.7 on it and 29.0 on all 2,100 episodes.</span><span><sup>2</sup> The official loop moved into a Codex session that keeps every image of the episode.</span><span><sup>3</sup> Gaming risk. Reusing experience draws on the tasks being scored, so none is kept, whatever the score. § marks the most direct case, an expert demonstration of the very task being scored.</span><span><sup>4</sup> The model may also run code, with web search off. The decision cap is lifted, and the official action limit still applies.</span></p>
     </div>
   </div>
 </section>
@@ -1375,7 +1375,7 @@ JustRUA.
 
     <section class="sec axis-sec" id="sec-exp">
       <h2 class="sec-h"><span class="num">02</span>Reusing experience</h2>
-      <p class="sec-sub">Experience from other episodes is the core of recursive self-improvement, and of everything we tried it carries the greatest risk of gaming the benchmark, since it draws on the tasks being scored. We tested it because it is widely used. No form clearly beat the default.</p>
+      <p class="sec-sub">Experience from other episodes is the core of recursive self-improvement, and of everything we tried it carries the greatest risk of gaming the benchmark. It draws on the tasks being scored, so its scores are not comparable with a standard evaluation. We tested it because it is widely used. In our runs, no form clearly beat the default.</p>
 
       <div class="finding" id="f-exp">
         <h3><span class="num">2.1</span>Demonstrations</h3>
