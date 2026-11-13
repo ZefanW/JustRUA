@@ -246,7 +246,6 @@
   "<sup>†</sup>Project lead": "<sup>†</sup>项目负责人",
   "<sup>‡</sup>Corresponding author": "<sup>‡</sup>通讯作者",
   "Paper": "论文",
-  "soon": "即将发布",
   "Code": "代码",
   "Replays": "回放",
   "References": "参考文献",
@@ -351,10 +350,11 @@
   "Score of the default testbed in each of eight rounds. Low effort 35.9, 35.9, 26.5, 37.4, 27.1, 29.6, 36.2, 47.5. Medium effort 42.4, 37.5, 30.6, 41.3, 23.1, 33.3, 36.0, 43.3.": "默认测试平台在八轮中各轮的得分。低强度 35.9、35.9、26.5、37.4、27.1、29.6、36.2、47.5。中强度 42.4、37.5、30.6、41.3、23.1、33.3、36.0、43.3。",
   "Contents": "目录",
   "Project film": "项目影片",
-  "Coming soon": "即将发布",
   "Evaluation-set score of each design JustRUA keeps, in the order it was added, with the cost per first-round episode above. Official L3 harness 29.7, full history 34.7, 20-step cap 38.0, compact readings 39.8, predicted depth 42.4, coordinate solving 50.3.": "JustRUA 保留的各项设计按加入顺序给出的评测集得分，上方是每个首轮回合的成本。官方 L3 harness 29.7，完整历史 34.7，20 步上限 38.0，紧凑读数 39.8，预测深度 42.4，坐标解算 50.3。",
   "Every design tested, grouped by the part of the system it changes, with its evaluation-set score": "测试过的所有设计，按改动的系统部分分组，并附评测集得分",
-  "Includes a design kept in JustRUA": "含 JustRUA 保留的设计"
+  "Includes a design kept in JustRUA": "含 JustRUA 保留的设计",
+  "A controlled study of GPT-6 Astra robot-use agents on RoboDojo. Harness, action, experience reuse and scene geometry are tested one at a time. A simple harness raises the score from 29.7 to 50.3 with no learned policy, self-improvement loop or task-specific tuning.": "JustRUA 是对 GPT-6 Astra 机器人使用智能体的受控研究，在 RoboDojo 上逐一测试 harness、动作接口、经验复用和场景几何的各种设计。不用学习得到的策略、自我改进循环或针对任务的调参，一个简洁的 harness 就把得分从 29.7 提高到 50.3。",
+  "From 29.7 to 50.3 on RoboDojo with a simple harness around GPT-6 Astra, and no learned policy, self-improvement loop or task-specific tuning.": "不用学习得到的策略、自我改进循环或针对任务的调参，一个简洁的 harness 就让 GPT-6 Astra 在 RoboDojo 上的得分从 29.7 提高到 50.3。"
  },
  "json": {
   "decision 0 &middot; 0.0 s &middot; the simulator waits while the code runs": "第 0 次决策 &middot; 0.0 s &middot; 代码运行时模拟器暂停",

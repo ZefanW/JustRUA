@@ -1,0 +1,64 @@
+# JustRUA: A Controlled Study of GPT-6 Robot-Use Agents
+
+> JustRUA is a controlled study of GPT-6 Astra robot-use agents on the RoboDojo simulation benchmark. Designs for the harness, the action interface, the reuse of experience and the scene geometry given to the model are tested one at a time in one framework. The harness that results is simple and raises the evaluation-set score from 29.7 (official L3 harness) to 50.3, with no learned policy, self-improvement loop or task-specific tuning.
+
+- Paper: https://arxiv.org/abs/2611.16009 (arXiv:2611.16009 [cs.RO], submitted 11 Nov 2026)
+- PDF: https://arxiv.org/pdf/2611.16009
+- Project page: https://zefanw.github.io/JustRUA/ (Chinese: https://zefanw.github.io/JustRUA/zh/)
+- Code: https://github.com/ZefanW/JustRUA
+- Episode replays: https://huggingface.co/spaces/ZefanW/robodojo-replay-explorer
+- Authors: Zefan Wang, Yufan Dang, Xuanwei Shi, Mingqi Gao, Cheng Yin, SikYuen Tam, Hanyu Liu, Yasheng Wang, Yaxi Lu, Songyang Zhang, Xin Cong, Yuan Yao
+- Affiliations: Tsinghua University, ModelBest, Huazhong University of Science and Technology, Peking University, Tencent
+
+## Setup
+
+- Model: GPT-6 Astra in a Codex session at medium reasoning effort. Robot: the dual-arm ARX X5 in RoboDojo.
+- Loop: the model sends absolute end-effector targets (`move_eef`), the planner plans them, at most 20 control steps run in the simulator, and a new observation returns with three RGB views, the arm state and scene geometry.
+- Evaluation set: 111 episodes over 42 tasks, the main score. First round: 42 episodes, the first layout of each task. Every configuration is run once.
+- Behaviour review: failures and coordination behaviours are counted from episode videos.
+
+## Findings
+
+1. A lean harness goes a long way. Keeping the full episode history and stopping each motion after 20 control steps lift the score from 29.7 to 38.0. Relative targets, named skills and model-chosen step counts do not beat plain absolute targets.
+2. Reusing experience is not a free lunch. Demonstrations and a self-written skill library change how the model acts, but neither clearly beats the default, and both make an episode more expensive. They also draw on the tasks being scored, so their scores are not comparable with a standard evaluation.
+3. Scene geometry helps most. Depth images cut empty grasps from 41 to 16 in the first round, even when Depth Pro predicts the depth from RGB alone. With code that solves 3D coordinates from pixels and no decision cap, the score reaches 50.3.
+4. Remaining failures are mostly long-tail. Most failures left in the best configuration are specific to one task, such as plans that do not suit the arm, unplanned knocks and slipping grasps.
+
+## Results on the evaluation set
+
+Rows marked "kept" are the designs JustRUA keeps, in the order they were added. Cost is in US dollars per first-round episode.
+
+| Group | Configuration | Kept | Overall | Success (%) | Cost ($) |
+| --- | --- | --- | --- | --- | --- |
+| Harness | Official L3 harness | kept | 29.7 | 22.5* | n/a |
+| Harness | Codex, full history | kept | 34.7 | 27.1 | 3.76 |
+| Action, on full history | 20-step cap (default testbed) | kept | 38.0 | 31.0 | 4.94 |
+| Action, on full history | Model-chosen step count | | 37.9 | 30.0 | 4.95 |
+| Action, on full history | Relative targets | | 33.9 | 27.1 | 4.60 |
+| Action, on full history | Semantic operations | | 34.6 | 29.2 | 5.97 |
+| Action, on full history | Move sequences | | 42.0 | 30.8 | n/a |
+| Reasoning effort, on the default testbed | Low effort | | 33.3 | 27.3 | 4.49 |
+| Reasoning effort, on the default testbed | High effort | | 37.4 | 30.6 | 5.16 |
+| Reusing experience, on the default testbed | Visual demonstration | | 39.9 | 35.8 | 5.11 |
+| Reusing experience, on the default testbed | Text trajectory | | 35.2 | 29.0 | 5.84 |
+| Reusing experience, on the default testbed | Self-built library | | 37.0 | 26.3 | 5.43 |
+| Scene geometry | Compact robot readings | kept | 39.8 | 33.3 | 5.51 |
+| Scene geometry | Simulator depth (reference, not accepted by the leaderboard) | | 46.0 | 38.3 | 7.26 |
+| Scene geometry | Predicted depth | kept | 42.4 | 35.4 | 7.74 |
+| Scene geometry | Affordances drawn, simulator depth | | 36.7 | 30.8 | 6.91 |
+| Scene geometry | Affordances drawn with depth, predicted | | 30.9 | 24.8 | 6.63 |
+| Scene geometry | Affordance panel, predicted depth | | 42.1 | 34.8 | 7.54 |
+| Scene geometry | Coordinate solving (JustRUA) | kept | 50.3 | 43.3 | 12.53 |
+
+*Success rate of the official harness is from its full evaluation of 2,100 episodes, where it scores 29.0 overall.
+
+## Citation
+
+```bibtex
+@article{justrua2026,
+  title   = {JustRUA: A Controlled Study of GPT-6 Robot-Use Agents},
+  author  = {Zefan Wang and Yufan Dang and Xuanwei Shi and Mingqi Gao and Cheng Yin and SikYuen Tam and Hanyu Liu and Yasheng Wang and Yaxi Lu and Songyang Zhang and Xin Cong and Yuan Yao},
+  journal = {arXiv preprint arXiv:2611.16009},
+  year    = {2026}
+}
+```
