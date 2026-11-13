@@ -1,8 +1,27 @@
 # JustRUA
 
+[Paper](https://arxiv.org/abs/2611.16009) · [Project page](https://zefanw.github.io/JustRUA/) · [中文主页](https://zefanw.github.io/JustRUA/zh/) · [Episode replays](https://huggingface.co/spaces/ZefanW/robodojo-replay-explorer)
+
+This repository holds the policy from *JustRUA: A Controlled Study of GPT-6 Robot-Use Agents* ([arXiv:2611.16009](https://arxiv.org/abs/2611.16009)).
+
 JustRUA is a robot policy for the dual-arm ARX X5 in RoboDojo. The actor gets three RGB views, a depth estimate for each view, camera calibration, and measured finger and wrist readings. For example, a close command can coexist with fingers that stop partway. The next decision sees both the command and the measured positions.
 
 One persistent GPT-6 Astra conversation controls each episode. The actor can use a local coding runtime to calculate a target from the observations, inspect its previous work, or issue an absolute end-effector target directly. The Cartesian planner converts that target into robot controls. Each motion executes at most its first 20 controls. The actor then sees the actual state and arrival error before deciding again. There is no policy limit on decision count; the simulator enforces its own episode budget.
+
+## Results
+
+Scores are on the 111-episode RoboDojo evaluation set of the paper, which covers all 42 tasks. Each row adds one change to the row above, and the last row is the policy in this repository. Cost is per first-round episode.
+
+| Configuration | Score | Success (%) | Cost ($) |
+| --- | --- | --- | --- |
+| Official L3 harness | 29.7 | | |
+| + Codex session with the full episode history | 34.7 | 27.1 | 3.76 |
+| + At most 20 control steps per motion | 38.0 | 31.0 | 4.94 |
+| + Compact robot readings | 39.8 | 33.3 | 5.51 |
+| + Depth predicted from RGB | 42.4 | 35.4 | 7.74 |
+| + Coordinate solving in code, no decision cap (JustRUA) | 50.3 | 43.3 | 12.53 |
+
+The paper reports every design we tested, including the ones this policy leaves out.
 
 ## Use with XPolicyLab
 
@@ -36,6 +55,17 @@ With an existing RoboDojo installation, use its XPolicyLab checkout if it alread
 | [actor/](policy/JustRUA/actor) | Keeps one native coding conversation per episode and isolates its writable scratch space. |
 | [policy.py](policy/JustRUA/policy.py) | Applies the control limit to a planned motion and passes measured feedback to the next decision. |
 | [deploy.py](policy/JustRUA/deploy.py) | Connects those components to RoboDojo's environment and XPolicyLab's planner. |
+
+## Citation
+
+```bibtex
+@article{justrua2026,
+  title   = {JustRUA: A Controlled Study of GPT-6 Robot-Use Agents},
+  author  = {Zefan Wang and Yufan Dang and Xuanwei Shi and Mingqi Gao and Cheng Yin and SikYuen Tam and Hanyu Liu and Yasheng Wang and Yaxi Lu and Songyang Zhang and Xin Cong and Yuan Yao},
+  journal = {arXiv preprint arXiv:2611.16009},
+  year    = {2026}
+}
+```
 
 ## License
 
